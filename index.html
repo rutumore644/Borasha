@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- This tells the browser that the page uses modern HTML -->
+    <meta charset="UTF-8">
+
+    <!-- This makes the website responsive on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title displayed on the browser tab -->
+    <title>Borasha | Local Language Learning</title>
+
+    <!-- Connect our external CSS file -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <div class="logo">
+            <span class="logo-icon">🌸</span>
+            <div>
+                <h1>Borasha</h1>
+                <p>Learn • Practice • Speak</p>
+            </div>
+        </div>
+
+        <!-- Navigation menu -->
+        <nav class="navbar">
+
+            <a href="index.html" class="active">Home</a>
+            <a href="lessons.html">Lessons</a>
+            <a href="vocabulary.html">Vocabulary</a>
+            <a href="practice.html">Speak</a>
+            <a href="translator.html">Translate</a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================= HERO SECTION ================= -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <p class="small-title">WELCOME TO BORASHA</p>
+
+                <h2>
+                    Learn a language.
+                    <span>Connect with people.</span>
+                </h2>
+
+                <p class="hero-text">
+                    Learn Marathi, Hindi and English through simple
+                    lessons, useful words, speaking practice and quizzes.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="lessons.html" class="primary-button">
+                        Start Learning →
+                    </a>
+
+                    <a href="vocabulary.html" class="secondary-button">
+                        Explore Words
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- Decorative learning card -->
+            <div class="hero-card">
+
+                <div class="flower">🌸</div>
+
+                <h3>Today's Learning</h3>
+
+                <p>नमस्कार</p>
+
+                <span>Hello</span>
+
+                <button onclick="speakText('नमस्कार')">
+                    🔊 Listen
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= LANGUAGE SECTION ================= -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <p class="small-title">CHOOSE YOUR LANGUAGE</p>
+
+                <h2>Start with a language you know</h2>
+
+                <p>
+                    Choose a language and begin learning step by step.
+                </p>
+
+            </div>
+
+
+            <div class="language-grid">
+
+                <div class="language-card" onclick="selectLanguage('Marathi')">
+
+                    <div class="language-icon">🇮🇳</div>
+
+                    <h3>मराठी</h3>
+
+                    <p>Marathi</p>
+
+                </div>
+
+
+                <div class="language-card" onclick="selectLanguage('Hindi')">
+
+                    <div class="language-icon">🇮🇳</div>
+
+                    <h3>हिन्दी</h3>
+
+                    <p>Hindi</p>
+
+                </div>
+
+
+                <div class="language-card" onclick="selectLanguage('English')">
+
+                    <div class="language-icon">🇬🇧</div>
+
+                    <h3>English</h3>
+
+                    <p>English</p>
+
+                </div>
+
+
+                <div class="language-card coming-soon">
+
+                    <div class="language-icon">✨</div>
+
+                    <h3>More Languages</h3>
+
+                    <p>Coming Soon</p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= FEATURES ================= -->
+
+        <section class="section colored-section">
+
+            <div class="section-heading">
+
+                <p class="small-title">LEARN YOUR WAY</p>
+
+                <h2>What would you like to do?</h2>
+
+            </div>
+
+
+            <div class="feature-grid">
+
+                <a href="lessons.html" class="feature-card">
+
+                    <div class="feature-icon">📚</div>
+
+                    <h3>Lessons</h3>
+
+                    <p>
+                        Learn languages through simple lessons.
+                    </p>
+
+                </a>
+
+
+                <a href="vocabulary.html" class="feature-card">
+
+                    <div class="feature-icon">🔤</div>
+
+                    <h3>Vocabulary</h3>
+
+                    <p>
+                        Learn useful words and meanings.
+                    </p>
+
+                </a>
+
+
+                <a href="practice.html" class="feature-card">
+
+                    <div class="feature-icon">🎤</div>
+
+                    <h3>Speak</h3>
+
+                    <p>
+                        Practice speaking and pronunciation.
+                    </p>
+
+                </a>
+
+
+                <a href="camera.html" class="feature-card">
+
+                    <div class="feature-icon">📷</div>
+
+                    <h3>Take a Photo</h3>
+
+                    <p>
+                        Use your camera to capture text.
+                    </p>
+
+                </a>
+
+
+                <a href="camera.html" class="feature-card">
+
+                    <div class="feature-icon">⬆️</div>
+
+                    <h3>Upload Photo</h3>
+
+                    <p>
+                        Upload an image containing text.
+                    </p>
+
+                </a>
+
+
+                <a href="translator.html" class="feature-card">
+
+                    <div class="feature-icon">🌐</div>
+
+                    <h3>Translate</h3>
+
+                    <p>
+                        Translate between supported languages.
+                    </p>
+
+                </a>
+
+
+                <a href="quiz.html" class="feature-card">
+
+                    <div class="feature-icon">📝</div>
+
+                    <h3>Quiz</h3>
+
+                    <p>
+                        Test what you have learned.
+                    </p>
+
+                </a>
+
+
+                <a href="progress.html" class="feature-card">
+
+                    <div class="feature-icon">📊</div>
+
+                    <h3>Progress</h3>
+
+                    <p>
+                        Check your learning progress.
+                    </p>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= HOW IT WORKS ================= -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <p class="small-title">HOW BORASHA WORKS</p>
+
+                <h2>Learn in a few simple steps</h2>
+
+            </div>
+
+
+            <div class="steps">
+
+                <div class="step">
+
+                    <span>01</span>
+
+                    <h3>Learn</h3>
+
+                    <p>
+                        Start with lessons and vocabulary.
+                    </p>
+
+                </div>
+
+
+                <div class="step">
+
+                    <span>02</span>
+
+                    <h3>Practice</h3>
+
+                    <p>
+                        Speak, listen and practice new words.
+                    </p>
+
+                </div>
+
+
+                <div class="step">
+
+                    <span>03</span>
+
+                    <h3>Test</h3>
+
+                    <p>
+                        Take quizzes to check your learning.
+                    </p>
+
+                </div>
+
+
+                <div class="step">
+
+                    <span>04</span>
+
+                    <h3>Track</h3>
+
+                    <p>
+                        See your progress as you learn.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <h2>🌸 Borasha</h2>
+
+        <p>
+            Educational App Development for Local Language Learning
+        </p>
+
+        <p class="footer-small">
+            Made as a Community Engagement Project
+        </p>
+
+    </footer>
+
+
+    <!-- Connect JavaScript -->
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
