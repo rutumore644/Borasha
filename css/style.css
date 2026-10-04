@@ -10,7 +10,412 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box;/* =========================================================
+   BORASHA INTERACTIVE LESSON PAGE
+   ========================================================= */
+
+
+/* Lesson page header */
+
+.lesson-learning-header {
+
+    padding: 60px 7%;
+
+    text-align: center;
+
+    background: #f8edff;
+
+}
+
+
+.lesson-learning-header h2 {
+
+    font-size: 42px;
+
+    color: #292238;
+
+    margin: 10px 0;
+
+}
+
+
+.lesson-learning-header p {
+
+    color: #716878;
+
+}
+
+
+/* Main lesson area */
+
+.lesson-learning-container {
+
+    max-width: 1000px;
+
+    margin: auto;
+
+    padding: 50px 7%;
+
+}
+
+
+/* Learning cards */
+
+.learning-card {
+
+    background: white;
+
+    padding: 30px;
+
+    margin-bottom: 30px;
+
+    border-radius: 20px;
+
+    border: 1px solid #eaddec;
+
+    box-shadow:
+        0 8px 25px rgba(80, 50, 90, 0.08);
+
+}
+
+
+.learning-card h2 {
+
+    color: #292238;
+
+    margin-bottom: 10px;
+
+}
+
+
+.learning-intro {
+
+    color: #716878;
+
+    margin-bottom: 20px;
+
+}
+
+
+/* Word list */
+
+.word-list {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 18px;
+
+}
+
+
+.word-card {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 20px;
+
+    background: #fff0f7;
+
+    border: 1px solid #f1b3cf;
+
+    border-radius: 15px;
+
+}
+
+
+.word-card h3 {
+
+    margin-bottom: 8px;
+
+    color: #292238;
+
+}
+
+
+.word-card p {
+
+    margin: 4px 0;
+
+    color: #716878;
+
+}
+
+
+/* Listen button */
+
+.listen-button {
+
+    border: none;
+
+    background: #c4478b;
+
+    color: white;
+
+    padding: 10px 14px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+}
+
+
+.listen-button:hover {
+
+    opacity: 0.9;
+
+}
+
+
+/* Sentences */
+
+.sentence-list {
+
+    display: grid;
+
+    gap: 18px;
+
+}
+
+
+.sentence-card {
+
+    padding: 20px;
+
+    background: #f8edff;
+
+    border-radius: 15px;
+
+    border-left: 5px solid #c4478b;
+
+}
+
+
+.sentence-card h3 {
+
+    color: #292238;
+
+    margin-bottom: 8px;
+
+}
+
+
+.sentence-card p {
+
+    color: #716878;
+
+    margin: 5px 0;
+
+}
+
+
+/* Practice */
+
+.practice-card {
+
+    background: #fff7fb;
+
+}
+
+
+#questionText {
+
+    font-size: 19px;
+
+    font-weight: bold;
+
+    color: #292238;
+
+    margin: 20px 0;
+
+}
+
+
+.answer-buttons {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 15px;
+
+}
+
+
+.answer-button {
+
+    padding: 14px;
+
+    border: 1px solid #d9a7c2;
+
+    background: white;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+}
+
+
+.answer-button:hover {
+
+    background: #ffe1ef;
+
+}
+
+
+.practice-result {
+
+    margin-top: 20px;
+
+    font-weight: bold;
+
+}
+
+
+.practice-result.correct {
+
+    color: #248a5b;
+
+}
+
+
+.practice-result.wrong {
+
+    color: #c4478b;
+
+}
+
+
+/* Complete lesson */
+
+.lesson-complete-box {
+
+    text-align: center;
+
+    padding: 35px;
+
+    background: #ffe1ef;
+
+    border: 1px solid #e68ab6;
+
+    border-radius: 20px;
+
+    margin-bottom: 30px;
+
+}
+
+
+.lesson-complete-box h2 {
+
+    color: #292238;
+
+}
+
+
+.lesson-complete-box p {
+
+    color: #716878;
+
+}
+
+
+.lesson-complete-button {
+
+    border: none;
+
+    background: #c4478b;
+
+    color: white;
+
+    padding: 13px 22px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+}
+
+
+.lesson-complete-button:hover {
+
+    opacity: 0.9;
+
+}
+
+
+#completionMessage {
+
+    color: #b13273;
+
+    font-weight: bold;
+
+    margin-top: 15px;
+
+}
+
+
+/* Back to lessons */
+
+.back-to-lessons {
+
+    text-align: center;
+
+    margin: 30px 0;
+
+}
+
+
+/* Mobile design */
+
+@media (max-width: 700px) {
+
+    .lesson-learning-header h2 {
+
+        font-size: 32px;
+
+    }
+
+
+    .word-list {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .answer-buttons {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .word-card {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+    }
+
+}
 }
 
 
