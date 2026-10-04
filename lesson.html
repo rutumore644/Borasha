@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <!-- Makes the page responsive on mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Borasha | Lesson</title>
+
+    <!-- Connects the page to the main Borasha CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <div class="logo">
+
+            <span class="logo-icon">🌸</span>
+
+            <div>
+                <h1>Borasha</h1>
+                <p>Learn • Practice • Speak</p>
+            </div>
+
+        </div>
+
+
+        <!-- Navigation menu -->
+
+        <nav class="navbar">
+
+            <a href="index.html">Home</a>
+
+            <a href="lessons.html" class="active">
+                Lessons
+            </a>
+
+            <a href="vocabulary.html">
+                Vocabulary
+            </a>
+
+            <a href="practice.html">
+                Speak
+            </a>
+
+            <a href="camera.html">
+                Camera
+            </a>
+
+            <a href="translator.html">
+                Translate
+            </a>
+
+            <a href="quiz.html">
+                Quiz
+            </a>
+
+            <a href="progress.html">
+                Progress
+            </a>
+
+            <a href="survey.html">
+                Survey
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================= LESSON HEADER ================= -->
+
+    <section class="lesson-learning-header">
+
+        <p class="small-title">
+            BORASHA LEARNING PATH
+        </p>
+
+        <h2 id="lessonTitle">
+            Lesson
+        </h2>
+
+        <p id="lessonDescription">
+            Learn useful words and sentences step by step.
+        </p>
+
+    </section>
+
+
+    <!-- ================= LESSON CONTENT ================= -->
+
+    <main class="lesson-learning-container">
+
+
+        <!-- Vocabulary section -->
+
+        <section class="learning-card">
+
+            <h2>📚 Learn the Words</h2>
+
+            <p class="learning-intro">
+                Listen to each word and learn its meaning.
+            </p>
+
+            <div id="wordList" class="word-list">
+
+                <!-- JavaScript adds the words here -->
+
+            </div>
+
+        </section>
+
+
+        <!-- Sentence section -->
+
+        <section class="learning-card">
+
+            <h2>💬 Useful Sentences</h2>
+
+            <div id="sentenceList" class="sentence-list">
+
+                <!-- JavaScript adds sentences here -->
+
+            </div>
+
+        </section>
+
+
+        <!-- Practice section -->
+
+        <section class="learning-card practice-card">
+
+            <h2>🧠 Quick Practice</h2>
+
+            <p id="questionText">
+                Question
+            </p>
+
+            <div id="answerButtons" class="answer-buttons">
+
+                <!-- JavaScript adds answers -->
+
+            </div>
+
+            <p id="practiceResult" class="practice-result"></p>
+
+        </section>
+
+
+        <!-- Complete lesson -->
+
+        <section class="lesson-complete-box">
+
+            <h2>🎉 Finished the lesson?</h2>
+
+            <p>
+                Complete this lesson to save your progress.
+            </p>
+
+            <button
+                class="lesson-complete-button"
+                onclick="finishLesson()">
+
+                ✓ Complete Lesson
+
+            </button>
+
+            <p id="completionMessage"></p>
+
+        </section>
+
+
+        <!-- Back button -->
+
+        <div class="back-to-lessons">
+
+            <a href="lessons.html" class="btn">
+                ← Back to Lessons
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <h2>🌸 Borasha</h2>
+
+        <p>
+            Learn languages. Connect with people.
+        </p>
+
+        <p class="footer-small">
+            © 2026 Borasha | Local Language Learning
+        </p>
+
+    </footer>
+
+
+    <!-- Lesson JavaScript -->
+
+    <script src="js/lesson.js"></script>
+
+</body>
+
+</html>
