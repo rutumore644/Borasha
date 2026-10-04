@@ -1,217 +1,491 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <!-- Makes the page responsive on mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borasha | Learn</title>
 
-    <title>Borasha | Lesson</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <!-- Connects the page to the main Borasha CSS -->
-    <link rel="stylesheet" href="css/style.css">
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f9f7ff 0%, #ffe8f0 100%);
+            min-height: 100vh;
+            color: #333;
+        }
 
+        header {
+            background: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo h1 {
+            font-size: 22px;
+            color: #5f2867;
+            margin: 0;
+        }
+
+        .logo p {
+            font-size: 12px;
+            color: #999;
+            margin: 0;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 600;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #c4478b;
+        }
+
+        .lesson-header {
+            background: linear-gradient(135deg, #f5eaff 0%, #fff0f5 100%);
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .lesson-header .label {
+            color: #8b3d83;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .lesson-header h2 {
+            font-size: 36px;
+            color: #5f2867;
+            margin-bottom: 12px;
+        }
+
+        .lesson-header p {
+            color: #666;
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(95, 40, 103, 0.1);
+        }
+
+        .card h2 {
+            color: #5f2867;
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .intro-text {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 15px;
+        }
+
+        .word-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .word-item {
+            background: #f9f7ff;
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+            border-left: 4px solid #c4478b;
+        }
+
+        .word-item:hover {
+            background: #f0eaff;
+            transform: translateX(5px);
+        }
+
+        .word-content h3 {
+            color: #8b3d83;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .word-content p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .listen-btn {
+            background: #c4478b;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .listen-btn:hover {
+            background: #a83670;
+            transform: scale(1.05);
+        }
+
+        .sentence-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .sentence-item {
+            background: #f9f7ff;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #743e85;
+            transition: all 0.3s;
+        }
+
+        .sentence-item:hover {
+            background: #f0eaff;
+        }
+
+        .sentence-item .marathi {
+            font-size: 18px;
+            color: #8b3d83;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .sentence-item .english {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .practice-card {
+            background: linear-gradient(135deg, #f5eaff 0%, #fff0f5 100%);
+        }
+
+        .question {
+            font-size: 18px;
+            color: #5f2867;
+            font-weight: bold;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .answer-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .answer-btn {
+            padding: 15px;
+            border: 2px solid #c4478b;
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #5f2867;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .answer-btn:hover {
+            background: #c4478b;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .result {
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            min-height: 30px;
+        }
+
+        .result.success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .result.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .complete-section {
+            background: linear-gradient(135deg, #c4478b 0%, #e8739f 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .complete-section h2 {
+            color: white;
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .complete-section p {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .complete-btn {
+            background: white;
+            color: #c4478b;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 15px;
+        }
+
+        .complete-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .completion-message {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .back-button {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: white;
+            color: #5f2867;
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        footer {
+            background: white;
+            text-align: center;
+            padding: 35px 20px;
+            border-top: 1px solid #eee;
+            color: #5f2867;
+        }
+
+        footer h2 {
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        footer p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .footer-small {
+            font-size: 12px;
+            color: #999;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+
+            nav {
+                gap: 8px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+
+            .lesson-header {
+                padding: 30px 15px;
+            }
+
+            .lesson-header h2 {
+                font-size: 24px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .card h2 {
+                font-size: 20px;
+            }
+
+            .word-item,
+            .sentence-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .answer-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .complete-section {
+                padding: 25px;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-    <!-- ================= HEADER ================= -->
-
-    <header class="header">
-
+    <header>
         <div class="logo">
-
-            <span class="logo-icon">🌸</span>
-
+            <span style="font-size: 28px;">🌸</span>
             <div>
                 <h1>Borasha</h1>
                 <p>Learn • Practice • Speak</p>
             </div>
-
         </div>
 
-
-        <!-- Navigation menu -->
-
-        <nav class="navbar">
-
+        <nav>
             <a href="index.html">Home</a>
-
-            <a href="lessons.html" class="active">
-                Lessons
-            </a>
-
-            <a href="vocabulary.html">
-                Vocabulary
-            </a>
-
-            <a href="practice.html">
-                Speak
-            </a>
-
-            <a href="camera.html">
-                Camera
-            </a>
-
-            <a href="translator.html">
-                Translate
-            </a>
-
-            <a href="quiz.html">
-                Quiz
-            </a>
-
-            <a href="progress.html">
-                Progress
-            </a>
-
-            <a href="survey.html">
-                Survey
-            </a>
-
+            <a href="lessons.html" class="active">Lessons</a>
+            <a href="vocabulary.html">Vocabulary</a>
+            <a href="practice.html">Speak</a>
+            <a href="camera.html">Camera</a>
+            <a href="translator.html">Translate</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="progress.html">Progress</a>
+            <a href="survey.html">Survey</a>
         </nav>
-
     </header>
 
-
-    <!-- ================= LESSON HEADER ================= -->
-
-    <section class="lesson-learning-header">
-
-        <p class="small-title">
-            BORASHA LEARNING PATH
-        </p>
-
-        <h2 id="lessonTitle">
-            Lesson
-        </h2>
-
-        <p id="lessonDescription">
-            Learn useful words and sentences step by step.
-        </p>
-
+    <section class="lesson-header">
+        <p class="label">Learning Path</p>
+        <h2 id="lessonTitle">Lesson</h2>
+        <p id="lessonDescription">Learn new words and useful sentences.</p>
     </section>
 
+    <main>
 
-    <!-- ================= LESSON CONTENT ================= -->
-
-    <main class="lesson-learning-container">
-
-
-        <!-- Vocabulary section -->
-
-        <section class="learning-card">
-
+        <!-- Learn Words -->
+        <section class="card">
             <h2>📚 Learn the Words</h2>
-
-            <p class="learning-intro">
-                Listen to each word and learn its meaning.
-            </p>
+            <p class="intro-text">Listen to each word and remember its meaning.</p>
 
             <div id="wordList" class="word-list">
-
-                <!-- JavaScript adds the words here -->
-
+                <!-- Words added by JavaScript -->
             </div>
-
         </section>
 
-
-        <!-- Sentence section -->
-
-        <section class="learning-card">
-
+        <!-- Useful Sentences -->
+        <section class="card">
             <h2>💬 Useful Sentences</h2>
 
             <div id="sentenceList" class="sentence-list">
-
-                <!-- JavaScript adds sentences here -->
-
+                <!-- Sentences added by JavaScript -->
             </div>
-
         </section>
 
-
-        <!-- Practice section -->
-
-        <section class="learning-card practice-card">
-
+        <!-- Quick Practice -->
+        <section class="card practice-card">
             <h2>🧠 Quick Practice</h2>
 
-            <p id="questionText">
-                Question
-            </p>
+            <p class="question" id="questionText">Question</p>
 
             <div id="answerButtons" class="answer-buttons">
-
-                <!-- JavaScript adds answers -->
-
+                <!-- Answer buttons added by JavaScript -->
             </div>
 
-            <p id="practiceResult" class="practice-result"></p>
-
+            <p id="practiceResult" class="result"></p>
         </section>
 
+        <!-- Complete Lesson -->
+        <section class="complete-section">
+            <h2>🎉 Lesson Complete!</h2>
+            <p>Save your progress by finishing this lesson.</p>
 
-        <!-- Complete lesson -->
-
-        <section class="lesson-complete-box">
-
-            <h2>🎉 Finished the lesson?</h2>
-
-            <p>
-                Complete this lesson to save your progress.
-            </p>
-
-            <button
-                class="lesson-complete-button"
-                onclick="finishLesson()">
-
+            <button class="complete-btn" onclick="finishLesson()">
                 ✓ Complete Lesson
-
             </button>
 
-            <p id="completionMessage"></p>
-
+            <p id="completionMessage" class="completion-message"></p>
         </section>
 
-
-        <!-- Back button -->
-
-        <div class="back-to-lessons">
-
-            <a href="lessons.html" class="btn">
-                ← Back to Lessons
-            </a>
-
+        <!-- Back to Lessons -->
+        <div class="back-button">
+            <a href="lessons.html" class="back-btn">← Back to Lessons</a>
         </div>
 
     </main>
 
-
-    <!-- ================= FOOTER ================= -->
-
-    <footer class="footer">
-
+    <footer>
         <h2>🌸 Borasha</h2>
-
-        <p>
-            Learn languages. Connect with people.
-        </p>
-
-        <p class="footer-small">
-            © 2026 Borasha | Local Language Learning
-        </p>
-
+        <p>Learn languages. Connect with people.</p>
+        <p class="footer-small">© 2026 Borasha</p>
     </footer>
-
-
-    <!-- Lesson JavaScript -->
 
     <script src="js/lesson.js"></script>
 
 </body>
-
 </html>
