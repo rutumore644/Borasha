@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Borasha | Speaking Practice</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        .practice-page {
+            min-height: 75vh;
+            padding: 70px 7%;
+            background: #f7efff;
+        }
+
+        .practice-box {
+            max-width: 650px;
+            margin: auto;
+            background: white;
+            padding: 45px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(80, 50, 90, 0.1);
+        }
+
+        .target-word {
+            font-size: 48px;
+            color: #8b3d83;
+            font-weight: bold;
+            margin: 25px 0 10px;
+        }
+
+        .pronunciation {
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        .practice-button {
+            border: none;
+            padding: 13px 20px;
+            border-radius: 12px;
+            background: #c4478b;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        .listen-button {
+            background: #eee2ff;
+            color: #743e85;
+        }
+
+        #speechResult {
+            margin-top: 25px;
+            font-weight: bold;
+        }
+
+        .success-message {
+            color: green;
+            margin-top: 15px;
+        }
+
+        .error-message {
+            color: #c4478b;
+            margin-top: 15px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <header class="header">
+
+        <div class="logo">
+
+            <span class="logo-icon">🌸</span>
+
+            <div>
+                <h1>Borasha</h1>
+                <p>Learn • Practice • Speak</p>
+            </div>
+
+        </div>
+
+        <nav class="navbar">
+
+            <a href="index.html">Home</a>
+            <a href="lessons.html">Lessons</a>
+            <a href="vocabulary.html">Vocabulary</a>
+            <a href="practice.html" class="active">Speak</a>
+            <a href="translator.html">Translate</a>
+
+        </nav>
+
+    </header>
+
+
+    <main class="practice-page">
+
+        <div class="practice-box">
+
+            <p class="small-title">
+                SPEAKING PRACTICE
+            </p>
+
+            <h2>Listen and speak</h2>
+
+            <p>
+                Listen to the word first, then try saying it.
+            </p>
+
+
+            <div class="target-word">
+                नमस्कार
+            </div>
+
+
+            <div class="pronunciation">
+                Namaskar
+            </div>
+
+
+            <button
+                class="practice-button listen-button"
+                onclick="speakText('नमस्कार', 'mr-IN')">
+
+                🔊 Listen
+
+            </button>
+
+
+            <button
+                class="practice-button"
+                onclick="startSpeechRecognition('नमस्कार')">
+
+                🎤 Speak
+
+            </button>
+
+
+            <p id="speechResult">
+                Your speech will appear here.
+            </p>
+
+
+            <p id="speechFeedback"></p>
+
+        </div>
+
+    </main>
+
+
+    <footer class="footer">
+
+        <h2>🌸 Borasha</h2>
+
+        <p>Practice speaking with confidence.</p>
+
+    </footer>
+
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
