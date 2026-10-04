@@ -619,3 +619,246 @@ a {
     }
 
 }
+/* =========================================================
+   BORASHA COMMUNITY SURVEY
+   Styles for the Google Form survey page
+   ========================================================= */
+
+
+/* Main survey section */
+
+.survey-section {
+
+    padding: 70px 7%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff0f7,
+            #f5efff
+        );
+
+    min-height: 100vh;
+
+}
+
+
+/* Survey introduction */
+
+.survey-header {
+
+    max-width: 850px;
+
+    margin: 0 auto 35px;
+
+    text-align: center;
+
+}
+
+
+/* Small heading */
+
+.survey-label {
+
+    color: #c4478b;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 10px;
+
+}
+
+
+/* Main survey heading */
+
+.survey-header h2 {
+
+    font-size: 42px;
+
+    color: #292238;
+
+    margin-bottom: 18px;
+
+}
+
+
+/* Survey description */
+
+.survey-subtitle {
+
+    max-width: 700px;
+
+    margin: 0 auto 18px;
+
+    font-size: 18px;
+
+    color: #665d6e;
+
+}
+
+
+/* Marathi and Hindi text */
+
+.survey-language {
+
+    max-width: 750px;
+
+    margin: 10px auto;
+
+    font-size: 16px;
+
+    color: #665d6e;
+
+}
+
+
+/* Feedback note */
+
+.survey-note {
+
+    max-width: 650px;
+
+    margin: 30px auto 0;
+
+    padding: 18px 25px;
+
+    background: white;
+
+    border-left: 5px solid #c4478b;
+
+    border-radius: 12px;
+
+    box-shadow: 0 5px 20px rgba(80, 50, 90, 0.08);
+
+}
+
+
+.survey-note strong {
+
+    color: #a54491;
+
+    font-size: 17px;
+
+}
+
+
+.survey-note p {
+
+    margin-top: 5px;
+
+    color: #665d6e;
+
+}
+
+
+/* Google Form container */
+
+.google-form-container {
+
+    width: 100%;
+
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    background: white;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 10px 35px rgba(80, 50, 90, 0.12);
+
+}
+
+
+/* Google Form */
+
+.google-form-container iframe {
+
+    display: block;
+
+    width: 100%;
+
+    min-height: 1900px;
+
+    border: none;
+
+}
+
+
+/* Survey page responsive design */
+
+@media (max-width: 900px) {
+
+    .survey-section {
+
+        padding: 60px 5%;
+
+    }
+
+    .survey-header h2 {
+
+        font-size: 34px;
+
+    }
+
+    .google-form-container iframe {
+
+        min-height: 2000px;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .survey-section {
+
+        padding: 45px 4%;
+
+    }
+
+    .survey-header h2 {
+
+        font-size: 28px;
+
+    }
+
+    .survey-subtitle {
+
+        font-size: 16px;
+
+    }
+
+    .survey-language {
+
+        font-size: 15px;
+
+    }
+
+    .survey-note {
+
+        padding: 15px;
+
+    }
+
+    .google-form-container {
+
+        border-radius: 12px;
+
+    }
+
+    .google-form-container iframe {
+
+        min-height: 2100px;
+
+    }
+
+}
