@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Borasha | Progress</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        .progress-page {
+            padding: 70px 7%;
+            background: #f8f1ff;
+            min-height: 75vh;
+        }
+
+        .progress-container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .progress-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .progress-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            height: 18px;
+            background: #eee;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #d65b9b;
+            width: 0%;
+            transition: 0.5s;
+        }
+
+        .progress-number {
+            margin-top: 8px;
+            color: #777;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <header class="header">
+
+        <div class="logo">
+
+            <span class="logo-icon">🌸</span>
+
+            <div>
+                <h1>Borasha</h1>
+                <p>Learn • Practice • Speak</p>
+            </div>
+
+        </div>
+
+        <nav class="navbar">
+
+            <a href="index.html">Home</a>
+            <a href="lessons.html">Lessons</a>
+            <a href="vocabulary.html">Vocabulary</a>
+            <a href="practice.html">Speak</a>
+            <a href="translator.html">Translate</a>
+
+        </nav>
+
+    </header>
+
+
+    <main class="progress-page">
+
+        <div class="section-heading">
+
+            <p class="small-title">YOUR LEARNING JOURNEY</p>
+
+            <h2>My Progress</h2>
+
+            <p>
+                Track your learning activities.
+            </p>
+
+        </div>
+
+
+        <div class="progress-container">
+
+
+            <div class="progress-card">
+
+                <h3>📚 Lessons Completed</h3>
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill"
+                        id="lessonProgress">
+                    </div>
+
+                </div>
+
+                <p
+                    class="progress-number"
+                    id="lessonNumber">
+                </p>
+
+            </div>
+
+
+            <div class="progress-card">
+
+                <h3>📝 Quiz Score</h3>
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill"
+                        id="quizProgress">
+                    </div>
+
+                </div>
+
+                <p
+                    class="progress-number"
+                    id="quizNumber">
+                </p>
+
+            </div>
+
+
+            <div class="progress-card">
+
+                <h3>🌸 Keep Learning</h3>
+
+                <p>
+                    Complete lessons, practice speaking and take quizzes
+                    to improve your progress.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+    <footer class="footer">
+
+        <h2>🌸 Borasha</h2>
+
+        <p>Your language learning journey starts here.</p>
+
+    </footer>
+
+
+    <script src="js/script.js"></script>
+
+
+    <script>
+
+        /*
+            Calculate lesson progress.
+        */
+
+        const totalLessons = 6;
+
+
+        const completedLessons =
+            JSON.parse(
+                localStorage.getItem(
+                    "borashaCompletedLessons"
+                )
+            ) || [];
+
+
+        const lessonPercentage =
+            Math.round(
+                (completedLessons.length / totalLessons) * 100
+            );
+
+
+        document.getElementById("lessonProgress")
+            .style.width =
+            lessonPercentage + "%";
+
+
+        document.getElementById("lessonNumber")
+            .textContent =
+            completedLessons.length +
+            " of " +
+            totalLessons +
+            " lessons completed (" +
+            lessonPercentage +
+            "%)";
+
+
+        /*
+            Calculate quiz progress.
+        */
+
+        const quizData =
+            JSON.parse(
+                localStorage.getItem(
+                    "borashaQuizScore"
+                )
+            );
+
+
+        if (quizData) {
+
+            const quizPercentage =
+                Math.round(
+                    (quizData.score / quizData.total) * 100
+                );
+
+
+            document.getElementById("quizProgress")
+                .style.width =
+                quizPercentage + "%";
+
+
+            document.getElementById("quizNumber")
+                .textContent =
+                quizData.score +
+                " / " +
+                quizData.total +
+                " correct (" +
+                quizPercentage +
+                "%)";
+
+        } else {
+
+            document.getElementById("quizNumber")
+                .textContent =
+                "No quiz completed yet.";
+
+        }
+
+    </script>
+
+</body>
+
+</html>
