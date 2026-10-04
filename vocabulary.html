@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Borasha | Vocabulary</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        .page-header {
+            padding: 70px 7%;
+            text-align: center;
+            background: #fff0f7;
+        }
+
+        .page-header h2 {
+            font-size: 45px;
+        }
+
+        .vocabulary-section {
+            padding: 60px 7%;
+        }
+
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto 35px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #e0cddd;
+            border-radius: 12px;
+            font-size: 16px;
+        }
+
+        .vocabulary-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .vocabulary-table th,
+        .vocabulary-table td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .vocabulary-table th {
+            background: #f7e8ff;
+        }
+
+        .speak-button {
+            border: none;
+            background: #ffe1ef;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 700px) {
+
+            .vocabulary-table {
+                font-size: 13px;
+            }
+
+            .vocabulary-table th,
+            .vocabulary-table td {
+                padding: 10px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <header class="header">
+
+        <div class="logo">
+
+            <span class="logo-icon">🌸</span>
+
+            <div>
+                <h1>Borasha</h1>
+                <p>Learn • Practice • Speak</p>
+            </div>
+
+        </div>
+
+        <nav class="navbar">
+
+            <a href="index.html">Home</a>
+            <a href="lessons.html">Lessons</a>
+            <a href="vocabulary.html" class="active">Vocabulary</a>
+            <a href="practice.html">Speak</a>
+            <a href="translator.html">Translate</a>
+
+        </nav>
+
+    </header>
+
+
+    <section class="page-header">
+
+        <p class="small-title">BUILD YOUR WORD BANK</p>
+
+        <h2>Vocabulary</h2>
+
+        <p>
+            Learn useful words in Marathi, Hindi and English.
+        </p>
+
+    </section>
+
+
+    <main class="vocabulary-section">
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="wordSearch"
+                placeholder="Search for a word..."
+                onkeyup="searchVocabulary()">
+
+        </div>
+
+
+        <table class="vocabulary-table">
+
+            <thead>
+
+                <tr>
+                    <th>Marathi</th>
+                    <th>Hindi</th>
+                    <th>English</th>
+                    <th>Listen</th>
+                </tr>
+
+            </thead>
+
+
+            <tbody id="vocabularyBody">
+
+                <tr>
+                    <td>नमस्कार</td>
+                    <td>नमस्ते</td>
+                    <td>Hello</td>
+                    <td>
+                        <button
+                            class="speak-button"
+                            onclick="speakText('नमस्कार', 'mr-IN')">
+                            🔊
+                        </button>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>धन्यवाद</td>
+                    <td>धन्यवाद</td>
+                    <td>Thank you</td>
+                    <td>
+                        <button
+                            class="speak-button"
+                            onclick="speakText('धन्यवाद', 'mr-IN')">
+                            🔊
+                        </button>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>पाणी</td>
+                    <td>पानी</td>
+                    <td>Water</td>
+                    <td>
+                        <button
+                            class="speak-button"
+                            onclick="speakText('पाणी', 'mr-IN')">
+                            🔊
+                        </button>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>आई</td>
+                    <td>माँ</td>
+                    <td>Mother</td>
+                    <td>
+                        <button
+                            class="speak-button"
+                            onclick="speakText('आई', 'mr-IN')">
+                            🔊
+                        </button>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>वडील</td>
+                    <td>पिता</td>
+                    <td>Father</td>
+                    <td>
+                        <button
+                            class="speak-button"
+                            onclick="speakText('वडील', 'mr-IN')">
+                            🔊
+                        </button>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>शाळा</td>
+                    <td>स्कूल</td>
+                    <td>School</td>
+                    <td>
+                        <button
+                            class="speak-button"
+                            onclick="speakText('शाळा', 'mr-IN')">
+                            🔊
+                        </button>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>पुस्तक</td>
+                    <td>किताब</td>
+                    <td>Book</td>
+                    <td>
+                        <button
+                            class="speak-button"
+                            onclick="speakText('पुस्तक', 'mr-IN')">
+                            🔊
+                        </button>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>घर</td>
+                    <td>घर</td>
+                    <td>House</td>
+                    <td>
+                        <button
+                            class="speak-button"
+                            onclick="speakText('घर', 'mr-IN')">
+                            🔊
+                        </button>
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </main>
+
+
+    <footer class="footer">
+
+        <h2>🌸 Borasha</h2>
+
+        <p>Learn • Practice • Speak</p>
+
+    </footer>
+
+
+    <script src="js/script.js"></script>
+
+
+    <script>
+
+        /*
+            Search the vocabulary table.
+        */
+
+        function searchVocabulary() {
+
+            const input =
+                document.getElementById("wordSearch");
+
+            const filter =
+                input.value.toLowerCase();
+
+            const rows =
+                document.querySelectorAll(
+                    "#vocabularyBody tr"
+                );
+
+
+            rows.forEach(function (row) {
+
+                const text =
+                    row.textContent.toLowerCase();
+
+                if (text.includes(filter)) {
+
+                    row.style.display = "";
+
+                } else {
+
+                    row.style.display = "none";
+
+                }
+
+            });
+
+        }
+
+    </script>
+
+</body>
+
+</html>
