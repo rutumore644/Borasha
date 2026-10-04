@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Borasha | Camera & Image</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        .camera-page {
+            padding: 70px 7%;
+            background: #fff5fa;
+            min-height: 75vh;
+        }
+
+        .camera-box {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            text-align: center;
+        }
+
+        .camera-box input {
+            margin: 25px 0;
+        }
+
+        #imagePreview {
+            display: none;
+            max-width: 100%;
+            max-height: 350px;
+            margin: 25px auto;
+            border-radius: 15px;
+        }
+
+        .info-box {
+            background: #f8efff;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 25px;
+            text-align: left;
+        }
+
+        .camera-button {
+            border: none;
+            background: #c4478b;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <header class="header">
+
+        <div class="logo">
+
+            <span class="logo-icon">🌸</span>
+
+            <div>
+                <h1>Borasha</h1>
+                <p>Learn • Practice • Speak</p>
+            </div>
+
+        </div>
+
+        <nav class="navbar">
+
+            <a href="index.html">Home</a>
+            <a href="lessons.html">Lessons</a>
+            <a href="vocabulary.html">Vocabulary</a>
+            <a href="practice.html">Speak</a>
+            <a href="translator.html">Translate</a>
+
+        </nav>
+
+    </header>
+
+
+    <main class="camera-page">
+
+        <div class="camera-box">
+
+            <p class="small-title">
+                IMAGE LANGUAGE LEARNING
+            </p>
+
+            <h2>Take or upload a photo</h2>
+
+            <p>
+                Select an image containing text.
+            </p>
+
+
+            <!--
+                On mobile devices, capture="environment"
+                can request the rear camera.
+            -->
+
+            <input
+                type="file"
+                accept="image/*"
+                capture="environment"
+                onchange="previewImage(event)">
+
+
+            <img
+                id="imagePreview"
+                alt="Selected image">
+
+
+            <div class="info-box">
+
+                <h3>Coming in the next implementation</h3>
+
+                <p>
+                    The selected image will eventually be processed
+                    using text recognition to detect words.
+                </p>
+
+                <br>
+
+                <p>
+                    Detected text → Translation → Pronunciation
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <footer class="footer">
+
+        <h2>🌸 Borasha</h2>
+
+        <p>Learn from the world around you.</p>
+
+    </footer>
+
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
