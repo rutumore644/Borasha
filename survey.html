@@ -2,87 +2,165 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
-    <!-- Makes the website responsive on mobile devices -->
+    <!-- Makes the page responsive on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Borasha | Survey</title>
+    <title>Borasha | Community Survey</title>
 
-    <!-- Connects this page to our main CSS file -->
+    <!-- Connects this page with the main Borasha stylesheet -->
     <link rel="stylesheet" href="css/style.css">
+
 </head>
 
 <body>
 
-    <!-- Navigation bar -->
-    <nav class="navbar">
+    <!-- ================= HEADER ================= -->
 
+    <header class="header">
+
+        <!-- Borasha logo -->
         <div class="logo">
-            🌸 Borasha
+
+            <span class="logo-icon">🌸</span>
+
+            <div>
+
+                <h1>Borasha</h1>
+
+                <p>Learn • Practice • Speak</p>
+
+            </div>
+
         </div>
 
-        <div class="nav-links">
+
+        <!-- Navigation menu -->
+        <nav class="navbar">
+
             <a href="index.html">Home</a>
+
             <a href="lessons.html">Lessons</a>
+
             <a href="vocabulary.html">Vocabulary</a>
-            <a href="practice.html">Practice</a>
-            <a href="translator.html">Translator</a>
+
+            <a href="practice.html">Speak</a>
+
+            <a href="camera.html">Camera</a>
+
+            <a href="translator.html">Translate</a>
+
             <a href="quiz.html">Quiz</a>
+
             <a href="progress.html">Progress</a>
-            <a href="survey.html">Survey</a>
-        </div>
 
-    </nav>
+            <a href="survey.html" class="active">Survey</a>
 
+        </nav>
 
-    <!-- Survey section -->
-    <section class="survey-section">
-
-        <div class="survey-header">
-
-            <h1>🌸 Borasha Survey</h1>
-
-            <p>
-                Help us improve Borasha by sharing your experience,
-                opinions and suggestions.
-            </p>
-
-            <p>
-                तुमच्या सूचना आणि अभिप्रायामुळे Borasha अधिक चांगले
-                बनवण्यासाठी आम्हाला मदत होईल.
-            </p>
-
-            <p>
-                आपकी प्रतिक्रिया और सुझाव Borasha को बेहतर बनाने में
-                हमारी मदद करेंगे।
-            </p>
-
-        </div>
+    </header>
 
 
-        <!-- Google Form -->
-        <div class="google-form-container">
+    <!-- ================= SURVEY INTRODUCTION ================= -->
 
-            <iframe
-                src="https://docs.google.com/forms/d/e/1FAIpQLSfYl-WagyLDKKoXPWhpg3Iz_uiZv2CvNPw_cWNtZUI1n4ZyVw/viewform?embedded=true"
-                width="100%"
-                height="1800"
-                frameborder="0"
-                marginheight="0"
-                marginwidth="0">
-                Loading…
-            </iframe>
+    <main>
 
-        </div>
+        <section class="survey-section">
 
-    </section>
+            <div class="survey-header">
+
+                <p class="survey-label">
+                    COMMUNITY ENGAGEMENT PROJECT
+                </p>
+
+                <h2>
+                    🌸 Borasha Community Survey
+                </h2>
+
+                <p class="survey-subtitle">
+                    Help us understand your language-learning needs
+                    and improve the Borasha learning experience.
+                </p>
 
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2026 Borasha | Local Language Learning</p>
+                <!-- Marathi introduction -->
+
+                <p class="survey-language">
+
+                    तुमच्या भाषा शिकण्याच्या गरजा आणि अनुभव
+                    समजून घेण्यासाठी आणि Borasha चा शिकण्याचा
+                    अनुभव सुधारण्यासाठी हा सर्वेक्षण आहे.
+
+                </p>
+
+
+                <!-- Hindi introduction -->
+
+                <p class="survey-language">
+
+                    आपकी भाषा सीखने की आवश्यकताओं और अनुभवों को
+                    समझने तथा Borasha के सीखने के अनुभव को बेहतर
+                    बनाने के लिए यह सर्वेक्षण है।
+
+                </p>
+
+
+                <div class="survey-note">
+
+                    <strong>📝 Your feedback matters!</strong>
+
+                    <p>
+                        Please answer the questions honestly.
+                        Your responses will help us understand
+                        the needs of local language learners.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= GOOGLE FORM ================= -->
+
+            <div class="google-form-container">
+
+                <iframe
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSfYl-WagyLDKKoXPWhpg3Iz_uiZv2CvNPw_cWNtZUI1n4ZyVw/viewform?embedded=true"
+                    width="100%"
+                    height="1900"
+                    frameborder="0"
+                    marginheight="0"
+                    marginwidth="0">
+
+                    Loading Google Form...
+
+                </iframe>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <h2>🌸 Borasha</h2>
+
+        <p>
+            Educational App for Local Language Learning
+        </p>
+
+        <p class="footer-small">
+            © 2026 Borasha | Community Engagement Project
+        </p>
+
     </footer>
+
 
 </body>
 
