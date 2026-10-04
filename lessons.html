@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Borasha | Lessons</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        .page-header {
+            padding: 70px 7%;
+            text-align: center;
+            background: #f8edff;
+        }
+
+        .page-header h2 {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        .lesson-container {
+            padding: 60px 7%;
+        }
+
+        .lesson-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .lesson-card {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px solid #eaddec;
+        }
+
+        .lesson-card.completed {
+            background: #ffe1ef;
+            border-color: #e68ab6;
+        }
+
+        .lesson-number {
+            color: #c4478b;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .lesson-card h3 {
+            margin: 10px 0;
+        }
+
+        .lesson-card p {
+            color: #716878;
+            margin-bottom: 20px;
+        }
+
+        .lesson-button {
+            border: none;
+            background: #c4478b;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .completed-text {
+            color: #b13273;
+            font-weight: bold;
+            margin-top: 12px;
+        }
+
+        @media (max-width: 800px) {
+            .lesson-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <header class="header">
+
+        <div class="logo">
+
+            <span class="logo-icon">🌸</span>
+
+            <div>
+                <h1>Borasha</h1>
+                <p>Learn • Practice • Speak</p>
+            </div>
+
+        </div>
+
+        <nav class="navbar">
+
+            <a href="index.html">Home</a>
+            <a href="lessons.html" class="active">Lessons</a>
+            <a href="vocabulary.html">Vocabulary</a>
+            <a href="practice.html">Speak</a>
+            <a href="translator.html">Translate</a>
+
+        </nav>
+
+    </header>
+
+
+    <section class="page-header">
+
+        <p class="small-title">LEARNING PATH</p>
+
+        <h2>Choose a lesson</h2>
+
+        <p>
+            Learn useful words and sentences step by step.
+        </p>
+
+    </section>
+
+
+    <main class="lesson-container">
+
+        <div class="lesson-grid">
+
+
+            <div class="lesson-card" id="lesson-greetings">
+
+                <span class="lesson-number">LESSON 01</span>
+
+                <h3>👋 Greetings</h3>
+
+                <p>
+                    Learn simple greetings and polite expressions.
+                </p>
+
+                <button
+                    class="lesson-button"
+                    onclick="completeLesson('greetings')">
+
+                    Mark Complete
+
+                </button>
+
+                <p
+                    class="completed-text"
+                    id="status-greetings">
+                </p>
+
+            </div>
+
+
+            <div class="lesson-card" id="lesson-introduction">
+
+                <span class="lesson-number">LESSON 02</span>
+
+                <h3>🙋 Introduction</h3>
+
+                <p>
+                    Learn how to introduce yourself.
+                </p>
+
+                <button
+                    class="lesson-button"
+                    onclick="completeLesson('introduction')">
+
+                    Mark Complete
+
+                </button>
+
+                <p
+                    class="completed-text"
+                    id="status-introduction">
+                </p>
+
+            </div>
+
+
+            <div class="lesson-card" id="lesson-family">
+
+                <span class="lesson-number">LESSON 03</span>
+
+                <h3>👨‍👩‍👧 Family</h3>
+
+                <p>
+                    Learn words related to family members.
+                </p>
+
+                <button
+                    class="lesson-button"
+                    onclick="completeLesson('family')">
+
+                    Mark Complete
+
+                </button>
+
+                <p
+                    class="completed-text"
+                    id="status-family">
+                </p>
+
+            </div>
+
+
+            <div class="lesson-card" id="lesson-numbers">
+
+                <span class="lesson-number">LESSON 04</span>
+
+                <h3>🔢 Numbers</h3>
+
+                <p>
+                    Learn common numbers and counting.
+                </p>
+
+                <button
+                    class="lesson-button"
+                    onclick="completeLesson('numbers')">
+
+                    Mark Complete
+
+                </button>
+
+                <p
+                    class="completed-text"
+                    id="status-numbers">
+                </p>
+
+            </div>
+
+
+            <div class="lesson-card" id="lesson-food">
+
+                <span class="lesson-number">LESSON 05</span>
+
+                <h3>🍚 Food</h3>
+
+                <p>
+                    Learn common food and drink vocabulary.
+                </p>
+
+                <button
+                    class="lesson-button"
+                    onclick="completeLesson('food')">
+
+                    Mark Complete
+
+                </button>
+
+                <p
+                    class="completed-text"
+                    id="status-food">
+                </p>
+
+            </div>
+
+
+            <div class="lesson-card" id="lesson-daily">
+
+                <span class="lesson-number">LESSON 06</span>
+
+                <h3>💬 Daily Conversation</h3>
+
+                <p>
+                    Practice simple everyday sentences.
+                </p>
+
+                <button
+                    class="lesson-button"
+                    onclick="completeLesson('daily')">
+
+                    Mark Complete
+
+                </button>
+
+                <p
+                    class="completed-text"
+                    id="status-daily">
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <footer class="footer">
+
+        <h2>🌸 Borasha</h2>
+
+        <p>
+            Learn languages. Connect with people.
+        </p>
+
+    </footer>
+
+
+    <script src="js/script.js"></script>
+
+
+    <script>
+
+        /*
+            When the lesson page opens, check which
+            lessons have already been completed.
+        */
+
+        const lessonNames = [
+            "greetings",
+            "introduction",
+            "family",
+            "numbers",
+            "food",
+            "daily"
+        ];
+
+
+        lessonNames.forEach(function (lesson) {
+
+            if (isLessonCompleted(lesson)) {
+
+                const card =
+                    document.getElementById(
+                        "lesson-" + lesson
+                    );
+
+                const status =
+                    document.getElementById(
+                        "status-" + lesson
+                    );
+
+
+                if (card) {
+                    card.classList.add("completed");
+                }
+
+
+                if (status) {
+                    status.textContent =
+                        "✓ Completed";
+                }
+
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>
