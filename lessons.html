@@ -1,468 +1,346 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <!-- Makes the website responsive on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Borasha | Lessons</title>
 
-    <!-- Connects this page to the main Borasha stylesheet -->
-    <link rel="stylesheet" href="css/style.css">
-
     <style>
-
-        /* ================= PAGE HEADER ================= */
-
-        .page-header {
-            padding: 70px 7%;
-            text-align: center;
-            background: #f8edff;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .page-header h2 {
-            font-size: 45px;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f9f7ff 0%, #ffe8f0 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        header {
+            background: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo h1 {
+            font-size: 22px;
+            color: #5f2867;
+            margin: 0;
+        }
+
+        .logo p {
+            font-size: 12px;
+            color: #999;
+            margin: 0;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 600;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #c4478b;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #f5eaff 0%, #fff0f5 100%);
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .page-header .label {
+            color: #8b3d83;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
             margin-bottom: 10px;
         }
 
-        /* ================= LESSON SECTION ================= */
+        .page-header h2 {
+            font-size: 36px;
+            color: #5f2867;
+            margin-bottom: 12px;
+        }
 
-        .lesson-container {
-            padding: 60px 7%;
+        .page-header p {
+            color: #666;
+            font-size: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
         }
 
         .lesson-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
         }
 
-        /* ================= LESSON CARD ================= */
-
         .lesson-card {
             background: white;
-            padding: 25px;
-            border-radius: 20px;
-            border: 1px solid #eaddec;
-            transition: 0.3s;
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0 5px 15px rgba(95, 40, 103, 0.1);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            border-left: 4px solid #c4478b;
         }
 
         .lesson-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(80, 50, 90, 0.10);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(196, 71, 139, 0.2);
         }
-
-        /* Completed lessons become pink */
 
         .lesson-card.completed {
-            background: #ffe1ef;
-            border-color: #e68ab6;
+            background: linear-gradient(135deg, #ffe1ef 0%, #fff0f5 100%);
+            border-left-color: #e68ab6;
         }
 
-        /* Lesson number */
+        .lesson-card.completed:hover {
+            box-shadow: 0 15px 35px rgba(230, 138, 182, 0.2);
+        }
 
         .lesson-number {
             color: #c4478b;
             font-weight: bold;
-            font-size: 13px;
+            font-size: 12px;
+            letter-spacing: 1px;
         }
-
-        /* Lesson title */
 
         .lesson-card h3 {
-            margin: 10px 0;
+            color: #5f2867;
+            font-size: 20px;
+            margin: 0;
         }
-
-        /* Lesson description */
 
         .lesson-card p {
-            color: #716878;
-            margin-bottom: 20px;
+            color: #666;
+            font-size: 14px;
+            margin: 0;
+            flex-grow: 1;
+            line-height: 1.5;
         }
 
-        /* ================= START LESSON BUTTON ================= */
-
-        .lesson-button {
+        .btn-start {
             display: inline-block;
-
-            text-decoration: none;
-
-            border: none;
-
             background: #c4478b;
-
             color: white;
-
-            padding: 10px 17px;
-
-            border-radius: 10px;
-
-            cursor: pointer;
-
-            font-size: 15px;
-
-            transition: 0.3s;
-        }
-
-        .lesson-button:hover {
-            background: #a93672;
-            transform: translateY(-2px);
-        }
-
-        /* ================= COMPLETED TEXT ================= */
-
-        .completed-text {
-            color: #b13273;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
             font-weight: bold;
-            margin-top: 12px;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            text-align: center;
+            align-self: flex-start;
         }
 
-        /* ================= MOBILE DESIGN ================= */
+        .btn-start:hover {
+            background: #a83670;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(196, 71, 139, 0.3);
+        }
 
-        @media (max-width: 800px) {
+        .completed-badge {
+            color: #28a745;
+            font-weight: bold;
+            font-size: 14px;
+            display: inline-block;
+            background: #d4edda;
+            padding: 6px 12px;
+            border-radius: 6px;
+            width: fit-content;
+        }
+
+        footer {
+            background: white;
+            text-align: center;
+            padding: 35px 20px;
+            border-top: 1px solid #eee;
+            color: #5f2867;
+        }
+
+        footer h2 {
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        footer p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+
+            nav {
+                gap: 8px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+
+            .page-header h2 {
+                font-size: 26px;
+            }
 
             .lesson-grid {
                 grid-template-columns: 1fr;
             }
 
-            .page-header h2 {
-                font-size: 35px;
+            .lesson-card {
+                padding: 20px;
             }
 
+            .lesson-card h3 {
+                font-size: 18px;
+            }
         }
-
     </style>
-
 </head>
-
-
 <body>
 
-
-    <!-- ================= HEADER ================= -->
-
-    <header class="header">
-
+    <header>
         <div class="logo">
-
-            <span class="logo-icon">🌸</span>
-
+            <span style="font-size: 28px;">🌸</span>
             <div>
-
                 <h1>Borasha</h1>
-
                 <p>Learn • Practice • Speak</p>
-
             </div>
-
         </div>
 
-
-        <!-- Navigation menu -->
-
-        <nav class="navbar">
-
-            <a href="index.html">
-                Home
-            </a>
-
-            <a href="lessons.html" class="active">
-                Lessons
-            </a>
-
-            <a href="vocabulary.html">
-                Vocabulary
-            </a>
-
-            <a href="practice.html">
-                Speak
-            </a>
-
-            <a href="camera.html">
-                Camera
-            </a>
-
-            <a href="translator.html">
-                Translate
-            </a>
-
-            <a href="quiz.html">
-                Quiz
-            </a>
-
-            <a href="progress.html">
-                Progress
-            </a>
-
-            <a href="survey.html">
-                Survey
-            </a>
-
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="lessons.html" class="active">Lessons</a>
+            <a href="vocabulary.html">Vocabulary</a>
+            <a href="practice.html">Speak</a>
+            <a href="camera.html">Camera</a>
+            <a href="translator.html">Translate</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="progress.html">Progress</a>
+            <a href="survey.html">Survey</a>
         </nav>
-
     </header>
 
-
-    <!-- ================= PAGE INTRODUCTION ================= -->
-
     <section class="page-header">
-
-        <p class="small-title">
-            LEARNING PATH
-        </p>
-
-        <h2>
-            Choose a lesson
-        </h2>
-
-        <p>
-            Learn useful words and sentences step by step.
-        </p>
-
+        <p class="label">Learning Path</p>
+        <h2>Choose a Lesson</h2>
+        <p>Learn new words and useful sentences step by step.</p>
     </section>
 
-
-    <!-- ================= LESSONS ================= -->
-
-    <main class="lesson-container">
-
+    <main>
         <div class="lesson-grid">
 
-
-            <!-- ================= LESSON 01 ================= -->
-
+            <!-- Lesson 1 -->
             <div class="lesson-card" id="lesson-greetings">
-
-                <span class="lesson-number">
-                    LESSON 01
-                </span>
-
-                <h3>
-                    👋 Greetings
-                </h3>
-
-                <p>
-                    Learn simple greetings and polite expressions.
-                </p>
-
-                <!-- Opens the actual Greetings lesson -->
-
-                <a
-                    href="lesson.html?lesson=greetings"
-                    class="lesson-button">
-
-                    Start Lesson →
-
-                </a>
-
-                <p
-                    class="completed-text"
-                    id="status-greetings">
-                </p>
-
+                <span class="lesson-number">LESSON 01</span>
+                <h3>👋 Greetings</h3>
+                <p>Learn simple greetings and polite ways to say hello.</p>
+                <a href="lesson.html?lesson=greetings" class="btn-start">Start Lesson →</a>
+                <div id="status-greetings"></div>
             </div>
 
-
-            <!-- ================= LESSON 02 ================= -->
-
+            <!-- Lesson 2 -->
             <div class="lesson-card" id="lesson-introduction">
-
-                <span class="lesson-number">
-                    LESSON 02
-                </span>
-
-                <h3>
-                    🙋 Introduction
-                </h3>
-
-                <p>
-                    Learn how to introduce yourself.
-                </p>
-
-                <a
-                    href="lesson.html?lesson=introduction"
-                    class="lesson-button">
-
-                    Start Lesson →
-
-                </a>
-
-                <p
-                    class="completed-text"
-                    id="status-introduction">
-                </p>
-
+                <span class="lesson-number">LESSON 02</span>
+                <h3>🙋 Introduction</h3>
+                <p>Learn how to introduce yourself and tell your name.</p>
+                <a href="lesson.html?lesson=introduction" class="btn-start">Start Lesson →</a>
+                <div id="status-introduction"></div>
             </div>
 
-
-            <!-- ================= LESSON 03 ================= -->
-
+            <!-- Lesson 3 -->
             <div class="lesson-card" id="lesson-family">
-
-                <span class="lesson-number">
-                    LESSON 03
-                </span>
-
-                <h3>
-                    👨‍👩‍👧 Family
-                </h3>
-
-                <p>
-                    Learn words related to family members.
-                </p>
-
-                <a
-                    href="lesson.html?lesson=family"
-                    class="lesson-button">
-
-                    Start Lesson →
-
-                </a>
-
-                <p
-                    class="completed-text"
-                    id="status-family">
-                </p>
-
+                <span class="lesson-number">LESSON 03</span>
+                <h3>👨‍👩‍👧 Family</h3>
+                <p>Learn words for family members like mother, father, and siblings.</p>
+                <a href="lesson.html?lesson=family" class="btn-start">Start Lesson →</a>
+                <div id="status-family"></div>
             </div>
 
-
-            <!-- ================= LESSON 04 ================= -->
-
+            <!-- Lesson 4 -->
             <div class="lesson-card" id="lesson-numbers">
-
-                <span class="lesson-number">
-                    LESSON 04
-                </span>
-
-                <h3>
-                    🔢 Numbers
-                </h3>
-
-                <p>
-                    Learn common numbers and counting.
-                </p>
-
-                <a
-                    href="lesson.html?lesson=numbers"
-                    class="lesson-button">
-
-                    Start Lesson →
-
-                </a>
-
-                <p
-                    class="completed-text"
-                    id="status-numbers">
-                </p>
-
+                <span class="lesson-number">LESSON 04</span>
+                <h3>🔢 Numbers</h3>
+                <p>Learn numbers and practice counting from one to ten.</p>
+                <a href="lesson.html?lesson=numbers" class="btn-start">Start Lesson →</a>
+                <div id="status-numbers"></div>
             </div>
 
-
-            <!-- ================= LESSON 05 ================= -->
-
+            <!-- Lesson 5 -->
             <div class="lesson-card" id="lesson-food">
-
-                <span class="lesson-number">
-                    LESSON 05
-                </span>
-
-                <h3>
-                    🍚 Food
-                </h3>
-
-                <p>
-                    Learn common food and drink vocabulary.
-                </p>
-
-                <a
-                    href="lesson.html?lesson=food"
-                    class="lesson-button">
-
-                    Start Lesson →
-
-                </a>
-
-                <p
-                    class="completed-text"
-                    id="status-food">
-                </p>
-
+                <span class="lesson-number">LESSON 05</span>
+                <h3>🍚 Food & Drinks</h3>
+                <p>Learn common food and drink names you use every day.</p>
+                <a href="lesson.html?lesson=food" class="btn-start">Start Lesson →</a>
+                <div id="status-food"></div>
             </div>
 
-
-            <!-- ================= LESSON 06 ================= -->
-
+            <!-- Lesson 6 -->
             <div class="lesson-card" id="lesson-daily">
-
-                <span class="lesson-number">
-                    LESSON 06
-                </span>
-
-                <h3>
-                    💬 Daily Conversation
-                </h3>
-
-                <p>
-                    Practice simple everyday sentences.
-                </p>
-
-                <a
-                    href="lesson.html?lesson=daily"
-                    class="lesson-button">
-
-                    Start Lesson →
-
-                </a>
-
-                <p
-                    class="completed-text"
-                    id="status-daily">
-                </p>
-
+                <span class="lesson-number">LESSON 06</span>
+                <h3>💬 Daily Chat</h3>
+                <p>Practice simple sentences for everyday conversations.</p>
+                <a href="lesson.html?lesson=daily" class="btn-start">Start Lesson →</a>
+                <div id="status-daily"></div>
             </div>
-
 
         </div>
-
     </main>
 
-
-    <!-- ================= FOOTER ================= -->
-
-    <footer class="footer">
-
-        <h2>
-            🌸 Borasha
-        </h2>
-
-        <p>
-            Learn languages. Connect with people.
-        </p>
-
-        <p>
-            © 2026 Borasha | Local Language Learning
-        </p>
-
+    <footer>
+        <h2>🌸 Borasha</h2>
+        <p>Learn languages. Connect with people.</p>
+        <p style="font-size: 12px; color: #999;">© 2026 Borasha</p>
     </footer>
-
-
-    <!-- Main Borasha JavaScript -->
 
     <script src="js/script.js"></script>
 
-
     <script>
-
-        /*
-            When the lesson page opens,
-            check which lessons have already
-            been completed.
-        */
-
         const lessonNames = [
             "greetings",
             "introduction",
@@ -472,55 +350,21 @@
             "daily"
         ];
 
-
-        lessonNames.forEach(function (lesson) {
-
-            /*
-                Check whether this lesson
-                is already completed.
-            */
-
+        lessonNames.forEach(function(lesson) {
             if (isLessonCompleted(lesson)) {
-
-                const card =
-                    document.getElementById(
-                        "lesson-" + lesson
-                    );
-
-
-                const status =
-                    document.getElementById(
-                        "status-" + lesson
-                    );
-
-
-                /* Make completed lesson pink */
+                const card = document.getElementById("lesson-" + lesson);
+                const status = document.getElementById("status-" + lesson);
 
                 if (card) {
-
-                    card.classList.add(
-                        "completed"
-                    );
-
+                    card.classList.add("completed");
                 }
-
-
-                /* Show completed message */
 
                 if (status) {
-
-                    status.textContent =
-                        "✓ Completed";
-
+                    status.innerHTML = '<span class="completed-badge">✓ Completed</span>';
                 }
-
             }
-
         });
-
     </script>
 
-
 </body>
-
 </html>
