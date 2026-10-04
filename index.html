@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <!-- This tells the browser that the page uses modern HTML -->
     <meta charset="UTF-8">
 
@@ -13,85 +14,170 @@
 
     <!-- Connect our external CSS file -->
     <link rel="stylesheet" href="css/style.css">
+
 </head>
 
+
 <body>
+
 
     <!-- ================= HEADER ================= -->
 
     <header class="header">
 
+        <!-- Borasha logo -->
+
         <div class="logo">
+
             <span class="logo-icon">🌸</span>
+
             <div>
+
                 <h1>Borasha</h1>
-                <p>Learn • Practice • Speak</p>
+
+                <p>
+                    Learn • Practice • Speak
+                </p>
+
             </div>
+
         </div>
 
-        <!-- Navigation menu -->
+
+        <!-- ================= NAVIGATION MENU ================= -->
+
         <nav class="navbar">
 
-            <a href="index.html" class="active">Home</a>
-            <a href="lessons.html">Lessons</a>
-            <a href="vocabulary.html">Vocabulary</a>
-            <a href="practice.html">Speak</a>
-            <a href="translator.html">Translate</a>
-            <a href="progress.html">Progress</a>
-            <a href="survey.html">Survey</a>
+            <a href="index.html" class="active">
+                Home
+            </a>
+
+            <a href="lessons.html">
+                Lessons
+            </a>
+
+            <a href="vocabulary.html">
+                Vocabulary
+            </a>
+
+            <a href="practice.html">
+                Speak
+            </a>
+
+            <a href="camera.html">
+                Camera
+            </a>
+
+            <a href="translator.html">
+                Translate
+            </a>
+
+            <a href="quiz.html">
+                Quiz
+            </a>
+
+            <a href="progress.html">
+                Progress
+            </a>
+
+            <a href="survey.html">
+                Survey
+            </a>
 
         </nav>
 
     </header>
 
 
-    <!-- ================= HERO SECTION ================= -->
+    <!-- ================= MAIN CONTENT ================= -->
 
     <main>
+
+
+        <!-- ================= HERO SECTION ================= -->
 
         <section class="hero">
 
             <div class="hero-content">
 
-                <p class="small-title">WELCOME TO BORASHA</p>
+                <p class="small-title">
+                    WELCOME TO BORASHA
+                </p>
+
 
                 <h2>
+
                     Learn a language.
-                    <span>Connect with people.</span>
+
+                    <span>
+                        Connect with people.
+                    </span>
+
                 </h2>
 
+
                 <p class="hero-text">
+
                     Learn Marathi, Hindi and English through simple
                     lessons, useful words, speaking practice and quizzes.
+
                 </p>
+
+
+                <!-- Hero buttons -->
 
                 <div class="hero-buttons">
 
-                    <a href="lessons.html" class="primary-button">
+                    <a
+                        href="lessons.html"
+                        class="primary-button">
+
                         Start Learning →
+
                     </a>
 
-                    <a href="vocabulary.html" class="secondary-button">
+
+                    <a
+                        href="vocabulary.html"
+                        class="secondary-button">
+
                         Explore Words
+
                     </a>
 
                 </div>
 
             </div>
 
-            <!-- Decorative learning card -->
+
+            <!-- ================= HERO LEARNING CARD ================= -->
+
             <div class="hero-card">
 
-                <div class="flower">🌸</div>
+                <div class="flower">
+                    🌸
+                </div>
 
-                <h3>Today's Learning</h3>
 
-                <p>नमस्कार</p>
+                <h3>
+                    Today's Learning
+                </h3>
 
-                <span>Hello</span>
+
+                <p>
+                    नमस्कार
+                </p>
+
+
+                <span>
+                    Hello
+                </span>
+
 
                 <button onclick="speakText('नमस्कार')">
+
                     🔊 Listen
+
                 </button>
 
             </div>
@@ -103,11 +189,18 @@
 
         <section class="section">
 
+
             <div class="section-heading">
 
-                <p class="small-title">CHOOSE YOUR LANGUAGE</p>
+                <p class="small-title">
+                    CHOOSE YOUR LANGUAGE
+                </p>
 
-                <h2>Start with a language you know</h2>
+
+                <h2>
+                    Start with a language you know
+                </h2>
+
 
                 <p>
                     Choose a language and begin learning step by step.
@@ -116,48 +209,97 @@
             </div>
 
 
+            <!-- Language cards -->
+
             <div class="language-grid">
 
-                <div class="language-card" onclick="selectLanguage('Marathi')">
 
-                    <div class="language-icon">🇮🇳</div>
+                <!-- Marathi -->
 
-                    <h3>मराठी</h3>
+                <div
+                    class="language-card"
+                    onclick="selectLanguage('Marathi')">
 
-                    <p>Marathi</p>
+                    <div class="language-icon">
+                        🇮🇳
+                    </div>
+
+
+                    <h3>
+                        मराठी
+                    </h3>
+
+
+                    <p>
+                        Marathi
+                    </p>
+
+                </div>
+
+
+                <!-- Hindi -->
+
+                <div
+                    class="language-card"
+                    onclick="selectLanguage('Hindi')">
+
+                    <div class="language-icon">
+                        🇮🇳
+                    </div>
+
+
+                    <h3>
+                        हिन्दी
+                    </h3>
+
+
+                    <p>
+                        Hindi
+                    </p>
 
                 </div>
 
 
-                <div class="language-card" onclick="selectLanguage('Hindi')">
+                <!-- English -->
 
-                    <div class="language-icon">🇮🇳</div>
+                <div
+                    class="language-card"
+                    onclick="selectLanguage('English')">
 
-                    <h3>हिन्दी</h3>
+                    <div class="language-icon">
+                        🇬🇧
+                    </div>
 
-                    <p>Hindi</p>
+
+                    <h3>
+                        English
+                    </h3>
+
+
+                    <p>
+                        English
+                    </p>
 
                 </div>
 
 
-                <div class="language-card" onclick="selectLanguage('English')">
-
-                    <div class="language-icon">🇬🇧</div>
-
-                    <h3>English</h3>
-
-                    <p>English</p>
-
-                </div>
-
+                <!-- Coming soon -->
 
                 <div class="language-card coming-soon">
 
-                    <div class="language-icon">✨</div>
+                    <div class="language-icon">
+                        ✨
+                    </div>
 
-                    <h3>More Languages</h3>
 
-                    <p>Coming Soon</p>
+                    <h3>
+                        More Languages
+                    </h3>
+
+
+                    <p>
+                        Coming Soon
+                    </p>
 
                 </div>
 
@@ -166,26 +308,45 @@
         </section>
 
 
-        <!-- ================= FEATURES ================= -->
+        <!-- ================= FEATURES SECTION ================= -->
 
         <section class="section colored-section">
 
+
             <div class="section-heading">
 
-                <p class="small-title">LEARN YOUR WAY</p>
+                <p class="small-title">
+                    LEARN YOUR WAY
+                </p>
 
-                <h2>What would you like to do?</h2>
+
+                <h2>
+                    What would you like to do?
+                </h2>
 
             </div>
 
 
+            <!-- ================= FEATURE GRID ================= -->
+
             <div class="feature-grid">
 
-                <a href="lessons.html" class="feature-card">
 
-                    <div class="feature-icon">📚</div>
+                <!-- Lessons -->
 
-                    <h3>Lessons</h3>
+                <a
+                    href="lessons.html"
+                    class="feature-card">
+
+                    <div class="feature-icon">
+                        📚
+                    </div>
+
+
+                    <h3>
+                        Lessons
+                    </h3>
+
 
                     <p>
                         Learn languages through simple lessons.
@@ -194,11 +355,21 @@
                 </a>
 
 
-                <a href="vocabulary.html" class="feature-card">
+                <!-- Vocabulary -->
 
-                    <div class="feature-icon">🔤</div>
+                <a
+                    href="vocabulary.html"
+                    class="feature-card">
 
-                    <h3>Vocabulary</h3>
+                    <div class="feature-icon">
+                        🔤
+                    </div>
+
+
+                    <h3>
+                        Vocabulary
+                    </h3>
+
 
                     <p>
                         Learn useful words and meanings.
@@ -207,11 +378,21 @@
                 </a>
 
 
-                <a href="practice.html" class="feature-card">
+                <!-- Speaking -->
 
-                    <div class="feature-icon">🎤</div>
+                <a
+                    href="practice.html"
+                    class="feature-card">
 
-                    <h3>Speak</h3>
+                    <div class="feature-icon">
+                        🎤
+                    </div>
+
+
+                    <h3>
+                        Speak
+                    </h3>
+
 
                     <p>
                         Practice speaking and pronunciation.
@@ -220,11 +401,21 @@
                 </a>
 
 
-                <a href="camera.html" class="feature-card">
+                <!-- Camera -->
 
-                    <div class="feature-icon">📷</div>
+                <a
+                    href="camera.html"
+                    class="feature-card">
 
-                    <h3>Take a Photo</h3>
+                    <div class="feature-icon">
+                        📷
+                    </div>
+
+
+                    <h3>
+                        Take a Photo
+                    </h3>
+
 
                     <p>
                         Use your camera to capture text.
@@ -233,11 +424,21 @@
                 </a>
 
 
-                <a href="camera.html" class="feature-card">
+                <!-- Upload Photo -->
 
-                    <div class="feature-icon">⬆️</div>
+                <a
+                    href="camera.html"
+                    class="feature-card">
 
-                    <h3>Upload Photo</h3>
+                    <div class="feature-icon">
+                        ⬆️
+                    </div>
+
+
+                    <h3>
+                        Upload Photo
+                    </h3>
+
 
                     <p>
                         Upload an image containing text.
@@ -246,11 +447,21 @@
                 </a>
 
 
-                <a href="translator.html" class="feature-card">
+                <!-- Translator -->
 
-                    <div class="feature-icon">🌐</div>
+                <a
+                    href="translator.html"
+                    class="feature-card">
 
-                    <h3>Translate</h3>
+                    <div class="feature-icon">
+                        🌐
+                    </div>
+
+
+                    <h3>
+                        Translate
+                    </h3>
+
 
                     <p>
                         Translate between supported languages.
@@ -259,11 +470,21 @@
                 </a>
 
 
-                <a href="quiz.html" class="feature-card">
+                <!-- Quiz -->
 
-                    <div class="feature-icon">📝</div>
+                <a
+                    href="quiz.html"
+                    class="feature-card">
 
-                    <h3>Quiz</h3>
+                    <div class="feature-icon">
+                        📝
+                    </div>
+
+
+                    <h3>
+                        Quiz
+                    </h3>
+
 
                     <p>
                         Test what you have learned.
@@ -272,11 +493,21 @@
                 </a>
 
 
-                <a href="progress.html" class="feature-card">
+                <!-- Progress -->
 
-                    <div class="feature-icon">📊</div>
+                <a
+                    href="progress.html"
+                    class="feature-card">
 
-                    <h3>Progress</h3>
+                    <div class="feature-icon">
+                        📊
+                    </div>
+
+
+                    <h3>
+                        Progress
+                    </h3>
+
 
                     <p>
                         Check your learning progress.
@@ -284,42 +515,79 @@
 
                 </a>
 
-            </div>
-            
-             <div class="feature-card">
-                 <div class="feature-icon">📝</div>
-                 <h3>Community Survey</h3>
-                 <p>
-                     Share your experience and help us improve Borasha.
-                 </p>
-                 <a href="survey.html" class="btn">Take Survey
-                 </a>
-             </div>
+
+                <!-- ================= COMMUNITY SURVEY ================= -->
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        📝
+                    </div>
+
+
+                    <h3>
+                        Community Survey
+                    </h3>
+
+
+                    <p>
+                        Share your experience and help us improve Borasha.
+                    </p>
+
+
+                    <a
+                        href="survey.html"
+                        class="primary-button">
+
+                        Take Survey →
+
+                    </a>
+
+                </div>
+
+
             </div>
 
         </section>
 
 
-        <!-- ================= HOW IT WORKS ================= -->
+        <!-- ================= HOW BORASHA WORKS ================= -->
 
         <section class="section">
 
+
             <div class="section-heading">
 
-                <p class="small-title">HOW BORASHA WORKS</p>
+                <p class="small-title">
+                    HOW BORASHA WORKS
+                </p>
 
-                <h2>Learn in a few simple steps</h2>
+
+                <h2>
+                    Learn in a few simple steps
+                </h2>
 
             </div>
 
 
+            <!-- Steps container -->
+
             <div class="steps">
+
+
+                <!-- Step 01 -->
 
                 <div class="step">
 
-                    <span>01</span>
+                    <span>
+                        01
+                    </span>
 
-                    <h3>Learn</h3>
+
+                    <h3>
+                        Learn
+                    </h3>
+
 
                     <p>
                         Start with lessons and vocabulary.
@@ -328,11 +596,19 @@
                 </div>
 
 
+                <!-- Step 02 -->
+
                 <div class="step">
 
-                    <span>02</span>
+                    <span>
+                        02
+                    </span>
 
-                    <h3>Practice</h3>
+
+                    <h3>
+                        Practice
+                    </h3>
+
 
                     <p>
                         Speak, listen and practice new words.
@@ -341,11 +617,19 @@
                 </div>
 
 
+                <!-- Step 03 -->
+
                 <div class="step">
 
-                    <span>03</span>
+                    <span>
+                        03
+                    </span>
 
-                    <h3>Test</h3>
+
+                    <h3>
+                        Test
+                    </h3>
+
 
                     <p>
                         Take quizzes to check your learning.
@@ -354,17 +638,28 @@
                 </div>
 
 
+                <!-- Step 04 -->
+
                 <div class="step">
 
-                    <span>04</span>
+                    <span>
+                        04
+                    </span>
 
-                    <h3>Track</h3>
+
+                    <h3>
+                        Track
+                    </h3>
+
 
                     <p>
                         See your progress as you learn.
                     </p>
 
                 </div>
+
+
+            </div>
 
         </section>
 
@@ -375,21 +670,29 @@
 
     <footer class="footer">
 
-        <h2>🌸 Borasha</h2>
+
+        <h2>
+            🌸 Borasha
+        </h2>
+
 
         <p>
             Educational App Development for Local Language Learning
         </p>
 
+
         <p class="footer-small">
             Made as a Community Engagement Project
         </p>
+
 
     </footer>
 
 
     <!-- Connect JavaScript -->
+
     <script src="js/script.js"></script>
+
 
 </body>
 
