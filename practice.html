@@ -5,51 +5,125 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>Borasha | Speaking Practice</title>
 
+    <!-- Main Borasha stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 
     <style>
 
+        /* ================= SPEAKING PAGE ================= */
+
         .practice-page {
             min-height: 75vh;
-            padding: 70px 7%;
+            padding: 60px 7%;
             background: #f7efff;
         }
 
         .practice-box {
-            max-width: 650px;
+            max-width: 700px;
             margin: auto;
             background: white;
             padding: 45px;
             border-radius: 25px;
             text-align: center;
-            box-shadow: 0 15px 40px rgba(80, 50, 90, 0.1);
+            box-shadow: 0 15px 40px rgba(80, 50, 90, 0.12);
         }
 
-        .target-word {
-            font-size: 48px;
+        .practice-icon {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        .small-title {
             color: #8b3d83;
             font-weight: bold;
-            margin: 25px 0 10px;
+            letter-spacing: 1px;
+        }
+
+        .practice-box h2 {
+            color: #5f2867;
+            margin-bottom: 10px;
+        }
+
+        .practice-description {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        /* Progress */
+
+        .practice-progress {
+            margin: 20px 0 30px;
+        }
+
+        .progress-text {
+            color: #743e85;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #eee2ff;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 10%;
+            background: #c4478b;
+            border-radius: 20px;
+            transition: width 0.3s ease;
+        }
+
+        /* Word */
+
+        .target-word {
+            font-size: 42px;
+            color: #8b3d83;
+            font-weight: bold;
+            margin: 25px 0 8px;
         }
 
         .pronunciation {
             color: #777;
-            margin-bottom: 25px;
+            font-size: 18px;
+            margin-bottom: 10px;
         }
+
+        .meaning {
+            display: inline-block;
+            background: #f5eaff;
+            color: #743e85;
+            padding: 8px 18px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
+        /* Buttons */
 
         .practice-button {
             border: none;
-            padding: 13px 20px;
+            padding: 13px 22px;
             border-radius: 12px;
             background: #c4478b;
             color: white;
             cursor: pointer;
             font-weight: bold;
             margin: 5px;
+            font-size: 15px;
+        }
+
+        .practice-button:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
         }
 
         .listen-button {
@@ -57,26 +131,88 @@
             color: #743e85;
         }
 
+        .next-button {
+            background: #743e85;
+        }
+
+        .try-button {
+            background: #f0b7d6;
+            color: #632052;
+        }
+
+        /* Speech result */
+
         #speechResult {
             margin-top: 25px;
+            font-weight: bold;
+            color: #555;
+            min-height: 25px;
+        }
+
+        #speechFeedback {
+            min-height: 25px;
+            margin-top: 12px;
             font-weight: bold;
         }
 
         .success-message {
             color: green;
-            margin-top: 15px;
         }
 
         .error-message {
             color: #c4478b;
-            margin-top: 15px;
+        }
+
+        /* Next word area */
+
+        .next-area {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .practice-tip {
+            margin-top: 25px;
+            background: #fff7fc;
+            border-left: 4px solid #c4478b;
+            padding: 15px;
+            text-align: left;
+            border-radius: 10px;
+            color: #666;
+        }
+
+        /* Mobile */
+
+        @media (max-width: 600px) {
+
+            .practice-page {
+                padding: 35px 5%;
+            }
+
+            .practice-box {
+                padding: 28px 20px;
+            }
+
+            .target-word {
+                font-size: 34px;
+            }
+
+            .practice-button {
+                width: 90%;
+                margin: 6px auto;
+            }
+
         }
 
     </style>
 
 </head>
 
+
 <body>
+
+
+    <!-- ================= HEADER ================= -->
 
     <header class="header">
 
@@ -85,90 +221,220 @@
             <span class="logo-icon">🌸</span>
 
             <div>
+
                 <h1>Borasha</h1>
+
                 <p>Learn • Practice • Speak</p>
+
             </div>
 
         </div>
 
+
+        <!-- Website navigation -->
+
         <nav class="navbar">
 
             <a href="index.html">Home</a>
+
             <a href="lessons.html">Lessons</a>
+
             <a href="vocabulary.html">Vocabulary</a>
-            <a href="practice.html" class="active">Speak</a>
-            <a href="translator.html">Translate</a>
+
+            <a href="practice.html" class="active">
+                Speak
+            </a>
+
+            <a href="camera.html">
+                Camera
+            </a>
+
+            <a href="translator.html">
+                Translate
+            </a>
+
+            <a href="quiz.html">
+                Quiz
+            </a>
+
+            <a href="progress.html">
+                Progress
+            </a>
+
+            <a href="survey.html">
+                Survey
+            </a>
 
         </nav>
 
     </header>
 
 
+    <!-- ================= MAIN CONTENT ================= -->
+
     <main class="practice-page">
 
         <div class="practice-box">
+
+            <div class="practice-icon">
+                🎤
+            </div>
 
             <p class="small-title">
                 SPEAKING PRACTICE
             </p>
 
-            <h2>Listen and speak</h2>
+            <h2>
+                Listen and Speak
+            </h2>
 
-            <p>
-                Listen to the word first, then try saying it.
+            <p class="practice-description">
+                Listen to the Marathi word or sentence,
+                then try saying it using your microphone.
             </p>
 
 
-            <div class="target-word">
+            <!-- ================= PROGRESS ================= -->
+
+            <div class="practice-progress">
+
+                <div id="practiceProgressText"
+                    class="progress-text">
+
+                    Word 1 of 10
+
+                </div>
+
+                <div class="progress-bar">
+
+                    <div id="practiceProgressFill"
+                        class="progress-fill">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= CURRENT WORD ================= -->
+
+            <div id="targetWord"
+                class="target-word">
+
                 नमस्कार
+
             </div>
 
 
-            <div class="pronunciation">
+            <div id="pronunciation"
+                class="pronunciation">
+
                 Namaskar
+
             </div>
 
 
-            <button
-                class="practice-button listen-button"
-                onclick="speakText('नमस्कार', 'mr-IN')">
+            <div id="meaning"
+                class="meaning">
 
-                🔊 Listen
+                Hello
 
-            </button>
+            </div>
 
 
-            <button
-                class="practice-button"
-                onclick="startSpeechRecognition('नमस्कार')">
+            <!-- ================= BUTTONS ================= -->
 
-                🎤 Speak
+            <div>
 
-            </button>
+                <button
+                    id="listenButton"
+                    class="practice-button listen-button">
 
+                    🔊 Listen
+
+                </button>
+
+
+                <button
+                    id="speakButton"
+                    class="practice-button">
+
+                    🎤 Speak
+
+                </button>
+
+            </div>
+
+
+            <!-- ================= SPEECH RESULT ================= -->
 
             <p id="speechResult">
+
                 Your speech will appear here.
+
             </p>
 
 
             <p id="speechFeedback"></p>
+
+
+            <!-- ================= NEXT ================= -->
+
+            <div class="next-area">
+
+                <button
+                    id="tryButton"
+                    class="practice-button try-button">
+
+                    🔄 Try Again
+
+                </button>
+
+
+                <button
+                    id="nextButton"
+                    class="practice-button next-button">
+
+                    ➡️ Next Word
+
+                </button>
+
+            </div>
+
+
+            <!-- ================= TIP ================= -->
+
+            <div class="practice-tip">
+
+                <strong>💡 Practice Tip:</strong>
+
+                Listen carefully first, then speak
+                clearly into your microphone.
+
+            </div>
 
         </div>
 
     </main>
 
 
+    <!-- ================= FOOTER ================= -->
+
     <footer class="footer">
 
         <h2>🌸 Borasha</h2>
 
-        <p>Practice speaking with confidence.</p>
+        <p>
+            Practice speaking with confidence.
+        </p>
 
     </footer>
 
 
+    <!-- Main JavaScript file -->
+
     <script src="js/script.js"></script>
+
 
 </body>
 
