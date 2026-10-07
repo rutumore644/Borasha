@@ -32,31 +32,39 @@
 
     <main class="container page-section">
         <div class="section-head center">
-            <span class="eyebrow">Community Feedback</span>
-            <h3>Share your experience</h3>
+            <span class="eyebrow">Community Engagement</span>
+            <h3>Share Your Feedback</h3>
+            <p>Help us improve Borasha by sharing your experience and suggestions</p>
         </div>
 
-        <div class="card-panel feedback-panel">
+        <div class="survey-container">
+            <h4 style="text-align: center; color: var(--primary-dark); margin-top: 0;">Google Form Survey</h4>
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfYl-WagyLDKKoXPWhpg3Iz_uiZv2CvNPw_cWNtZUI1n4ZyVw/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Loading form...</iframe>
+        </div>
+
+        <div class="card-panel feedback-panel" style="margin-top: 40px;">
+            <h4 style="color: var(--primary-dark); margin-top: 0;">Quick Feedback Form</h4>
             <form id="feedbackForm">
                 <label>
                     Name
-                    <input type="text" id="nameInput" placeholder="Your name">
+                    <input type="text" id="nameInput" placeholder="Your name" required>
                 </label>
 
                 <label>
                     Rating
-                    <select id="ratingInput">
-                        <option value="5">Excellent</option>
-                        <option value="4">Good</option>
-                        <option value="3">Average</option>
-                        <option value="2">Fair</option>
-                        <option value="1">Poor</option>
+                    <select id="ratingInput" required>
+                        <option value="">Select a rating</option>
+                        <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+                        <option value="4">⭐⭐⭐⭐ Good</option>
+                        <option value="3">⭐⭐⭐ Average</option>
+                        <option value="2">⭐⭐ Fair</option>
+                        <option value="1">⭐ Poor</option>
                     </select>
                 </label>
 
                 <label>
-                    Feedback
-                    <textarea id="messageInput" rows="5" placeholder="Tell us what you liked or what can be improved..."></textarea>
+                    Your Feedback
+                    <textarea id="messageInput" rows="5" placeholder="Tell us what you liked or what can be improved..." required></textarea>
                 </label>
 
                 <button type="submit" class="btn btn-primary">Submit Feedback</button>
