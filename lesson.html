@@ -1,299 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Borasha | Lessons</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f6edf7;
-      color: #3b2a3f;
-    }
-
-    .topbar {
-      background: #1f1f24;
-      color: white;
-      height: 42px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 18px;
-      font-size: 13px;
-    }
-
-    .address-bar {
-      flex: 1;
-      margin: 0 18px;
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
-      padding: 8px 12px;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-
-    .header {
-      background: #fff;
-      border-bottom: 1px solid #e5d7ea;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 28px;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      background: #f7dfe9;
-    }
-
-    .logo h1 {
-      margin: 0;
-      font-size: 22px;
-      color: #5b2d5d;
-    }
-
-    .logo p {
-      margin: 2px 0 0 0;
-      font-size: 12px;
-      color: #7b6e7d;
-    }
-
-    nav {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #563b5c;
-      font-size: 14px;
-      font-weight: 500;
-    }
-
-    nav a.active {
-      color: #c34787;
-      font-weight: 700;
-    }
-
-    .main {
-      max-width: 980px;
-      margin: 28px auto 40px;
-      padding: 0 20px;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.5);
-      border: 1px solid #ead7eb;
-      border-radius: 18px;
-      padding: 28px 32px 30px;
-      box-shadow: 0 2px 10px rgba(80, 50, 90, 0.04);
-    }
-
-    .title-box {
-      text-align: center;
-      margin-bottom: 22px;
-    }
-
-    .title-box h2 {
-      margin: 0;
-      font-size: 30px;
-      color: #5b2d5d;
-    }
-
-    .subtitle {
-      margin-top: 8px;
-      color: #6e5c73;
-      font-size: 15px;
-    }
-
-    .word-list {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-
-    .word-item {
-      padding: 10px 0;
-      border-bottom: 1px solid #eee3f1;
-    }
-
-    .word-item:last-child {
-      border-bottom: none;
-    }
-
-    .marathi {
-      font-size: 28px;
-      color: #8b3d83;
-      font-weight: bold;
-      margin-bottom: 4px;
-    }
-
-    .details {
-      font-size: 14px;
-      color: #5e5364;
-      line-height: 1.6;
-    }
-
-    .listen-btn {
-      margin-top: 8px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 14px;
-      background: #f0ebf5;
-      border: 1px solid #d9cfe7;
-      border-radius: 8px;
-      color: #5b2d5d;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      transition: 0.2s ease;
-    }
-
-    .listen-btn:hover {
-      background: #e9dff2;
-    }
-
-    .small-badge {
-      display: inline-block;
-      width: 18px;
-      height: 18px;
-      border-radius: 6px;
-      background: linear-gradient(135deg, #d9c6ff, #f7d4e3);
-      text-align: center;
-      line-height: 18px;
-      font-size: 10px;
-      font-weight: bold;
-      color: #4a2d57;
-    }
-
-    @media (max-width: 700px) {
-      .header {
-        flex-direction: column;
-        gap: 12px;
-        padding: 18px 14px;
-      }
-
-      nav {
-        gap: 10px 14px;
-      }
-
-      .card {
-        padding: 20px 18px;
-      }
-
-      .marathi {
-        font-size: 24px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borasha | Lesson</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="brand">
+                <div class="brand-mark">🌸</div>
+                <div>
+                    <h1>Borasha</h1>
+                    <small>Learn • Practice • Speak</small>
+                </div>
+            </div>
 
-  <div class="topbar">
-    <div>🌐</div>
-    <div class="address-bar">https://rutumore644.github.io/Borasha/lesson.html?lesson=greetings</div>
-    <div>⚙️</div>
-  </div>
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+                <a href="lessons.html" class="active">Lessons</a>
+                <a href="vocabulary.html">Vocabulary</a>
+                <a href="practice.html">Speak</a>
+                <a href="translator.html">Translate</a>
+                <a href="quiz.html">Quiz</a>
+                <a href="progress.html">Progress</a>
+                <a href="feedback.html">Feedback</a>
+            </nav>
+        </div>
+    </header>
 
-  <header class="header">
-    <div class="logo">
-      <div class="logo-icon">🌸</div>
-      <div>
-        <h1>Borasha</h1>
-        <p>Learn • Practice • Speak</p>
-      </div>
-    </div>
-
-    <nav>
-      <a href="#">Home</a>
-      <a href="#" class="active">Lessons</a>
-      <a href="#">Vocabulary</a>
-      <a href="#">Speak</a>
-      <a href="#">Camera</a>
-      <a href="#">Translate</a>
-      <a href="#">Quiz</a>
-      <a href="#">Progress</a>
-      <a href="#">Survey</a>
-    </nav>
-  </header>
-
-  <main class="main">
-    <div class="card">
-      <div class="title-box">
-        <h2>Learn the Words</h2>
-        <div class="subtitle">Listen to each word and remember its meaning.</div>
-      </div>
-
-      <div class="word-list">
-        <div class="word-item">
-          <div class="marathi">नमस्कार</div>
-          <div class="details">
-            Hindi: नमस्ते<br />
-            English: Hello
-          </div>
-          <button class="listen-btn"><span class="small-badge">🔊</span> Listen</button>
+    <main class="container page-section">
+        <div class="section-head center">
+            <span class="eyebrow">Learning Topic</span>
+            <h3 id="lesson-title">Lesson</h3>
+            <p id="lesson-description">Loading lesson...</p>
         </div>
 
-        <div class="word-item">
-          <div class="marathi">शुभ सकाळ</div>
-          <div class="details">
-            Hindi: शुभ सुबह<br />
-            English: Good morning
-          </div>
-          <button class="listen-btn"><span class="small-badge">🔊</span> Listen</button>
-        </div>
+        <div class="lesson-page-card">
+            <section class="lesson-box">
+                <h4>📚 Learn the Words</h4>
+                <div id="word-list" class="word-list"></div>
+            </section>
 
-        <div class="word-item">
-          <div class="marathi">शुभ रात्री</div>
-          <div class="details">
-            Hindi: शुभ रात्रि<br />
-            English: Good night
-          </div>
-          <button class="listen-btn"><span class="small-badge">🔊</span> Listen</button>
-        </div>
+            <section class="lesson-box">
+                <h4>💬 Useful Sentences</h4>
+                <div id="sentence-list" class="sentence-list"></div>
+            </section>
 
-        <div class="word-item">
-          <div class="marathi">धन्यवाद</div>
-          <div class="details">
-            Hindi: धन्यवाद<br />
-            English: Thank you
-          </div>
-          <button class="listen-btn"><span class="small-badge">🔊</span> Listen</button>
-        </div>
+            <section class="lesson-box">
+                <h4>🧠 Quick Practice</h4>
+                <p id="question-text" class="question-text"></p>
+                <div id="answer-buttons" class="answer-buttons"></div>
+                <p id="practice-result" class="practice-result"></p>
+            </section>
 
-        <div class="word-item">
-          <div class="marathi">कृपया</div>
-          <div class="details">
-            Hindi: कृपया<br />
-            English: Please
-          </div>
-          <button class="listen-btn"><span class="small-badge">🔊</span> Listen</button>
-        </div>
-      </div>
-    </div>
-  </main>
+            <div class="complete-panel">
+                <h4>Lesson complete?</h4>
+                <p>Save your learning progress.</p>
+                <button class="btn btn-primary" onclick="finishLesson()">Complete Lesson</button>
+                <p id="completion-message" class="completion-message"></p>
+            </div>
 
+            <div class="back-link-wrap">
+                <a href="lessons.html" class="btn btn-secondary">← Back to Lessons</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <h3>🌸 Borasha</h3>
+            <p>Learn local languages at your own pace.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
 </body>
 </html>

@@ -4,381 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Borasha | Speaking Practice</title>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f7efff 0%, #ffe8f0 100%);
-            min-height: 100vh;
-        }
-
-        header {
-            background: white;
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo h1 {
-            font-size: 24px;
-            color: #5f2867;
-        }
-
-        .logo p {
-            font-size: 12px;
-            color: #999;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #5f2867;
-            font-weight: 600;
-            margin: 0 12px;
-            transition: 0.3s;
-        }
-
-        nav a:hover,
-        nav a.active {
-            color: #c4478b;
-        }
-
-        main {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 20px;
-            min-height: calc(100vh - 100px);
-        }
-
-        .card {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            width: 100%;
-            max-width: 600px;
-            text-align: center;
-            box-shadow: 0 10px 40px rgba(95, 40, 103, 0.15);
-        }
-
-        .icon {
-            font-size: 50px;
-            margin-bottom: 15px;
-        }
-
-        .label {
-            color: #8b3d83;
-            font-size: 12px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-
-        h2 {
-            color: #5f2867;
-            font-size: 28px;
-            margin-bottom: 12px;
-        }
-
-        .info {
-            color: #666;
-            font-size: 15px;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        .progress {
-            margin: 25px 0 35px;
-        }
-
-        .progress-label {
-            color: #743e85;
-            font-weight: bold;
-            margin-bottom: 8px;
-            font-size: 14px;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: #eee2ff;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            width: 10%;
-            background: linear-gradient(90deg, #c4478b, #e8739f);
-            border-radius: 10px;
-            transition: width 0.5s ease;
-        }
-
-        .word-display {
-            margin: 30px 0;
-        }
-
-        .marathi {
-            font-size: 48px;
-            color: #8b3d83;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .how-to-say {
-            color: #777;
-            font-size: 16px;
-            margin-bottom: 15px;
-        }
-
-        .meaning-tag {
-            display: inline-block;
-            background: #f5eaff;
-            color: #743e85;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 14px;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            margin: 30px 0;
-            flex-wrap: wrap;
-        }
-
-        button {
-            border: none;
-            border-radius: 12px;
-            padding: 12px 24px;
-            font-weight: bold;
-            font-size: 15px;
-            cursor: pointer;
-            transition: all 0.3s;
-            min-width: 120px;
-        }
-
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn-listen {
-            background: #eee2ff;
-            color: #743e85;
-        }
-
-        .btn-speak {
-            background: #c4478b;
-            color: white;
-        }
-
-        .btn-try {
-            background: #f0b7d6;
-            color: #632052;
-        }
-
-        .btn-next {
-            background: #743e85;
-            color: white;
-        }
-
-        .speech-display {
-            margin: 25px 0;
-            min-height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .result-text {
-            font-weight: bold;
-            color: #555;
-            font-size: 15px;
-        }
-
-        .feedback-text {
-            font-weight: bold;
-            margin-top: 10px;
-            font-size: 15px;
-        }
-
-        .success {
-            color: #28a745;
-        }
-
-        .error {
-            color: #c4478b;
-        }
-
-        .tip {
-            background: #fff7fc;
-            border-left: 4px solid #c4478b;
-            padding: 15px;
-            text-align: left;
-            border-radius: 8px;
-            color: #555;
-            margin-top: 25px;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        footer {
-            background: white;
-            text-align: center;
-            padding: 25px;
-            color: #5f2867;
-            font-size: 14px;
-            border-top: 1px solid #eee;
-        }
-
-        footer h3 {
-            margin-bottom: 5px;
-            font-size: 18px;
-        }
-
-        @media (max-width: 600px) {
-            header {
-                flex-direction: column;
-                gap: 15px;
-                padding: 15px;
-            }
-
-            nav {
-                display: flex;
-                gap: 8px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            nav a {
-                margin: 0 6px;
-                font-size: 13px;
-            }
-
-            .card {
-                padding: 25px;
-                margin: 20px;
-            }
-
-            .marathi {
-                font-size: 36px;
-            }
-
-            button {
-                min-width: 100px;
-                padding: 10px 18px;
-                font-size: 14px;
-            }
-
-            .button-group {
-                flex-direction: column;
-            }
-
-            button {
-                width: 100%;
-            }
-
-            h2 {
-                font-size: 22px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-    <header>
-        <div class="logo">
-            <span style="font-size: 28px;">🌸</span>
-            <div>
-                <h1>Borasha</h1>
-                <p>Learn • Practice • Speak</p>
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="brand">
+                <div class="brand-mark">🌸</div>
+                <div>
+                    <h1>Borasha</h1>
+                    <small>Learn • Practice • Speak</small>
+                </div>
             </div>
-        </div>
 
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="lessons.html">Lessons</a>
-            <a href="vocabulary.html">Vocabulary</a>
-            <a href="practice.html" class="active">Speak</a>
-            <a href="camera.html">Camera</a>
-            <a href="translator.html">Translate</a>
-            <a href="quiz.html">Quiz</a>
-            <a href="progress.html">Progress</a>
-            <a href="survey.html">Survey</a>
-        </nav>
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+                <a href="lessons.html">Lessons</a>
+                <a href="vocabulary.html">Vocabulary</a>
+                <a href="practice.html" class="active">Speak</a>
+                <a href="translator.html">Translate</a>
+                <a href="quiz.html">Quiz</a>
+                <a href="progress.html">Progress</a>
+                <a href="feedback.html">Feedback</a>
+            </nav>
+        </div>
     </header>
 
-    <main>
-        <div class="card">
-            <div class="icon">🎤</div>
+    <main class="container page-section">
+        <div class="section-head center">
+            <span class="eyebrow">Speaking Practice</span>
+            <h3>Listen and Speak</h3>
+        </div>
 
-            <p class="label">Speaking Practice</p>
-
-            <h2>Listen and Speak</h2>
-
-            <p class="info">
-                Hear the Marathi word, then say it clearly using your microphone.
-            </p>
-
-            <div class="progress">
-                <div class="progress-label" id="progressLabel">Word 1 of 10</div>
+        <div class="card-panel practice-box">
+            <div class="progress-wrap">
+                <div id="practiceProgressText" class="progress-label">Word 1 of 10</div>
                 <div class="progress-bar">
-                    <div class="progress-fill" id="progressBar"></div>
+                    <div id="practiceProgressFill" class="progress-fill"></div>
                 </div>
             </div>
 
-            <div class="word-display">
-                <div class="marathi" id="word">नमस्कार</div>
-                <div class="how-to-say" id="pronoun">Namaskar</div>
-                <div class="meaning-tag" id="meaning">Hello</div>
+            <div class="practice-word-box">
+                <div id="targetWord" class="target-word">नमस्कार</div>
+                <div id="pronunciation" class="pronunciation">Namaskar</div>
+                <div id="meaning" class="meaning-badge">Hello</div>
             </div>
 
-            <div class="button-group">
-                <button class="btn-listen" id="listenBtn">🔊 Listen</button>
-                <button class="btn-speak" id="speakBtn">🎤 Speak</button>
+            <div class="button-row practice-buttons">
+                <button id="listenButton" class="btn btn-secondary">🔊 Listen</button>
+                <button id="speakButton" class="btn btn-primary">🎤 Speak</button>
             </div>
 
-            <div class="speech-display">
-                <div>
-                    <p class="result-text" id="result">Your speech will appear here</p>
-                    <p class="feedback-text" id="feedback"></p>
-                </div>
+            <div class="speech-output">
+                <p id="speechResult">Your speech will appear here.</p>
+                <p id="speechFeedback" class="feedback-message"></p>
             </div>
 
-            <div class="button-group">
-                <button class="btn-try" id="retryBtn">🔄 Try Again</button>
-                <button class="btn-next" id="nextBtn">➡️ Next Word</button>
-            </div>
-
-            <div class="tip">
-                <strong>💡 Tip:</strong> Listen first. Then speak slowly and clearly.
+            <div class="button-row practice-buttons">
+                <button id="tryButton" class="btn btn-secondary">Try Again</button>
+                <button id="nextButton" class="btn btn-primary">Next Word</button>
             </div>
         </div>
     </main>
 
-    <footer>
-        <h3>🌸 Borasha</h3>
-        <p>Practice speaking with confidence.</p>
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <h3>🌸 Borasha</h3>
+            <p>Learn local languages at your own pace.</p>
+        </div>
     </footer>
 
     <script src="js/script.js"></script>
-
 </body>
 </html>

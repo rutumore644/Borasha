@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borasha | Feedback</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="brand">
+                <div class="brand-mark">🌸</div>
+                <div>
+                    <h1>Borasha</h1>
+                    <small>Learn • Practice • Speak</small>
+                </div>
+            </div>
+
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+                <a href="lessons.html">Lessons</a>
+                <a href="vocabulary.html">Vocabulary</a>
+                <a href="practice.html">Speak</a>
+                <a href="translator.html">Translate</a>
+                <a href="quiz.html">Quiz</a>
+                <a href="progress.html">Progress</a>
+                <a href="feedback.html" class="active">Feedback</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container page-section">
+        <div class="section-head center">
+            <span class="eyebrow">Community Feedback</span>
+            <h3>Share your experience</h3>
+        </div>
+
+        <div class="card-panel feedback-panel">
+            <form id="feedbackForm">
+                <label>
+                    Name
+                    <input type="text" id="nameInput" placeholder="Your name">
+                </label>
+
+                <label>
+                    Rating
+                    <select id="ratingInput">
+                        <option value="5">Excellent</option>
+                        <option value="4">Good</option>
+                        <option value="3">Average</option>
+                        <option value="2">Fair</option>
+                        <option value="1">Poor</option>
+                    </select>
+                </label>
+
+                <label>
+                    Feedback
+                    <textarea id="messageInput" rows="5" placeholder="Tell us what you liked or what can be improved..."></textarea>
+                </label>
+
+                <button type="submit" class="btn btn-primary">Submit Feedback</button>
+            </form>
+
+            <p id="feedbackMessage" class="feedback-success"></p>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <h3>🌸 Borasha</h3>
+            <p>Learn local languages at your own pace.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

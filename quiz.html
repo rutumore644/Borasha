@@ -1,317 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Borasha | Quiz</title>
-
     <link rel="stylesheet" href="css/style.css">
-
-    <style>
-
-        .quiz-page {
-            padding: 70px 7%;
-            background: #fff3f9;
-            min-height: 75vh;
-        }
-
-        .quiz-box {
-            max-width: 700px;
-            margin: auto;
-            background: white;
-            padding: 40px;
-            border-radius: 25px;
-        }
-
-        .question-number {
-            color: #c4478b;
-            font-weight: bold;
-        }
-
-        .question {
-            font-size: 25px;
-            margin: 15px 0 25px;
-        }
-
-        .option {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            border: 1px solid #e2d6e5;
-            background: white;
-            border-radius: 10px;
-            cursor: pointer;
-            text-align: left;
-        }
-
-        .option:hover {
-            background: #fff0f7;
-        }
-
-        .quiz-button {
-            margin-top: 20px;
-            padding: 12px 20px;
-            border: none;
-            background: #c4478b;
-            color: white;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-
-        #quizResult {
-            margin-top: 25px;
-            font-size: 22px;
-            font-weight: bold;
-            text-align: center;
-        }
-
-    </style>
-
 </head>
-
 <body>
-
-    <header class="header">
-
-        <div class="logo">
-
-            <span class="logo-icon">🌸</span>
-
-            <div>
-                <h1>Borasha</h1>
-                <p>Learn • Practice • Speak</p>
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="brand">
+                <div class="brand-mark">🌸</div>
+                <div>
+                    <h1>Borasha</h1>
+                    <small>Learn • Practice • Speak</small>
+                </div>
             </div>
 
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+                <a href="lessons.html">Lessons</a>
+                <a href="vocabulary.html">Vocabulary</a>
+                <a href="practice.html">Speak</a>
+                <a href="translator.html">Translate</a>
+                <a href="quiz.html" class="active">Quiz</a>
+                <a href="progress.html">Progress</a>
+                <a href="feedback.html">Feedback</a>
+            </nav>
         </div>
-
-        <nav class="navbar">
-
-            <a href="index.html">Home</a>
-            <a href="lessons.html">Lessons</a>
-            <a href="vocabulary.html">Vocabulary</a>
-            <a href="practice.html">Speak</a>
-            <a href="translator.html">Translate</a>
-
-        </nav>
-
     </header>
 
-
-    <main class="quiz-page">
-
-        <div class="quiz-box">
-
-            <p class="small-title">
-                QUICK QUIZ
-            </p>
-
-            <div id="quizArea"></div>
-
-            <p id="quizResult"></p>
-
+    <main class="container page-section">
+        <div class="section-head center">
+            <span class="eyebrow">Quiz</span>
+            <h3>Check your learning</h3>
         </div>
 
+        <div class="card-panel quiz-box">
+            <div id="quizQuestion" class="quiz-question">Question will appear here</div>
+            <div id="quizOptions" class="quiz-options"></div>
+            <div id="quizResult" class="quiz-result"></div>
+            <button id="nextQuestionBtn" class="btn btn-primary">Next Question</button>
+        </div>
     </main>
 
-
-    <footer class="footer">
-
-        <h2>🌸 Borasha</h2>
-
-        <p>Learn today. Practice tomorrow. Improve every day.</p>
-
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <h3>🌸 Borasha</h3>
+            <p>Learn local languages at your own pace.</p>
+        </div>
     </footer>
 
-
     <script src="js/script.js"></script>
-
-
-    <script>
-
-        /* Questions for the quiz */
-
-        const questions = [
-
-            {
-                question: "What does 'नमस्कार' mean?",
-                options: [
-                    "Hello",
-                    "Water",
-                    "Book",
-                    "Food"
-                ],
-                answer: "Hello"
-            },
-
-
-            {
-                question: "What does 'पाणी' mean?",
-                options: [
-                    "School",
-                    "Water",
-                    "Mother",
-                    "House"
-                ],
-                answer: "Water"
-            },
-
-
-            {
-                question: "What does 'धन्यवाद' mean?",
-                options: [
-                    "Thank you",
-                    "Goodbye",
-                    "Hello",
-                    "Sorry"
-                ],
-                answer: "Thank you"
-            },
-
-
-            {
-                question: "What does 'आई' mean?",
-                options: [
-                    "Father",
-                    "Mother",
-                    "Brother",
-                    "Teacher"
-                ],
-                answer: "Mother"
-            },
-
-
-            {
-                question: "What does 'घर' mean?",
-                options: [
-                    "Book",
-                    "School",
-                    "House",
-                    "Food"
-                ],
-                answer: "House"
-            }
-
-        ];
-
-
-        let currentQuestion = 0;
-
-        let score = 0;
-
-
-        function showQuestion() {
-
-            const area =
-                document.getElementById("quizArea");
-
-
-            const q =
-                questions[currentQuestion];
-
-
-            let html = "";
-
-
-            html +=
-                "<p class='question-number'>Question " +
-                (currentQuestion + 1) +
-                " of " +
-                questions.length +
-                "</p>";
-
-
-            html +=
-                "<div class='question'>" +
-                q.question +
-                "</div>";
-
-
-            q.options.forEach(function (option) {
-
-                html +=
-                    "<button class='option' onclick=\"selectAnswer('" +
-                    option.replace(/'/g, "\\'") +
-                    "')\">" +
-                    option +
-                    "</button>";
-
-            });
-
-
-            area.innerHTML = html;
-
-        }
-
-
-        function selectAnswer(selected) {
-
-            const correct =
-                questions[currentQuestion].answer;
-
-
-            if (selected === correct) {
-
-                score++;
-
-            }
-
-
-            currentQuestion++;
-
-
-            if (currentQuestion < questions.length) {
-
-                showQuestion();
-
-            } else {
-
-                finishQuiz();
-
-            }
-
-        }
-
-
-        function finishQuiz() {
-
-            const percentage =
-                Math.round(
-                    (score / questions.length) * 100
-                );
-
-
-            saveQuizScore(
-                score,
-                questions.length
-            );
-
-
-            document.getElementById("quizArea")
-                .innerHTML =
-                "<h2>Quiz Completed 🎉</h2>" +
-                "<p>You answered " +
-                score +
-                " out of " +
-                questions.length +
-                " correctly.</p>";
-
-
-            document.getElementById("quizResult")
-                .textContent =
-                "Score: " + percentage + "%";
-
-        }
-
-
-        showQuestion();
-
-    </script>
-
 </body>
-
 </html>
