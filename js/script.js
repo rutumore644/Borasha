@@ -301,18 +301,78 @@ let currentPracticeIndex = 0;
 let quizIndex = 0;
 let quizScore = 0;
 
+function getSpeechVoice(language) {
+    if (!('speechSynthesis' in window)) return null;
+
+    const voices = window.speechSynthesis.getVoices();
+    const wanted = language.toLowerCase();
+
+    return voices.find(voice => voice.lang.toLowerCase() === wanted) ||
+        voices.find(voice => voice.lang.toLowerCase().startsWith(wanted.split('-')[0])) ||
+        null;
+}
+
 function speakText(text, language = 'en-IN') {
     if (!('speechSynthesis' in window)) {
-        alert('Speech is not supported in this browser.');
+        alert('Speech is not supported in this browser. Please use Chrome or Edge.');
         return;
     }
 
+    if (!text) return;
+
     window.speechSynthesis.cancel();
+
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = language;
-    utterance.rate = 0.8;
+    utterance.rate = 0.78;
+    utterance.pitch = 1;
+
+    const voice = getSpeechVoice(language);
+    if (voice) utterance.voice = voice;
+
     window.speechSynthesis.speak(utterance);
 }
+
+function speakTranslationResult() {
+    const result = document.getElementById('translationResult');
+    if (!result) return;
+
+    const output = result.textContent.trim();
+
+    if (!output || output === 'Your translation will appear here.') return;
+
+    window.speechSynthesis.cancel();
+
+    // Speak only the translated words, using the correct language voice.
+    const parts = output.split('|').map(part => part.trim());
+
+    parts.forEach((part, index) => {
+        const colonIndex = part.indexOf(':');
+        const label = colonIndex >= 0 ? part.slice(0, colonIndex).trim().toLowerCase() : '';
+        const word = colonIndex >= 0 ? part.slice(colonIndex + 1).trim() : part;
+
+        if (!word) return;
+
+        let language = 'en-IN';
+        if (label === 'marathi') language = 'mr-IN';
+        else if (label === 'hindi') language = 'hi-IN';
+        else if (label === 'english') language = 'en-IN';
+
+        const utterance = new SpeechSynthesisUtterance(word);
+        utterance.lang = language;
+        utterance.rate = 0.78;
+        utterance.pitch = 1;
+
+        const voice = getSpeechVoice(language);
+        if (voice) utterance.voice = voice;
+
+        // Add a tiny pause between languages.
+        if (index > 0) utterance.text = word;
+
+        window.speechSynthesis.speak(utterance);
+    });
+}
+
 
 function selectLanguage(language) {
     localStorage.setItem('borashaLanguage', language);
@@ -660,31 +720,48 @@ function translateText() {
 
     if (listenButton) {
         listenButton.hidden = false;
-        listenButton.onclick = function () {
-            const output = result.textContent;
-            speakText(output, 'en-IN');
-        };
+        listenButton.onclick = speakTranslationResult;
     }
 }
+
 function activateMicForTranslation() {
-    if (!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
-        alert('Microphone input is not supported on this browser.');
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (!SpeechRecognition) {
+        alert('Microphone input is not supported on this browser. Please use Chrome or Edge.');
         return;
     }
 
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const input = document.getElementById('translationInput');
+    const result = document.getElementById('translationResult');
+
     const recognition = new SpeechRecognition();
-    recognition.lang = 'mr-IN';
+    recognition.continuous = false;
     recognition.interimResults = false;
+
+    // English is the most reliable starting language for browser speech recognition.
+    // Users can still type Marathi or Hindi directly into the box.
+    recognition.lang = 'en-IN';
+
+    if (result) result.textContent = 'Listening... Please speak now.';
 
     recognition.onresult = function (event) {
         const text = event.results[0][0].transcript;
-        const input = document.getElementById('translationInput');
         if (input) input.value = text;
         translateText();
     };
 
-    recognition.start();
+    recognition.onerror = function () {
+        if (result) {
+            result.textContent = 'Could not recognize your speech. Please try again or type the word.';
+        }
+    };
+
+    try {
+        recognition.start();
+    } catch (error) {
+        console.log('Speech recognition error:', error);
+    }
 }
 
 function initQuiz() {
