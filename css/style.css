@@ -1220,3 +1220,147 @@ textarea:focus,input:focus,select:focus { outline:2px solid rgba(124,58,237,.18)
     background: #a855f7;
     opacity: 0.75;
 }
+
+
+/* Borasha flower theme */
+:root {
+    --primary: #e86a9b;
+    --primary-dark: #a83f70;
+    --lavender: #eee6ff;
+    --pink-light: #fde8f0;
+    --soft-purple: #f7f2ff;
+    --white: #ffffff;
+    --bg: #fffaf7;
+    --text: #342238;
+    --muted: #705f72;
+    --line: #eadff0;
+    --success: #23845a;
+    --danger: #c2415b;
+    --shadow: 0 12px 30px rgba(168, 63, 112, 0.10);
+}
+
+body {
+    background:
+        radial-gradient(circle at 8% 5%, rgba(251, 207, 232, 0.42), transparent 28%),
+        radial-gradient(circle at 92% 15%, rgba(221, 214, 254, 0.34), transparent 27%),
+        linear-gradient(180deg, #fffaf7 0%, #ffffff 48%, #f7f2ff 100%);
+}
+
+.site-header {
+    background: rgba(255, 255, 255, 0.91);
+    box-shadow: 0 4px 20px rgba(112, 95, 114, 0.06);
+}
+
+.brand-mark {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #fde8f0, #eee6ff);
+    border: 1px solid #eadff0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 23px;
+    box-shadow: 0 6px 14px rgba(168, 63, 112, 0.08);
+    overflow: visible;
+}
+
+.brand-letter {
+    position: static;
+}
+
+.brand h1 {
+    background: linear-gradient(135deg, #e86a9b, #a83f70);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+    color: #e05c91;
+}
+
+.eyebrow {
+    color: #a83f70;
+    background: rgba(232, 106, 155, 0.10);
+}
+
+.hero-content h2 span {
+    background: linear-gradient(135deg, #e86a9b, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.btn-primary,
+.step-card span,
+.complete-panel,
+.progress-fill {
+    background: linear-gradient(135deg, #e86a9b, #c95b9b);
+}
+
+.btn-secondary {
+    background: #fde8f0;
+    color: #a83f70;
+    border-color: #f1bfd3;
+}
+
+.btn:hover {
+    box-shadow: 0 10px 18px rgba(168, 63, 112, 0.18);
+}
+
+.hero-panel {
+    background: linear-gradient(145deg, #ffffff, #f7f2ff);
+}
+
+.alt-bg {
+    background: linear-gradient(180deg, #f7f2ff 0%, rgba(255,255,255,.92) 100%);
+}
+
+.lang-card h4,
+.hero-panel h3,
+.lesson-box h4,
+.word-item .marathi,
+.word,
+.target-word,
+.survey-card h4 {
+    color: #a83f70;
+}
+
+.lesson-card.completed {
+    background: linear-gradient(180deg, #fde8f0, #ffffff);
+    border-left-color: #e86a9b;
+}
+
+.answer-btn:hover,
+.quiz-option:hover {
+    background: #fde8f0;
+}
+
+.coming-soon-card {
+    border-color: #d8c9e8;
+}
+
+.image-tool {
+    background: linear-gradient(145deg, #ffffff, #f7f2ff);
+}
+
+textarea:focus,
+input:focus,
+select:focus {
+    outline: 2px solid rgba(232, 106, 155, 0.20);
+}
+
+.footer-inner h3 {
+    background: linear-gradient(135deg, #e86a9b, #a83f70);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Remove the temporary A + अ logo styling */
+.brand-letter.local,
+.brand-mark::after {
+    display: none;
+}
