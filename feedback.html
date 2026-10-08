@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Borasha | Feedback</title>
+    <title>Borasha | Survey</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -25,52 +25,55 @@
                 <a href="translator.html">Translate</a>
                 <a href="quiz.html">Quiz</a>
                 <a href="progress.html">Progress</a>
-                <a href="feedback.html" class="active">Feedback</a>
+                <a href="feedback.html" class="active">Survey</a>
             </nav>
         </div>
     </header>
 
     <main class="container page-section">
         <div class="section-head center">
-            <span class="eyebrow">Community Engagement</span>
-            <h3>Share Your Feedback</h3>
-            <p>Help us improve Borasha by sharing your experience and suggestions</p>
+            <span class="eyebrow">Help Us Improve</span>
+            <h3>Share Your Experience</h3>
+            <p>
+                Tell us what you think about Borasha.
+                Your responses will help us improve the learning experience.
+            </p>
         </div>
 
-        <div class="survey-container">
-            <h4 style="text-align: center; color: var(--primary-dark); margin-top: 0;">Google Form Survey</h4>
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfYl-WagyLDKKoXPWhpg3Iz_uiZv2CvNPw_cWNtZUI1n4ZyVw/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Loading form...</iframe>
-        </div>
+        <div class="survey-card">
+            <div class="survey-icon">💜</div>
 
-        <div class="card-panel feedback-panel" style="margin-top: 40px;">
-            <h4 style="color: var(--primary-dark); margin-top: 0;">Quick Feedback Form</h4>
-            <form id="feedbackForm">
-                <label>
-                    Name
-                    <input type="text" id="nameInput" placeholder="Your name" required>
-                </label>
+            <h4>Borasha User Survey</h4>
 
-                <label>
-                    Rating
-                    <select id="ratingInput" required>
-                        <option value="">Select a rating</option>
-                        <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
-                        <option value="4">⭐⭐⭐⭐ Good</option>
-                        <option value="3">⭐⭐⭐ Average</option>
-                        <option value="2">⭐⭐ Fair</option>
-                        <option value="1">⭐ Poor</option>
-                    </select>
-                </label>
+            <p>
+                This short survey helps us understand how learners use
+                Borasha and what we can improve in the future.
+            </p>
 
-                <label>
-                    Your Feedback
-                    <textarea id="messageInput" rows="5" placeholder="Tell us what you liked or what can be improved..." required></textarea>
-                </label>
+            <div class="survey-info">
+                <div>
+                    <strong>🌐 Languages</strong>
+                    <span>Marathi • Hindi • English</span>
+                </div>
 
-                <button type="submit" class="btn btn-primary">Submit Feedback</button>
-            </form>
+                <div>
+                    <strong>⏱️ Time</strong>
+                    <span>Only a few minutes</span>
+                </div>
 
-            <p id="feedbackMessage" class="feedback-success"></p>
+                <div>
+                    <strong>💡 Purpose</strong>
+                    <span>Improve Borasha</span>
+                </div>
+            </div>
+
+            <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSfYl-WagyLDKKoXPWhpg3Iz_uiZv2CvNPw_cWNtZUI1n4ZyVw/viewform"
+                target="_blank"
+                class="btn btn-primary survey-button"
+            >
+                Take the Survey
+            </a>
         </div>
     </main>
 
