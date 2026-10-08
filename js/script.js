@@ -118,6 +118,177 @@ const speakingPracticeWords = [
     { marathi: 'आपण नंतर भेटू', pronunciation: 'Aapan nantar bhetu', meaning: 'We will meet later' }
 ];
 
+const vocabularyData = [
+    {category:'Greetings', english:'Hello', hindi:'नमस्ते', marathi:'नमस्कार', pronunciation:'Namaskar'},
+    {category:'Greetings', english:'Thank you', hindi:'धन्यवाद', marathi:'धन्यवाद', pronunciation:'Dhanyavaad'},
+    {category:'Greetings', english:'Please', hindi:'कृपया', marathi:'कृपया', pronunciation:'Krupaya'},
+    {category:'Greetings', english:'Sorry', hindi:'माफ़ कीजिए', marathi:'माफ करा', pronunciation:'Maaf kara'},
+    {category:'Greetings', english:'Yes', hindi:'हाँ', marathi:'हो', pronunciation:'Ho'},
+    {category:'Greetings', english:'No', hindi:'नहीं', marathi:'नाही', pronunciation:'Naahi'},
+    {category:'Greetings', english:'Welcome', hindi:'स्वागत है', marathi:'स्वागत आहे', pronunciation:'Swaagat aahe'},
+    {category:'Greetings', english:'Good morning', hindi:'सुप्रभात', marathi:'शुभ सकाळ', pronunciation:'Shubh sakaal'},
+    {category:'Greetings', english:'Good night', hindi:'शुभ रात्रि', marathi:'शुभ रात्री', pronunciation:'Shubh raatri'},
+    {category:'Greetings', english:'Goodbye', hindi:'अलविदा', marathi:'निरोप', pronunciation:'Niroop'},
+    {category:'Family', english:'Mother', hindi:'माँ', marathi:'आई', pronunciation:'Aai'},
+    {category:'Family', english:'Father', hindi:'पिता', marathi:'वडील', pronunciation:'Vadeel'},
+    {category:'Family', english:'Brother', hindi:'भाई', marathi:'भाऊ', pronunciation:'Bhaau'},
+    {category:'Family', english:'Sister', hindi:'बहन', marathi:'बहीण', pronunciation:'Baheen'},
+    {category:'Family', english:'Grandmother', hindi:'दादी / नानी', marathi:'आजी', pronunciation:'Aaji'},
+    {category:'Family', english:'Grandfather', hindi:'दादा / नाना', marathi:'आजोबा', pronunciation:'Aajoba'},
+    {category:'Family', english:'Son', hindi:'बेटा', marathi:'मुलगा', pronunciation:'Mulga'},
+    {category:'Family', english:'Daughter', hindi:'बेटी', marathi:'मुलगी', pronunciation:'Mulgi'},
+    {category:'Family', english:'Friend', hindi:'दोस्त', marathi:'मित्र', pronunciation:'Mitra'},
+    {category:'Family', english:'Family', hindi:'परिवार', marathi:'कुटुंब', pronunciation:'Kutumb'},
+    {category:'Food', english:'Water', hindi:'पानी', marathi:'पाणी', pronunciation:'Paani'},
+    {category:'Food', english:'Food', hindi:'खाना', marathi:'अन्न', pronunciation:'Anna'},
+    {category:'Food', english:'Rice', hindi:'चावल', marathi:'भात', pronunciation:'Bhaat'},
+    {category:'Food', english:'Bread', hindi:'रोटी', marathi:'पोळी', pronunciation:'Poli'},
+    {category:'Food', english:'Milk', hindi:'दूध', marathi:'दूध', pronunciation:'Doodh'},
+    {category:'Food', english:'Tea', hindi:'चाय', marathi:'चहा', pronunciation:'Chaha'},
+    {category:'Food', english:'Coffee', hindi:'कॉफी', marathi:'कॉफी', pronunciation:'Coffee'},
+    {category:'Food', english:'Fruit', hindi:'फल', marathi:'फळ', pronunciation:'Phal'},
+    {category:'Food', english:'Vegetable', hindi:'सब्ज़ी', marathi:'भाजी', pronunciation:'Bhaaji'},
+    {category:'Food', english:'Apple', hindi:'सेब', marathi:'सफरचंद', pronunciation:'Safarchand'},
+    {category:'Home', english:'House', hindi:'घर', marathi:'घर', pronunciation:'Ghar'},
+    {category:'Home', english:'Room', hindi:'कमरा', marathi:'खोली', pronunciation:'Kholi'},
+    {category:'Home', english:'Door', hindi:'दरवाज़ा', marathi:'दरवाजा', pronunciation:'Darwaja'},
+    {category:'Home', english:'Window', hindi:'खिड़की', marathi:'खिडकी', pronunciation:'Khidki'},
+    {category:'Home', english:'Chair', hindi:'कुर्सी', marathi:'खुर्ची', pronunciation:'Khurchi'},
+    {category:'Home', english:'Table', hindi:'मेज़', marathi:'टेबल', pronunciation:'Table'},
+    {category:'Home', english:'Bed', hindi:'बिस्तर', marathi:'पलंग', pronunciation:'Palang'},
+    {category:'Home', english:'Kitchen', hindi:'रसोई', marathi:'स्वयंपाकघर', pronunciation:'Swayampaakghar'},
+    {category:'Home', english:'Bathroom', hindi:'स्नानघर', marathi:'स्नानगृह', pronunciation:'Snaangruh'},
+    {category:'Home', english:'Book', hindi:'किताब', marathi:'पुस्तक', pronunciation:'Pustak'},
+    {category:'Numbers', english:'One', hindi:'एक', marathi:'एक', pronunciation:'Ek'},
+    {category:'Numbers', english:'Two', hindi:'दो', marathi:'दोन', pronunciation:'Don'},
+    {category:'Numbers', english:'Three', hindi:'तीन', marathi:'तीन', pronunciation:'Teen'},
+    {category:'Numbers', english:'Four', hindi:'चार', marathi:'चार', pronunciation:'Chaar'},
+    {category:'Numbers', english:'Five', hindi:'पाँच', marathi:'पाच', pronunciation:'Paach'},
+    {category:'Numbers', english:'Six', hindi:'छह', marathi:'सहा', pronunciation:'Saha'},
+    {category:'Numbers', english:'Seven', hindi:'सात', marathi:'सात', pronunciation:'Saat'},
+    {category:'Numbers', english:'Eight', hindi:'आठ', marathi:'आठ', pronunciation:'Aath'},
+    {category:'Numbers', english:'Nine', hindi:'नौ', marathi:'नऊ', pronunciation:'Nau'},
+    {category:'Numbers', english:'Ten', hindi:'दस', marathi:'दहा', pronunciation:'Daha'},
+    {category:'Colors', english:'Red', hindi:'लाल', marathi:'लाल', pronunciation:'Laal'},
+    {category:'Colors', english:'Blue', hindi:'नीला', marathi:'निळा', pronunciation:'Nila'},
+    {category:'Colors', english:'Green', hindi:'हरा', marathi:'हिरवा', pronunciation:'Hirva'},
+    {category:'Colors', english:'Yellow', hindi:'पीला', marathi:'पिवळा', pronunciation:'Pivala'},
+    {category:'Colors', english:'Black', hindi:'काला', marathi:'काळा', pronunciation:'Kaala'},
+    {category:'Colors', english:'White', hindi:'सफेद', marathi:'पांढरा', pronunciation:'Paandhara'},
+    {category:'Colors', english:'Pink', hindi:'गुलाबी', marathi:'गुलाबी', pronunciation:'Gulaabi'},
+    {category:'Colors', english:'Orange', hindi:'नारंगी', marathi:'नारंगी', pronunciation:'Naaraangi'},
+    {category:'Colors', english:'Purple', hindi:'बैंगनी', marathi:'जांभळा', pronunciation:'Jaambhala'},
+    {category:'Colors', english:'Brown', hindi:'भूरा', marathi:'तपकिरी', pronunciation:'Tapkiri'},
+    {category:'Actions', english:'Eat', hindi:'खाना', marathi:'खाणे', pronunciation:'Khaane'},
+    {category:'Actions', english:'Drink', hindi:'पीना', marathi:'पिणे', pronunciation:'Pine'},
+    {category:'Actions', english:'Go', hindi:'जाना', marathi:'जाणे', pronunciation:'Jaane'},
+    {category:'Actions', english:'Come', hindi:'आना', marathi:'येणे', pronunciation:'Yene'},
+    {category:'Actions', english:'Sit', hindi:'बैठना', marathi:'बसणे', pronunciation:'Basne'},
+    {category:'Actions', english:'Stand', hindi:'खड़ा होना', marathi:'उभे राहणे', pronunciation:'Ubhe rahane'},
+    {category:'Actions', english:'Sleep', hindi:'सोना', marathi:'झोपणे', pronunciation:'Zhopne'},
+    {category:'Actions', english:'Walk', hindi:'चलना', marathi:'चालणे', pronunciation:'Chaalne'},
+    {category:'Actions', english:'Run', hindi:'दौड़ना', marathi:'धावणे', pronunciation:'Dhaavne'},
+    {category:'Actions', english:'Learn', hindi:'सीखना', marathi:'शिकणे', pronunciation:'Shikne'},
+    {category:'Feelings', english:'Happy', hindi:'खुश', marathi:'आनंदी', pronunciation:'Aanandi'},
+    {category:'Feelings', english:'Sad', hindi:'दुखी', marathi:'दुःखी', pronunciation:'Dukhi'},
+    {category:'Feelings', english:'Angry', hindi:'गुस्सा', marathi:'रागावलेला', pronunciation:'Raagavlela'},
+    {category:'Feelings', english:'Tired', hindi:'थका हुआ', marathi:'थकलेला', pronunciation:'Thaklela'},
+    {category:'Feelings', english:'Afraid', hindi:'डरा हुआ', marathi:'घाबरलेला', pronunciation:'Ghaabarlela'},
+    {category:'Feelings', english:'Excited', hindi:'उत्साहित', marathi:'उत्साही', pronunciation:'Utsaahi'},
+    {category:'Feelings', english:'Hungry', hindi:'भूखा', marathi:'भुकेलेला', pronunciation:'Bhukelela'},
+    {category:'Feelings', english:'Thirsty', hindi:'प्यासा', marathi:'तहानलेला', pronunciation:'Tahanlela'},
+    {category:'Shopping', english:'Money', hindi:'पैसे', marathi:'पैसे', pronunciation:'Paise'},
+    {category:'Shopping', english:'Price', hindi:'कीमत', marathi:'किंमत', pronunciation:'Kimmat'},
+    {category:'Shopping', english:'Shop', hindi:'दुकान', marathi:'दुकान', pronunciation:'Dukaan'},
+    {category:'Shopping', english:'Buy', hindi:'खरीदना', marathi:'खरेदी करणे', pronunciation:'Kharedi karne'},
+    {category:'Shopping', english:'Sell', hindi:'बेचना', marathi:'विकणे', pronunciation:'Vikne'},
+    {category:'Shopping', english:'Cheap', hindi:'सस्ता', marathi:'स्वस्त', pronunciation:'Swast'},
+    {category:'Shopping', english:'Expensive', hindi:'महंगा', marathi:'महाग', pronunciation:'Mahaag'},
+    {category:'Shopping', english:'More', hindi:'अधिक', marathi:'जास्त', pronunciation:'Jaast'},
+    {category:'Shopping', english:'Less', hindi:'कम', marathi:'कमी', pronunciation:'Kami'},
+    {category:'Shopping', english:'How much?', hindi:'कितना?', marathi:'किती?', pronunciation:'Kiti?'},
+    {category:'Travel', english:'Road', hindi:'सड़क', marathi:'रस्ता', pronunciation:'Rasta'},
+    {category:'Travel', english:'Bus', hindi:'बस', marathi:'बस', pronunciation:'Bus'},
+    {category:'Travel', english:'Train', hindi:'ट्रेन', marathi:'रेल्वे', pronunciation:'Railway'},
+    {category:'Travel', english:'Station', hindi:'स्टेशन', marathi:'स्थानक', pronunciation:'Sthaanak'},
+    {category:'Travel', english:'Ticket', hindi:'टिकट', marathi:'तिकीट', pronunciation:'Tikit'},
+    {category:'Travel', english:'Car', hindi:'गाड़ी', marathi:'गाडी', pronunciation:'Gaadi'},
+    {category:'Travel', english:'Left', hindi:'बायाँ', marathi:'डावा', pronunciation:'Daava'},
+    {category:'Travel', english:'Right', hindi:'दायाँ', marathi:'उजवा', pronunciation:'Ujava'},
+    {category:'Travel', english:'Near', hindi:'पास', marathi:'जवळ', pronunciation:'Javal'},
+    {category:'Travel', english:'Far', hindi:'दूर', marathi:'दूर', pronunciation:'Door'},
+    {category:'Time', english:'Today', hindi:'आज', marathi:'आज', pronunciation:'Aaj'},
+    {category:'Time', english:'Tomorrow', hindi:'कल', marathi:'उद्या', pronunciation:'Udya'},
+    {category:'Time', english:'Yesterday', hindi:'कल', marathi:'काल', pronunciation:'Kaal'},
+    {category:'Time', english:'Morning', hindi:'सुबह', marathi:'सकाळ', pronunciation:'Sakaal'},
+    {category:'Time', english:'Afternoon', hindi:'दोपहर', marathi:'दुपार', pronunciation:'Dupaar'},
+    {category:'Time', english:'Evening', hindi:'शाम', marathi:'संध्याकाळ', pronunciation:'Sandhyaakaal'},
+    {category:'Time', english:'Night', hindi:'रात', marathi:'रात्र', pronunciation:'Raatra'},
+    {category:'Time', english:'Now', hindi:'अभी', marathi:'आता', pronunciation:'Aata'},
+    {category:'Time', english:'Later', hindi:'बाद में', marathi:'नंतर', pronunciation:'Nantar'},
+    {category:'Nature', english:'Sun', hindi:'सूरज', marathi:'सूर्य', pronunciation:'Surya'},
+    {category:'Nature', english:'Rain', hindi:'बारिश', marathi:'पाऊस', pronunciation:'Paus'},
+    {category:'Nature', english:'Wind', hindi:'हवा', marathi:'वारा', pronunciation:'Vaara'},
+    {category:'Nature', english:'Cloud', hindi:'बादल', marathi:'ढग', pronunciation:'Dhag'},
+    {category:'Nature', english:'Sky', hindi:'आकाश', marathi:'आकाश', pronunciation:'Aakaash'},
+    {category:'Nature', english:'Hot', hindi:'गर्म', marathi:'गरम', pronunciation:'Garam'},
+    {category:'Nature', english:'Cold', hindi:'ठंडा', marathi:'थंड', pronunciation:'Thand'},
+    {category:'Nature', english:'Tree', hindi:'पेड़', marathi:'झाड', pronunciation:'Jhaad'},
+    {category:'Nature', english:'Flower', hindi:'फूल', marathi:'फूल', pronunciation:'Phool'},
+    {category:'Nature', english:'River', hindi:'नदी', marathi:'नदी', pronunciation:'Nadi'}
+];
+
+function loadVocabulary() {
+    const grid = document.getElementById('vocabGrid');
+    const filters = document.getElementById('vocabFilters');
+    const search = document.getElementById('vocabSearch');
+    const count = document.getElementById('vocabCount');
+    const empty = document.getElementById('vocabEmpty');
+    if (!grid || !filters) return;
+
+    const categories = ['All', ...new Set(vocabularyData.map(item => item.category))];
+    let activeCategory = 'All';
+
+    filters.innerHTML = categories.map(category =>
+        `<button class="vocab-filter ${category === 'All' ? 'active' : ''}" data-category="${category}">${category}</button>`
+    ).join('');
+
+    function render() {
+        const query = (search?.value || '').trim().toLowerCase();
+        const filtered = vocabularyData.filter(item => {
+            const matchesCategory = activeCategory === 'All' || item.category === activeCategory;
+            const text = [item.english, item.hindi, item.marathi, item.pronunciation].join(' ').toLowerCase();
+            return matchesCategory && text.includes(query);
+        });
+
+        grid.innerHTML = filtered.map(item => `
+            <div class="vocab-card">
+                <span class="vocab-category">${item.category}</span>
+                <div class="word">${item.marathi}</div>
+                <div class="word-meta">Hindi: ${item.hindi}</div>
+                <div class="word-meta">English: ${item.english}</div>
+                <div class="word-meta">Pronunciation: ${item.pronunciation}</div>
+                <button class="btn btn-secondary vocab-listen" onclick="speakText('${item.marathi.replace(/'/g, "\\'")}', 'mr-IN')">🔊 Listen</button>
+            </div>
+        `).join('');
+
+        count.textContent = `${filtered.length} words`;
+        empty.hidden = filtered.length !== 0;
+    }
+
+    filters.addEventListener('click', function(event) {
+        const button = event.target.closest('.vocab-filter');
+        if (!button) return;
+        activeCategory = button.dataset.category;
+        filters.querySelectorAll('.vocab-filter').forEach(item => item.classList.remove('active'));
+        button.classList.add('active');
+        render();
+    });
+
+    if (search) search.addEventListener('input', render);
+    render();
+}
+
 const quizQuestions = [
     { question: 'What does “नमस्कार” mean?', options: ['Hello', 'Water', 'Thank you', 'Food'], answer: 'Hello' },
     { question: 'What does “धन्यवाद” mean?', options: ['Please', 'Thank you', 'Good morning', 'Family'], answer: 'Thank you' },
@@ -660,6 +831,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         if (removeImageBtn) removeImageBtn.addEventListener('click', removeSelectedImage);
+    }
+
+    if (document.getElementById('vocabGrid')) {
+        loadVocabulary();
     }
 
     if (document.getElementById('quizQuestion')) {
