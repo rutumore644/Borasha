@@ -286,7 +286,7 @@ function startSpeechRecognition(targetText = '') {
     const recognition = new SpeechRecognition();
     recognition.continuous = false;
     recognition.interimResults = false;
-    recognition.lang = 'mr-IN';
+    recognition.lang = 'en-IN';
 
     const output = document.getElementById('speechResult');
     const feedback = document.getElementById('speechFeedback');
@@ -449,28 +449,52 @@ function removeSelectedImage() {
 function translateText() {
     const input = document.getElementById('translationInput');
     const result = document.getElementById('translationResult');
+    const listenButton = document.getElementById('speakTranslationBtn');
 
     if (!input || !result) return;
 
     const text = input.value.trim().toLowerCase();
 
     if (!text) {
-        result.textContent = 'Please enter some text.';
+        result.textContent = 'Please enter a word or sentence.';
+        if (listenButton) listenButton.hidden = true;
         return;
     }
 
     const dictionary = {
-        'hello': 'नमस्कार / नमस्ते',
-        'thank you': 'धन्यवाद',
-        'please': 'कृपया',
-        'water': 'पाणी',
-        'good morning': 'शुभ सकाळ',
-        'good night': 'शुभ रात्री'
+        'hello': 'Marathi: नमस्कार | Hindi: नमस्ते',
+        'नमस्कार': 'Hindi: नमस्ते | English: Hello',
+        'नमस्ते': 'Marathi: नमस्कार | English: Hello',
+        'thank you': 'Marathi: धन्यवाद | Hindi: धन्यवाद',
+        'धन्यवाद': 'Hindi: धन्यवाद | English: Thank you',
+        'please': 'Marathi: कृपया | Hindi: कृपया',
+        'कृपया': 'Hindi: कृपया | English: Please',
+        'water': 'Marathi: पाणी | Hindi: पानी',
+        'पाणी': 'Hindi: पानी | English: Water',
+        'पानी': 'Marathi: पाणी | English: Water',
+        'good morning': 'Marathi: शुभ सकाळ | Hindi: सुप्रभात',
+        'शुभ सकाळ': 'Hindi: सुप्रभात | English: Good morning',
+        'सुप्रभात': 'Marathi: शुभ सकाळ | English: Good morning',
+        'good night': 'Marathi: शुभ रात्री | Hindi: शुभ रात्रि',
+        'शुभ रात्री': 'Hindi: शुभ रात्रि | English: Good night',
+        'goodbye': 'Marathi: निरोप | Hindi: अलविदा',
+        'family': 'Marathi: कुटुंब | Hindi: परिवार',
+        'food': 'Marathi: अन्न | Hindi: भोजन',
+        'mother': 'Marathi: आई | Hindi: माँ',
+        'father': 'Marathi: वडील | Hindi: पिता'
     };
 
-    result.textContent = dictionary[text] || 'Translation not available in this demo. Try a word from the vocabulary or lessons.';
-}
+    result.textContent = dictionary[text] ||
+        'Translation not available in this demo. Try a word from Vocabulary or Lessons.';
 
+    if (listenButton) {
+        listenButton.hidden = false;
+        listenButton.onclick = function () {
+            const output = result.textContent;
+            speakText(output, 'en-IN');
+        };
+    }
+}
 function activateMicForTranslation() {
     if (!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
         alert('Microphone input is not supported on this browser.');
@@ -557,7 +581,8 @@ function updateProgressUI() {
     if (completedEl) completedEl.textContent = completedLessons.length;
     if (quizTextEl) quizTextEl.textContent = savedScore.score + ' / ' + savedScore.total;
 
-    const totalProgress = Math.min(((completedLessons.length + savedScore.score) / 12) * 100, 100);
+    const totalUnits = 6 + 5;
+    const totalProgress = Math.min(((completedLessons.length + savedScore.score) / totalUnits) * 100, 100);
     if (progressEl) progressEl.style.width = totalProgress + '%';
 
     if (levelEl) {
