@@ -16,7 +16,6 @@
                     <small>Learn • Practice • Speak</small>
                 </div>
             </div>
-
             <nav class="main-nav">
                 <a href="index.html">Home</a>
                 <a href="lessons.html">Lessons</a>
@@ -32,53 +31,19 @@
 
     <main class="container page-section">
         <div class="section-head center">
-            <span class="eyebrow">Useful Words</span>
+            <span class="eyebrow">Learn Everyday Words</span>
             <h3>Vocabulary</h3>
+            <p>Explore useful Marathi, Hindi and English words by topic.</p>
         </div>
 
-        <div class="vocab-grid">
-            <div class="vocab-card">
-                <div class="word">नमस्कार</div>
-                <div class="word-meta">Hindi: नमस्ते</div>
-                <div class="word-meta">English: Hello</div>
-                <button class="btn btn-secondary vocab-listen" onclick="speakText('नमस्कार', 'mr-IN')">🔊 Listen</button>
-            </div>
-
-            <div class="vocab-card">
-                <div class="word">धन्यवाद</div>
-                <div class="word-meta">Hindi: धन्यवाद</div>
-                <div class="word-meta">English: Thank you</div>
-                <button class="btn btn-secondary vocab-listen" onclick="speakText('धन्यवाद', 'mr-IN')">🔊 Listen</button>
-            </div>
-
-            <div class="vocab-card">
-                <div class="word">कृपया</div>
-                <div class="word-meta">Hindi: कृपया</div>
-                <div class="word-meta">English: Please</div>
-                <button class="btn btn-secondary vocab-listen" onclick="speakText('कृपया', 'mr-IN')">🔊 Listen</button>
-            </div>
-
-            <div class="vocab-card">
-                <div class="word">शुभ सकाळ</div>
-                <div class="word-meta">Hindi: शुभ सुबह</div>
-                <div class="word-meta">English: Good morning</div>
-                <button class="btn btn-secondary vocab-listen" onclick="speakText('शुभ सकाळ', 'mr-IN')">🔊 Listen</button>
-            </div>
-
-            <div class="vocab-card">
-                <div class="word">शुभ रात्री</div>
-                <div class="word-meta">Hindi: शुभ रात्रि</div>
-                <div class="word-meta">English: Good night</div>
-                <button class="btn btn-secondary vocab-listen" onclick="speakText('शुभ रात्री', 'mr-IN')">🔊 Listen</button>
-            </div>
-
-            <div class="vocab-card">
-                <div class="word">पाणी</div>
-                <div class="word-meta">Hindi: पानी</div>
-                <div class="word-meta">English: Water</div>
-                <button class="btn btn-secondary vocab-listen" onclick="speakText('पाणी', 'mr-IN')">🔊 Listen</button>
-            </div>
+        <div class="vocab-controls">
+            <input type="search" id="vocabSearch" placeholder="Search a word... / शब्द खोजें..." aria-label="Search vocabulary">
+            <div class="vocab-filters" id="vocabFilters"></div>
         </div>
+
+        <p class="vocab-count" id="vocabCount"></p>
+        <div class="vocab-grid" id="vocabGrid"></div>
+        <p class="vocab-empty" id="vocabEmpty" hidden>No words found. Try another word or category.</p>
     </main>
 
     <footer class="site-footer">
