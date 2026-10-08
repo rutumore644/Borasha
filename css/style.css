@@ -1131,3 +1131,6 @@ select:focus {
         height: 70px;
     }
 }
+
+
+.vocab-listen { margin-top: 14px; padding: 9px 14px; font-size: 0.85rem; }
