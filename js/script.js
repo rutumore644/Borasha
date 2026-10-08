@@ -589,23 +589,31 @@ function showImagePreview(file) {
 
     if (!file || !previewBox || !preview) return;
 
-    if (!file.type.startsWith('image/')) {
+    if (!file.type || !file.type.startsWith('image/')) {
         alert('Please select an image file.');
         return;
     }
 
-    const reader = new FileReader();
+    // Use an object URL for reliable local image preview.
+    if (window.borashaImageUrl) {
+        URL.revokeObjectURL(window.borashaImageUrl);
+    }
 
-    reader.onload = function (event) {
-        preview.src = event.target.result;
-        previewBox.hidden = false;
+    window.borashaImageUrl = URL.createObjectURL(file);
+    preview.src = window.borashaImageUrl;
+    preview.alt = 'Selected image preview';
+    previewBox.hidden = false;
 
+    if (status) {
+        status.textContent = 'Image selected. You can use it as a reference for the text you want to translate.';
+    }
+
+    preview.onerror = function () {
+        preview.removeAttribute('src');
         if (status) {
-            status.textContent = 'Image selected. You can use it as a reference for the text you want to translate.';
+            status.textContent = 'The image could not be previewed. Please try another image.';
         }
     };
-
-    reader.readAsDataURL(file);
 }
 
 function closeCamera() {
