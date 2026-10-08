@@ -351,6 +351,101 @@ function resetPractice() {
     }
 }
 
+function showImagePreview(file) {
+    const previewBox = document.getElementById('imagePreviewBox');
+    const preview = document.getElementById('imagePreview');
+    const status = document.getElementById('imageStatus');
+
+    if (!file || !previewBox || !preview) return;
+
+    if (!file.type.startsWith('image/')) {
+        alert('Please select an image file.');
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function (event) {
+        preview.src = event.target.result;
+        previewBox.hidden = false;
+
+        if (status) {
+            status.textContent = 'Image selected. You can use it as a reference for the text you want to translate.';
+        }
+    };
+
+    reader.readAsDataURL(file);
+}
+
+function closeCamera() {
+    const box = document.getElementById('cameraBox');
+    const video = document.getElementById('cameraVideo');
+
+    if (window.borashaCameraStream) {
+        window.borashaCameraStream.getTracks().forEach(track => track.stop());
+        window.borashaCameraStream = null;
+    }
+
+    if (video) video.srcObject = null;
+    if (box) box.hidden = true;
+}
+
+async function openCamera() {
+    const box = document.getElementById('cameraBox');
+    const video = document.getElementById('cameraVideo');
+
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        alert('Camera access is not supported here. Please use Upload instead.');
+        return;
+    }
+
+    try {
+        window.borashaCameraStream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: { ideal: 'environment' } },
+            audio: false
+        });
+
+        video.srcObject = window.borashaCameraStream;
+        box.hidden = false;
+    } catch (error) {
+        alert('Camera access was blocked or unavailable. Please allow camera permission or use Upload.');
+    }
+}
+
+function captureCameraImage() {
+    const video = document.getElementById('cameraVideo');
+    const canvas = document.getElementById('cameraCanvas');
+
+    if (!video || !canvas || !video.videoWidth) {
+        alert('Camera is not ready yet. Please try again.');
+        return;
+    }
+
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+
+    const context = canvas.getContext('2d');
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+    canvas.toBlob(function (blob) {
+        if (!blob) return;
+
+        const file = new File([blob], 'borasha-camera-photo.jpg', { type: 'image/jpeg' });
+        showImagePreview(file);
+        closeCamera();
+    }, 'image/jpeg', 0.9);
+}
+
+function removeSelectedImage() {
+    const previewBox = document.getElementById('imagePreviewBox');
+    const preview = document.getElementById('imagePreview');
+    const upload = document.getElementById('imageUpload');
+
+    if (preview) preview.src = '';
+    if (upload) upload.value = '';
+    if (previewBox) previewBox.hidden = true;
+}
+
 function translateText() {
     const input = document.getElementById('translationInput');
     const result = document.getElementById('translationResult');
@@ -373,7 +468,7 @@ function translateText() {
         'good night': 'शुभ रात्री'
     };
 
-    result.textContent = dictionary[text] || 'Translation not available in this demo.';
+    result.textContent = dictionary[text] || 'Translation not available in this demo. Try a word from the vocabulary or lessons.';
 }
 
 function activateMicForTranslation() {
@@ -519,9 +614,27 @@ document.addEventListener('DOMContentLoaded', function () {
     if (document.getElementById('translationInput')) {
         const translateBtn = document.getElementById('translateBtn');
         const micBtn = document.getElementById('micBtn');
+        const cameraBtn = document.getElementById('cameraBtn');
+        const captureBtn = document.getElementById('captureBtn');
+        const closeCameraBtn = document.getElementById('closeCameraBtn');
+        const imageUpload = document.getElementById('imageUpload');
+        const removeImageBtn = document.getElementById('removeImageBtn');
 
         if (translateBtn) translateBtn.addEventListener('click', translateText);
         if (micBtn) micBtn.addEventListener('click', activateMicForTranslation);
+        if (cameraBtn) cameraBtn.addEventListener('click', openCamera);
+        if (captureBtn) captureBtn.addEventListener('click', captureCameraImage);
+        if (closeCameraBtn) closeCameraBtn.addEventListener('click', closeCamera);
+
+        if (imageUpload) {
+            imageUpload.addEventListener('change', function () {
+                if (this.files && this.files[0]) {
+                    showImagePreview(this.files[0]);
+                }
+            });
+        }
+
+        if (removeImageBtn) removeImageBtn.addEventListener('click', removeSelectedImage);
     }
 
     if (document.getElementById('quizQuestion')) {
