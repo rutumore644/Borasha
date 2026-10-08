@@ -506,17 +506,48 @@ function normalizeSpeech(value) {
     return value.trim().toLowerCase().replace(/[.,!?]/g, '').replace(/\s+/g, ' ');
 }
 
+function getPronunciationSimilarity(a, b) {
+    const first = a.replace(/[^a-z0-9]/gi, '').toLowerCase();
+    const second = b.replace(/[^a-z0-9]/gi, '').toLowerCase();
+
+    if (!first || !second) return 0;
+    if (first === second) return 1;
+
+    const rows = second.length + 1;
+    const cols = first.length + 1;
+    const distance = Array.from({ length: rows }, () => Array(cols).fill(0));
+
+    for (let i = 0; i < rows; i++) distance[i][0] = i;
+    for (let j = 0; j < cols; j++) distance[0][j] = j;
+
+    for (let i = 1; i < rows; i++) {
+        for (let j = 1; j < cols; j++) {
+            const cost = second[i - 1] === first[j - 1] ? 0 : 1;
+            distance[i][j] = Math.min(
+                distance[i - 1][j] + 1,
+                distance[i][j - 1] + 1,
+                distance[i - 1][j - 1] + cost
+            );
+        }
+    }
+
+    return 1 - distance[rows - 1][cols - 1] / Math.max(first.length, second.length);
+}
+
 function startSpeechRecognition(targetText = '') {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
     if (!SpeechRecognition) {
-        alert('Speech recognition is not supported in this browser.');
+        alert('Speech recognition is not supported in this browser. Please use Chrome.');
         return;
     }
 
     const recognition = new SpeechRecognition();
     recognition.continuous = false;
     recognition.interimResults = false;
+
+    // Use English-India recognition because the practice page displays
+    // the Marathi pronunciation in English letters (e.g. Namaskar).
     recognition.lang = 'en-IN';
 
     const output = document.getElementById('speechResult');
@@ -525,49 +556,50 @@ function startSpeechRecognition(targetText = '') {
     if (output) output.textContent = 'Listening... Please speak now.';
 
     recognition.onresult = function (event) {
-        const result = event.results[0][0].transcript;
+        const result = event.results[0][0].transcript || '';
         if (output) output.textContent = 'You said: ' + result;
 
-        if (targetText) {
-            const spoken = normalizeSpeech(result);
-            const currentWord = speakingPracticeWords[currentPracticeIndex];
+        if (!targetText) return;
 
-            // Speech recognition may return Marathi words in English letters
-            // (for example, "namaskar") instead of Marathi script ("नमस्कार").
-            // Accept both the Marathi word and its pronunciation.
-            const expectedMarathi = normalizeSpeech(targetText);
-            const expectedPronunciation = normalizeSpeech(currentWord.pronunciation);
+        const currentWord = speakingPracticeWords[currentPracticeIndex];
+        const spoken = normalizeSpeech(result);
+        const expectedMarathi = normalizeSpeech(targetText);
+        const expectedPronunciation = normalizeSpeech(currentWord.pronunciation);
 
-            // Also allow small pronunciation variations such as "namaskaar".
-            const compactSpoken = spoken.replace(/[^a-z0-9\u0900-\u097f]/gi, '');
-            const compactPronunciation = expectedPronunciation.replace(/[^a-z0-9]/gi, '');
+        const spokenCompact = spoken.replace(/[^a-z0-9]/gi, '');
+        const expectedCompact = expectedPronunciation.replace(/[^a-z0-9]/gi, '');
 
-            const isMatch =
-                spoken === expectedMarathi ||
-                spoken === expectedPronunciation ||
-                compactSpoken === compactPronunciation ||
-                (compactSpoken.length >= 5 &&
-                    (compactPronunciation.includes(compactSpoken) ||
-                     compactSpoken.includes(compactPronunciation)));
+        // Accept exact pronunciation, close spelling differences,
+        // and common speech-recognition variations.
+        const similarity = getPronunciationSimilarity(spokenCompact, expectedCompact);
+        const isMatch =
+            spoken === expectedMarathi ||
+            spoken === expectedPronunciation ||
+            spokenCompact === expectedCompact ||
+            (spokenCompact.length >= 4 && similarity >= 0.70) ||
+            (spokenCompact.length >= 4 &&
+                (expectedCompact.includes(spokenCompact) ||
+                 spokenCompact.includes(expectedCompact)));
 
+        if (feedback) {
             if (isMatch) {
-                if (feedback) {
-                    feedback.textContent = 'Excellent! Your answer matched.';
-                    feedback.className = 'feedback-message success';
-                }
+                feedback.textContent = 'Excellent! Your pronunciation matched.';
+                feedback.className = 'feedback-message success';
             } else {
-                if (feedback) {
-                    feedback.textContent = 'Try again. Listen carefully and speak the same word.';
-                    feedback.className = 'feedback-message error';
-                }
+                feedback.textContent = 'Almost! Listen once more and try saying the word clearly.';
+                feedback.className = 'feedback-message error';
             }
         }
     };
 
-    recognition.onerror = function () {
+    recognition.onerror = function (event) {
         if (output) output.textContent = 'Speech could not be recognized.';
         if (feedback) {
-            feedback.textContent = 'Please try again and speak clearly.';
+            if (event.error === 'not-allowed') {
+                feedback.textContent = 'Please allow microphone permission and try again.';
+            } else {
+                feedback.textContent = 'Please try again and speak clearly.';
+            }
             feedback.className = 'feedback-message error';
         }
     };
@@ -578,7 +610,6 @@ function startSpeechRecognition(targetText = '') {
         console.log('Speech recognition error:', error);
     }
 }
-
 function nextSpeakingWord() {
     currentPracticeIndex += 1;
 
