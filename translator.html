@@ -38,16 +38,58 @@
 
         <div class="card-panel translator-box">
             <div class="translator-controls">
-                <textarea id="translationInput" rows="5" placeholder="Type text here..."></textarea>
-                <div class="button-row">
-                    <button id="translateBtn" class="btn btn-primary">Translate</button>
+                <textarea id="translationInput" rows="5" placeholder="Type a word or sentence here..."></textarea>
+
+                <div class="translator-actions">
+                    <button id="translateBtn" class="btn btn-primary">🌐 Translate</button>
                     <button id="micBtn" class="btn btn-secondary">🎤 Speak</button>
+                </div>
+
+                <div class="input-divider">
+                    <span>or use an image</span>
+                </div>
+
+                <div class="image-tools">
+                    <button id="cameraBtn" class="image-tool">
+                        <span class="image-tool-icon">📷</span>
+                        <strong>Camera</strong>
+                        <small>Take a photo</small>
+                    </button>
+
+                    <label for="imageUpload" class="image-tool">
+                        <span class="image-tool-icon">📁</span>
+                        <strong>Upload</strong>
+                        <small>Choose an image</small>
+                    </label>
+                    <input id="imageUpload" type="file" accept="image/*" hidden>
+                </div>
+
+                <div id="cameraBox" class="camera-box" hidden>
+                    <video id="cameraVideo" autoplay playsinline></video>
+                    <div class="camera-actions">
+                        <button id="captureBtn" class="btn btn-primary">📸 Capture</button>
+                        <button id="closeCameraBtn" class="btn btn-secondary">Close</button>
+                    </div>
+                    <canvas id="cameraCanvas" hidden></canvas>
+                </div>
+
+                <div id="imagePreviewBox" class="image-preview-box" hidden>
+                    <img id="imagePreview" alt="Selected image preview">
+                    <div>
+                        <strong>Image ready</strong>
+                        <p id="imageStatus">Your image has been selected.</p>
+                    </div>
+                    <button id="removeImageBtn" class="btn btn-secondary">Remove</button>
                 </div>
             </div>
 
             <div class="translation-output">
-                <h4>Result</h4>
+                <div class="result-heading">
+                    <h4>Result</h4>
+                    <span>Marathi • Hindi • English</span>
+                </div>
                 <p id="translationResult">Your translation will appear here.</p>
+                <button id="speakTranslationBtn" class="btn btn-secondary result-speak" hidden>🔊 Listen</button>
             </div>
         </div>
     </main>
