@@ -530,9 +530,27 @@ function startSpeechRecognition(targetText = '') {
 
         if (targetText) {
             const spoken = normalizeSpeech(result);
-            const expected = normalizeSpeech(targetText);
+            const currentWord = speakingPracticeWords[currentPracticeIndex];
 
-            if (spoken === expected) {
+            // Speech recognition may return Marathi words in English letters
+            // (for example, "namaskar") instead of Marathi script ("नमस्कार").
+            // Accept both the Marathi word and its pronunciation.
+            const expectedMarathi = normalizeSpeech(targetText);
+            const expectedPronunciation = normalizeSpeech(currentWord.pronunciation);
+
+            // Also allow small pronunciation variations such as "namaskaar".
+            const compactSpoken = spoken.replace(/[^a-z0-9\u0900-\u097f]/gi, '');
+            const compactPronunciation = expectedPronunciation.replace(/[^a-z0-9]/gi, '');
+
+            const isMatch =
+                spoken === expectedMarathi ||
+                spoken === expectedPronunciation ||
+                compactSpoken === compactPronunciation ||
+                (compactSpoken.length >= 5 &&
+                    (compactPronunciation.includes(compactSpoken) ||
+                     compactSpoken.includes(compactPronunciation)));
+
+            if (isMatch) {
                 if (feedback) {
                     feedback.textContent = 'Excellent! Your answer matched.';
                     feedback.className = 'feedback-message success';
