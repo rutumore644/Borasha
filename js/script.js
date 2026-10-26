@@ -631,38 +631,76 @@ function resetPractice() {
     }
 }
 
+async function loadBorashaOCR() {
+    if (window.Tesseract) return window.Tesseract;
+    if (window.borashaOCRLoading) return window.borashaOCRLoading;
+
+    window.borashaOCRLoading = new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
+        script.onload = () => resolve(window.Tesseract);
+        script.onerror = () => reject(new Error('Could not load image text reader.'));
+        document.head.appendChild(script);
+    });
+    return window.borashaOCRLoading;
+}
+
+async function readTextFromImage(file) {
+    const status = document.getElementById('imageStatus');
+    const input = document.getElementById('translationInput');
+    const result = document.getElementById('translationResult');
+    if (status) status.textContent = 'Reading text from image... Please wait.';
+    if (result) result.textContent = 'Reading text from image...';
+
+    try {
+        const Tesseract = await loadBorashaOCR();
+        const worker = await Tesseract.createWorker('eng+hin+mar');
+        const output = await worker.recognize(file);
+        await worker.terminate();
+        const extractedText = (output.data.text || '').replace(/\\s+/g, ' ').trim();
+
+        if (!extractedText) {
+            if (status) status.textContent = 'No text was found. Try a clearer, well-lit image with readable text.';
+            if (result) result.textContent = 'No readable text found in this image. Try another image or type the text.';
+            return;
+        }
+
+        if (input) input.value = extractedText;
+        if (status) status.textContent = 'Text found. Translating now...';
+        await translateText();
+        if (status) status.textContent = 'Text extracted from image. You can edit it in the text box and translate again.';
+    } catch (error) {
+        console.error('Borasha image text reading error:', error);
+        if (status) status.textContent = 'Could not read this image. Check your internet connection and try a clear image.';
+        if (result) result.textContent = 'Image text reading failed. You can still type the text in the box and translate it.';
+    }
+}
+
 function showImagePreview(file) {
     const previewBox = document.getElementById('imagePreviewBox');
     const preview = document.getElementById('imagePreview');
     const status = document.getElementById('imageStatus');
 
     if (!file || !previewBox || !preview) return;
-
     if (!file.type || !file.type.startsWith('image/')) {
         alert('Please select an image file.');
         return;
     }
 
-    // Use an object URL for reliable local image preview.
-    if (window.borashaImageUrl) {
-        URL.revokeObjectURL(window.borashaImageUrl);
-    }
-
+    if (window.borashaImageUrl) URL.revokeObjectURL(window.borashaImageUrl);
     window.borashaImageUrl = URL.createObjectURL(file);
     preview.src = window.borashaImageUrl;
     preview.alt = 'Selected image preview';
     previewBox.hidden = false;
 
-    if (status) {
-        status.textContent = 'Image selected. You can use it as a reference for the text you want to translate.';
-    }
-
+    if (status) status.textContent = 'Image selected. Reading text...';
     preview.onerror = function () {
         preview.removeAttribute('src');
-        if (status) {
-            status.textContent = 'The image could not be previewed. Please try another image.';
-        }
+        if (status) status.textContent = 'The image could not be previewed. Please try another image.';
     };
+
+    // Automatically extract text and translate it after selecting/capturing an image.
+    readTextFromImage(file);
 }
 
 function closeCamera() {
@@ -682,8 +720,9 @@ async function openCamera() {
     const box = document.getElementById('cameraBox');
     const video = document.getElementById('cameraVideo');
 
+    // Live camera access requires HTTPS/localhost and browser permission.
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-        alert('Camera access is not supported here. Please use Upload instead.');
+        useCameraUploadFallback();
         return;
     }
 
@@ -692,12 +731,24 @@ async function openCamera() {
             video: { facingMode: { ideal: 'environment' } },
             audio: false
         });
-
         video.srcObject = window.borashaCameraStream;
         box.hidden = false;
+        await video.play();
     } catch (error) {
-        alert('Camera access was blocked or unavailable. Please allow camera permission or use Upload.');
+        console.warn('Live camera unavailable; opening device camera/upload fallback.', error);
+        useCameraUploadFallback();
     }
+}
+
+function useCameraUploadFallback() {
+    // On devices/browsers without live camera support, offer the native camera picker.
+    const upload = document.getElementById('imageUpload');
+    if (!upload) {
+        alert('Camera is unavailable in this browser. Please use Upload to select a photo.');
+        return;
+    }
+    upload.setAttribute('capture', 'environment');
+    upload.click();
 }
 
 function captureCameraImage() {
@@ -734,50 +785,61 @@ function removeSelectedImage() {
     if (previewBox) previewBox.hidden = true;
 }
 
-function translateText() {
+async function requestTranslation(text, source, target) {
+    const url = 'https://api.mymemory.translated.net/get?q=' +
+        encodeURIComponent(text) + '&langpair=' + encodeURIComponent(source + '|' + target);
+    const response = await fetch(url);
+    if (!response.ok) throw new Error('Translation service unavailable.');
+    const data = await response.json();
+    if (data.responseStatus !== 200 || !data.responseData || !data.responseData.translatedText) {
+        throw new Error('No translation returned.');
+    }
+    return data.responseData.translatedText;
+}
+
+async function translateText() {
     const input = document.getElementById('translationInput');
     const result = document.getElementById('translationResult');
     const listenButton = document.getElementById('speakTranslationBtn');
-
     if (!input || !result) return;
 
-    const text = input.value.trim().toLowerCase();
-
+    const text = input.value.trim();
     if (!text) {
         result.textContent = 'Please enter a word or sentence.';
         if (listenButton) listenButton.hidden = true;
         return;
     }
 
-    const dictionary = {
-        'hello': 'Marathi: नमस्कार | Hindi: नमस्ते',
-        'नमस्कार': 'Hindi: नमस्ते | English: Hello',
-        'नमस्ते': 'Marathi: नमस्कार | English: Hello',
-        'thank you': 'Marathi: धन्यवाद | Hindi: धन्यवाद',
-        'धन्यवाद': 'Hindi: धन्यवाद | English: Thank you',
-        'please': 'Marathi: कृपया | Hindi: कृपया',
-        'कृपया': 'Hindi: कृपया | English: Please',
-        'water': 'Marathi: पाणी | Hindi: पानी',
-        'पाणी': 'Hindi: पानी | English: Water',
-        'पानी': 'Marathi: पाणी | English: Water',
-        'good morning': 'Marathi: शुभ सकाळ | Hindi: सुप्रभात',
-        'शुभ सकाळ': 'Hindi: सुप्रभात | English: Good morning',
-        'सुप्रभात': 'Marathi: शुभ सकाळ | English: Good morning',
-        'good night': 'Marathi: शुभ रात्री | Hindi: शुभ रात्रि',
-        'शुभ रात्री': 'Hindi: शुभ रात्रि | English: Good night',
-        'goodbye': 'Marathi: निरोप | Hindi: अलविदा',
-        'family': 'Marathi: कुटुंब | Hindi: परिवार',
-        'food': 'Marathi: अन्न | Hindi: भोजन',
-        'mother': 'Marathi: आई | Hindi: माँ',
-        'father': 'Marathi: वडील | Hindi: पिता'
-    };
+    result.textContent = 'Translating... Please wait.';
+    if (listenButton) listenButton.hidden = true;
 
-    result.textContent = dictionary[text] ||
-        'Translation not available in this demo. Try a word from Vocabulary or Lessons.';
-
-    if (listenButton) {
-        listenButton.hidden = false;
-        listenButton.onclick = speakTranslationResult;
+    // Devanagari text may be Marathi or Hindi. Translate it to English.
+    // English text is translated into both Marathi and Hindi.
+    const hasDevanagari = /[\\u0900-\\u097F]/.test(text);
+    try {
+        let lines;
+        if (hasDevanagari) {
+            const english = await requestTranslation(text, 'hi', 'en');
+            const marathi = await requestTranslation(text, 'mr', 'en').catch(() => '');
+            lines = ['English: ' + english];
+            if (marathi && marathi.toLowerCase() !== english.toLowerCase()) {
+                lines.push('Possible Marathi meaning in English: ' + marathi);
+            }
+        } else {
+            const [marathi, hindi] = await Promise.all([
+                requestTranslation(text, 'en', 'mr'),
+                requestTranslation(text, 'en', 'hi')
+            ]);
+            lines = ['Marathi: ' + marathi, 'Hindi: ' + hindi];
+        }
+        result.textContent = lines.join(' | ');
+        if (listenButton) {
+            listenButton.hidden = false;
+            listenButton.onclick = speakTranslationResult;
+        }
+    } catch (error) {
+        console.error('Translation error:', error);
+        result.textContent = 'Translation service is unavailable right now. Please check your internet connection and try again.';
     }
 }
 
