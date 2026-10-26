@@ -815,7 +815,7 @@ async function translateText() {
 
     // Devanagari text may be Marathi or Hindi. Translate it to English.
     // English text is translated into both Marathi and Hindi.
-    const hasDevanagari = /[\\u0900-\\u097F]/.test(text);
+    const hasDevanagari = /[\u0900-\u097F]/.test(text);
     try {
         let lines;
         if (hasDevanagari) {
