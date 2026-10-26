@@ -651,17 +651,45 @@ function loadVocabulary() {
     render();
 }
 
-const quizQuestions = [
-    { question: 'What does “नमस्कार” mean?', options: ['Hello', 'Water', 'Thank you', 'Food'], answer: 'Hello' },
-    { question: 'What does “धन्यवाद” mean?', options: ['Please', 'Thank you', 'Good morning', 'Family'], answer: 'Thank you' },
-    { question: 'Which word means “Water”?', options: ['पाणी', 'भाऊ', 'आई', 'कृपया'], answer: 'पाणी' },
-    { question: 'What is “Good morning” in Marathi?', options: ['शुभ रात्रि', 'शुभ सकाळ', 'कृपया', 'नमस्कार'], answer: 'शुभ सकाळ' },
-    { question: 'Which word means “Please”?', options: ['धन्यवाद', 'कृपया', 'दूध', 'रोटी'], answer: 'कृपया' }
-];
+function shuffleItems(items) { return [...items].sort(() => Math.random() - 0.5); }
 
+function buildQuizQuestions(category = 'all') {
+    const questions = [];
+    const words = typeof vocabularyData !== 'undefined' ? vocabularyData : [];
+    const lessonSentences = Object.values(lessonData).flatMap(lesson => lesson.sentences || []);
+    if (category === 'all' || category === 'lessons') {
+        Object.entries(lessonData).forEach(([lessonId, lesson]) => {
+            (lesson.words || []).forEach(word => {
+                const answer = word.english;
+                const wrong = shuffleItems(words.map(item => item.english).filter(value => value && value !== answer));
+                const options = shuffleItems([answer, ...[...new Set(wrong)].slice(0, 3)]);
+                if (options.length === 4) questions.push({question:'In "' + lesson.title + '", what does “' + word.marathi + '” mean?', options, answer, source:'lessons', topic:lesson.title});
+            });
+            (lesson.sentences || []).forEach(sentence => {
+                const answer = sentence.english;
+                const wrong = shuffleItems(lessonSentences.map(item => item.english).filter(value => value && value !== answer));
+                const options = shuffleItems([answer, ...[...new Set(wrong)].slice(0, 3)]);
+                if (options.length === 4) questions.push({question:'Choose the English meaning of: “' + sentence.marathi + '”', options, answer, source:'lessons', topic:lesson.title});
+            });
+        });
+    }
+    if (category === 'all' || category === 'vocabulary') {
+        words.forEach(word => {
+            const answer = word.english;
+            const wrong = shuffleItems(words.map(item => item.english).filter(value => value && value !== answer));
+            const options = shuffleItems([answer, ...[...new Set(wrong)].slice(0, 3)]);
+            if (options.length === 4) questions.push({question:'What does the Marathi vocabulary word “' + word.marathi + '” mean?', options, answer, source:'vocabulary', topic:word.category});
+        });
+    }
+    return shuffleItems(questions);
+}
+
+let quizQuestions = buildQuizQuestions('all');
 let currentPracticeIndex = 0;
 let quizIndex = 0;
 let quizScore = 0;
+let quizAnswered = 0;
+let activeQuizCategory = 'all';
 
 function getSpeechVoice(language) {
     if (!('speechSynthesis' in window)) return null;
@@ -766,8 +794,10 @@ function isLessonCompleted(lessonName) {
     return lessons.includes(lessonName);
 }
 
-function saveQuizScore(score, total) {
-    localStorage.setItem('borashaQuizScore', JSON.stringify({ score, total }));
+function saveQuizScore(score, total, category = 'all') {
+    const record = { score, total, date: new Date().toISOString() };
+    localStorage.setItem('borashaQuizScore', JSON.stringify(record));
+    localStorage.setItem('borashaQuizScore_' + category, JSON.stringify(record));
 }
 
 function loadLessonContent() {
@@ -1258,57 +1288,63 @@ function initQuiz() {
     const optionsEl = document.getElementById('quizOptions');
     const resultEl = document.getElementById('quizResult');
     const nextBtn = document.getElementById('nextQuestionBtn');
-
+    const categorySelect = document.getElementById('quizCategory');
+    const countEl = document.getElementById('quizCount');
     if (!questionEl || !optionsEl || !resultEl || !nextBtn) return;
 
-    const showQuestion = () => {
+    function startQuiz() {
+        activeQuizCategory = categorySelect ? categorySelect.value : 'all';
+        quizQuestions = buildQuizQuestions(activeQuizCategory).slice(0, 10);
+        quizIndex = 0; quizScore = 0; quizAnswered = 0;
+        nextBtn.disabled = false;
+        showQuestion();
+    }
+    function showQuestion() {
         const current = quizQuestions[quizIndex];
         if (!current) {
-            questionEl.textContent = 'Quiz complete';
+            questionEl.textContent = 'Quiz complete!';
             optionsEl.innerHTML = '';
-            resultEl.textContent = 'Final score: ' + quizScore + ' / ' + quizQuestions.length;
-            saveQuizScore(quizScore, quizQuestions.length);
+            resultEl.textContent = 'Final score: ' + quizScore + ' / ' + quizAnswered;
+            saveQuizScore(quizScore, quizAnswered, activeQuizCategory);
             nextBtn.disabled = true;
+            if (countEl) countEl.textContent = 'Completed ' + quizAnswered + ' questions';
             return;
         }
-
-        questionEl.textContent = current.question;
-        optionsEl.innerHTML = current.options.map(option => `
-            <button class="quiz-option" data-answer="${option}">${option}</button>
-        `).join('');
-
+        questionEl.textContent = 'Question ' + (quizIndex + 1) + ' of ' + quizQuestions.length + ': ' + current.question;
+        optionsEl.innerHTML = current.options.map(option => '<button class="quiz-option" data-answer="' + option.replace(/"/g, '&quot;') + '">' + option + '</button>').join('');
         resultEl.textContent = '';
-
-        optionsEl.querySelectorAll('.quiz-option').forEach(button => {
-            button.addEventListener('click', () => {
-                const selected = button.dataset.answer;
-                if (selected === current.answer) {
-                    quizScore += 1;
-                    resultEl.textContent = 'Correct!';
-                    resultEl.className = 'quiz-result success';
-                } else {
-                    resultEl.textContent = 'Wrong. Correct answer: ' + current.answer;
-                    resultEl.className = 'quiz-result error';
-                }
-
-                optionsEl.querySelectorAll('.quiz-option').forEach(item => {
-                    item.disabled = true;
-                });
+        if (countEl) countEl.textContent = activeQuizCategory === 'lessons' ? 'Lesson practice' : activeQuizCategory === 'vocabulary' ? 'Vocabulary practice' : 'Mixed practice';
+        optionsEl.querySelectorAll('.quiz-option').forEach(button => button.addEventListener('click', () => {
+            if (button.disabled) return;
+            quizAnswered++;
+            if (button.dataset.answer === current.answer) {
+                quizScore++;
+                resultEl.textContent = 'Correct! • ' + current.topic;
+                resultEl.className = 'quiz-result success';
+            } else {
+                resultEl.textContent = 'Not quite. Correct answer: ' + current.answer;
+                resultEl.className = 'quiz-result error';
+            }
+            optionsEl.querySelectorAll('.quiz-option').forEach(item => {
+                item.disabled = true;
+                if (item.dataset.answer === current.answer) item.classList.add('correct');
             });
-        });
-    };
-
-    nextBtn.addEventListener('click', () => {
-        quizIndex += 1;
-        showQuestion();
-    });
-
-    showQuestion();
+        }));
+    }
+    if (categorySelect) categorySelect.addEventListener('change', startQuiz);
+    nextBtn.addEventListener('click', () => { if (quizIndex < quizQuestions.length) { quizIndex++; showQuestion(); } });
+    startQuiz();
 }
 
 function updateProgressUI() {
     const completedLessons = JSON.parse(localStorage.getItem('borashaCompletedLessons') || '[]');
     const savedScore = JSON.parse(localStorage.getItem('borashaQuizScore') || '{"score":0,"total":0}');
+    const lessonQuiz = JSON.parse(localStorage.getItem('borashaQuizScore_lessons') || '{"score":0,"total":0}');
+    const vocabQuiz = JSON.parse(localStorage.getItem('borashaQuizScore_vocabulary') || '{"score":0,"total":0}');
+    const lessonQuizEl = document.getElementById('lessonQuizScore');
+    const vocabQuizEl = document.getElementById('vocabularyQuizScore');
+    if (lessonQuizEl) lessonQuizEl.textContent = lessonQuiz.score + ' / ' + lessonQuiz.total;
+    if (vocabQuizEl) vocabQuizEl.textContent = vocabQuiz.score + ' / ' + vocabQuiz.total;
 
     const completedEl = document.getElementById('completedLessonsCount');
     const quizTextEl = document.getElementById('quizScoreText');
