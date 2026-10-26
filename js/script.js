@@ -1,5 +1,22 @@
 // Borasha app JavaScript
 
+function recordBorashaVisit() {
+    const today = new Date();
+    const todayKey = today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0');
+    const last = localStorage.getItem('borashaLastVisitDay');
+    let streak = Number(localStorage.getItem('borashaLearningStreak') || 0);
+    if (last !== todayKey) {
+        const yesterday = new Date(today);
+        yesterday.setDate(yesterday.getDate() - 1);
+        const yesterdayKey = yesterday.getFullYear() + '-' + String(yesterday.getMonth()+1).padStart(2,'0') + '-' + String(yesterday.getDate()).padStart(2,'0');
+        streak = last === yesterdayKey ? streak + 1 : 1;
+        localStorage.setItem('borashaLearningStreak', String(streak));
+        localStorage.setItem('borashaLastVisitDay', todayKey);
+    }
+    localStorage.setItem('borashaLastActivity', new Date().toISOString());
+}
+
+
 const lessonData = {
     greetings: {
         title: 'Greetings',
@@ -645,33 +662,39 @@ function loadVocabulary() {
     const empty = document.getElementById('vocabEmpty');
     if (!grid || !filters) return;
 
-    const categories = ['All', ...new Set(vocabularyData.map(item => item.category))];
+    const categories = ['All', '⭐ Favourites', ...new Set(vocabularyData.map(item => item.category))];
     let activeCategory = 'All';
+    const getFavourites = () => JSON.parse(localStorage.getItem('borashaFavouriteWords') || '[]');
+    const safe = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 
     filters.innerHTML = categories.map(category =>
-        `<button class="vocab-filter ${category === 'All' ? 'active' : ''}" data-category="${category}">${category}</button>`
+        `<button class="vocab-filter ${category === 'All' ? 'active' : ''}" data-category="${safe(category)}">${safe(category)}</button>`
     ).join('');
 
     function render() {
         const query = (search?.value || '').trim().toLowerCase();
+        const favourites = getFavourites();
         const filtered = vocabularyData.filter(item => {
-            const matchesCategory = activeCategory === 'All' || item.category === activeCategory;
-            const text = [item.english, item.hindi, item.marathi, item.pronunciation].join(' ').toLowerCase();
+            const matchesCategory = activeCategory === 'All' ||
+                (activeCategory === '⭐ Favourites' ? favourites.includes(item.marathi) : item.category === activeCategory);
+            const text = [item.english, item.hindi, item.marathi, item.pronunciation, item.category].join(' ').toLowerCase();
             return matchesCategory && text.includes(query);
         });
 
-        grid.innerHTML = filtered.map(item => `
-            <div class="vocab-card">
-                <span class="vocab-category">${item.category}</span>
-                <div class="word">${item.marathi}</div>
-                <div class="word-meta">Hindi: ${item.hindi}</div>
-                <div class="word-meta">English: ${item.english}</div>
-                <div class="word-meta">Pronunciation: ${item.pronunciation}</div>
-                <button class="btn btn-secondary vocab-listen" onclick="speakText('${item.marathi.replace(/'/g, "\\'")}', 'mr-IN')">🔊 Listen</button>
-            </div>
-        `).join('');
+        grid.innerHTML = filtered.map(item => {
+            const saved = favourites.includes(item.marathi);
+            return `<div class="vocab-card">
+                <span class="vocab-category">${safe(item.category)}</span>
+                <div class="word">${safe(item.marathi)}</div>
+                <div class="word-meta">Hindi: ${safe(item.hindi)}</div>
+                <div class="word-meta">English: ${safe(item.english)}</div>
+                <div class="word-meta">Pronunciation: ${safe(item.pronunciation)}</div>
+                <button class="btn btn-secondary vocab-listen" type="button" data-marathi="${safe(item.marathi)}">🔊 Listen</button>
+                <button class="btn btn-secondary vocab-favourite" type="button" data-marathi="${safe(item.marathi)}" aria-pressed="${saved}">${saved ? '★ Saved' : '☆ Save word'}</button>
+            </div>`;
+        }).join('');
 
-        count.textContent = `${filtered.length} words`;
+        count.textContent = `${filtered.length} words • ${favourites.length} saved`;
         empty.hidden = filtered.length !== 0;
     }
 
@@ -679,11 +702,25 @@ function loadVocabulary() {
         const button = event.target.closest('.vocab-filter');
         if (!button) return;
         activeCategory = button.dataset.category;
-        filters.querySelectorAll('.vocab-filter').forEach(item => item.classList.remove('active'));
-        button.classList.add('active');
+        filters.querySelectorAll('.vocab-filter').forEach(item => item.classList.toggle('active', item === button));
         render();
     });
-
+    grid.addEventListener('click', function(event) {
+        const listen = event.target.closest('.vocab-listen');
+        if (listen) {
+            speakText(listen.dataset.marathi, 'mr-IN');
+            localStorage.setItem('borashaLastActivity', new Date().toISOString());
+            return;
+        }
+        const favourite = event.target.closest('.vocab-favourite');
+        if (!favourite) return;
+        const word = favourite.dataset.marathi;
+        const updated = getFavourites();
+        const index = updated.indexOf(word);
+        if (index >= 0) updated.splice(index, 1); else updated.push(word);
+        localStorage.setItem('borashaFavouriteWords', JSON.stringify(updated));
+        render();
+    });
     if (search) search.addEventListener('input', render);
     render();
 }
@@ -937,6 +974,7 @@ function loadSpeakingPractice() {
 function listenToCurrentWord() {
     const currentWord = speakingPracticeWords[currentPracticeIndex];
     speakText(currentWord.marathi, 'mr-IN');
+    localStorage.setItem('borashaLastActivity', new Date().toISOString());
 }
 
 function normalizeSpeech(value) {
@@ -1049,6 +1087,8 @@ function startSpeechRecognition(targetText = '') {
 }
 function nextSpeakingWord() {
     currentPracticeIndex += 1;
+    localStorage.setItem('borashaSpeakingItemsPractised', String(Number(localStorage.getItem('borashaSpeakingItemsPractised') || 0) + 1));
+    localStorage.setItem('borashaLastActivity', new Date().toISOString());
 
     if (currentPracticeIndex >= speakingPracticeWords.length) {
         currentPracticeIndex = 0;
@@ -1374,6 +1414,12 @@ function initQuiz() {
 }
 
 function updateProgressUI() {
+    const streakEl = document.getElementById('learningStreak');
+    const speakingEl = document.getElementById('speakingPracticeCount');
+    const favouritesEl = document.getElementById('savedWordsCount');
+    if (streakEl) streakEl.textContent = (localStorage.getItem('borashaLearningStreak') || '0') + ' days';
+    if (speakingEl) speakingEl.textContent = localStorage.getItem('borashaSpeakingItemsPractised') || '0';
+    if (favouritesEl) favouritesEl.textContent = JSON.parse(localStorage.getItem('borashaFavouriteWords') || '[]').length;
     const completedLessons = JSON.parse(localStorage.getItem('borashaCompletedLessons') || '[]');
     const savedScore = JSON.parse(localStorage.getItem('borashaQuizScore') || '{"score":0,"total":0}');
     const lessonQuiz = JSON.parse(localStorage.getItem('borashaQuizScore_lessons') || '{"score":0,"total":0}');
@@ -1391,7 +1437,7 @@ function updateProgressUI() {
     if (completedEl) completedEl.textContent = completedLessons.length;
     if (quizTextEl) quizTextEl.textContent = savedScore.score + ' / ' + savedScore.total;
 
-    const totalUnits = 6 + 5;
+    const totalUnits = Math.max(Object.keys(lessonData).length + 10, 1);
     const totalProgress = Math.min(((completedLessons.length + savedScore.score) / totalUnits) * 100, 100);
     if (progressEl) progressEl.style.width = totalProgress + '%';
 
@@ -1428,6 +1474,7 @@ function saveFeedback(event) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    recordBorashaVisit();
     if (document.getElementById('targetWord')) {
         loadSpeakingPractice();
         const listenButton = document.getElementById('listenButton');
