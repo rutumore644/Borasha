@@ -238,6 +238,178 @@ const vocabularyData = [
     {category:'Nature', english:'River', hindi:'नदी', marathi:'नदी', pronunciation:'Nadi'}
 ];
 
+
+// Expanded learning data: extra everyday vocabulary and sentence practice.
+// This extends the existing data without changing any HTML or CSS.
+const extraVocabularyData = [
+    ['People','Person','व्यक्ति','व्यक्ती','Vyakti'],['People','Child','बच्चा','मूल','Mool'],
+    ['People','Man','आदमी','पुरुष','Purush'],['People','Woman','महिला','स्त्री','Stree'],
+    ['People','Teacher','शिक्षक','शिक्षक','Shikshak'],['People','Student','विद्यार्थी','विद्यार्थी','Vidyarthi'],
+    ['People','Doctor','डॉक्टर','डॉक्टर','Doctor'],['People','Nurse','नर्स','परिचारिका','Paricharika'],
+    ['Places','School','विद्यालय','शाळा','Shaala'],['Places','College','महाविद्यालय','महाविद्यालय','Mahavidyalaya'],
+    ['Places','Hospital','अस्पताल','रुग्णालय','Rugnalaya'],['Places','Market','बाज़ार','बाजार','Bazaar'],
+    ['Places','Station','स्टेशन','स्थानक','Sthaanak'],['Places','Village','गाँव','गाव','Gaav'],
+    ['Places','City','शहर','शहर','Shahar'],['Places','Road','सड़क','रस्ता','Rasta'],
+    ['Time','Today','आज','आज','Aaj'],['Time','Tomorrow','कल','उद्या','Udya'],
+    ['Time','Yesterday','कल','काल','Kaal'],['Time','Morning','सुबह','सकाळ','Sakaal'],
+    ['Time','Evening','शाम','संध्याकाळ','Sandhyakaal'],['Time','Now','अभी','आत्ता','Aatta'],
+    ['Time','Later','बाद में','नंतर','Nantar'],['Time','Day','दिन','दिवस','Divas'],
+    ['Travel','Bus','बस','बस','Bus'],['Travel','Train','रेल गाड़ी','आगगाडी','Aaggadi'],
+    ['Travel','Ticket','टिकट','तिकीट','Tikit'],['Travel','Left','बायाँ','डावा','Daava'],
+    ['Travel','Right','दायाँ','उजवा','Ujava'],['Travel','Straight','सीधा','सरळ','Saral'],
+    ['Travel','Near','पास','जवळ','Javal'],['Travel','Far','दूर','लांब','Laamb'],
+    ['Shopping','Money','पैसा','पैसे','Paise'],['Shopping','Price','कीमत','किंमत','Kimmat'],
+    ['Shopping','Cheap','सस्ता','स्वस्त','Swasta'],['Shopping','Expensive','महँगा','महाग','Mahaag'],
+    ['Shopping','Buy','खरीदना','विकत घेणे','Vikat ghene'],['Shopping','How much?','कितना?','किती?','Kiti?'],
+    ['Feelings','Happy','खुश','आनंदी','Aanandi'],['Feelings','Sad','दुखी','दुःखी','Dukhi'],
+    ['Feelings','Tired','थका हुआ','थकलेला','Thaklela'],['Feelings','Hungry','भूखा','भुकेला','Bhukela'],
+    ['Feelings','Thirsty','प्यासा','तहानलेला','Tahanlela'],['Feelings','Afraid','डरा हुआ','घाबरलेला','Ghabarlela'],
+    ['Health','Pain','दर्द','वेदना','Vedana'],['Health','Medicine','दवा','औषध','Aushadh'],
+    ['Health','Help','मदद','मदत','Madat'],['Health','Emergency','आपातकाल','आणीबाणी','Aanibaani'],
+    ['Home','Light','रोशनी','प्रकाश','Prakash'],['Home','Fan','पंखा','पंखा','Pankha'],
+    ['Home','Water bottle','पानी की बोतल','पाण्याची बाटली','Panyachi batli'],['Home','Clothes','कपड़े','कपडे','Kapde'],
+    ['Actions','Read','पढ़ना','वाचणे','Vaachane'],['Actions','Write','लिखना','लिहिणे','Lihine'],
+    ['Actions','Speak','बोलना','बोलणे','Bolane'],['Actions','Listen','सुनना','ऐकणे','Aikane'],
+    ['Actions','Learn','सीखना','शिकणे','Shikane'],['Actions','Understand','समझना','समजणे','Samajane'],
+    ['Actions','Wait','इंतज़ार करना','वाट पाहणे','Vaat pahane'],['Actions','Open','खोलना','उघडणे','Ughadane'],
+    ['Actions','Close','बंद करना','बंद करणे','Band karane'],['Actions','Come','आना','येणे','Yene'],
+    ['Actions','Go home','घर जाना','घरी जाणे','Ghari jane'],['Questions','What?','क्या?','काय?','Kaay?'],
+    ['Questions','Where?','कहाँ?','कुठे?','Kuthe?'],['Questions','When?','कब?','कधी?','Kadhi?'],
+    ['Questions','Why?','क्यों?','का?','Ka?'],['Questions','Who?','कौन?','कोण?','Kon?'],
+    ['Questions','How?','कैसे?','कसे?','Kase?'],['Polite phrases','Excuse me','माफ़ कीजिए','माफ करा','Maaf kara'],
+    ['Polite phrases','Please help me','कृपया मेरी मदद करें','कृपया मला मदत करा','Krupaya mala madat kara'],
+    ['Polite phrases','I do not understand','मुझे समझ नहीं आया','मला समजले नाही','Mala samajale nahi'],
+    ['Polite phrases','Please repeat','कृपया दोहराएँ','कृपया पुन्हा सांगा','Krupaya punha sanga'],
+    ['Polite phrases','Speak slowly','धीरे बोलिए','हळू बोला','Halu bola'],
+    ['Polite phrases','Where is the toilet?','शौचालय कहाँ है?','स्वच्छतागृह कुठे आहे?','Swachchhata gruha kuthe aahe?'],
+    ['Polite phrases','I need water','मुझे पानी चाहिए','मला पाणी हवे आहे','Mala paani have aahe'],
+    ['Polite phrases','Nice to meet you','आपसे मिलकर अच्छा लगा','तुम्हाला भेटून आनंद झाला','Tumhala bhetun aanand zala'],
+    ['Polite phrases','What is your name?','आपका नाम क्या है?','तुमचे नाव काय आहे?','Tumche naav kaay aahe?'],
+    ['Polite phrases','My name is…','मेरा नाम … है','माझे नाव … आहे','Majhe naav ... aahe']
+].map(([category, english, hindi, marathi, pronunciation]) => ({category, english, hindi, marathi, pronunciation}));
+
+vocabularyData.push(...extraVocabularyData);
+
+// Add extra examples to the six existing lessons, keeping the original lesson cards and URLs.
+const extraLessonContent = {
+    greetings: {
+        words: [
+            {marathi:'कृपया',hindi:'कृपया',english:'Please'},
+            {marathi:'माफ करा',hindi:'माफ़ कीजिए',english:'Sorry / Excuse me'},
+            {marathi:'स्वागत आहे',hindi:'स्वागत है',english:'Welcome'},
+            {marathi:'हो',hindi:'हाँ',english:'Yes'},
+            {marathi:'नाही',hindi:'नहीं',english:'No'},
+            {marathi:'पुन्हा भेटू',hindi:'फिर मिलेंगे',english:'See you again'},
+            {marathi:'शुभ दुपार',hindi:'शुभ दोपहर',english:'Good afternoon'},
+            {marathi:'शुभ संध्याकाळ',hindi:'शुभ संध्या',english:'Good evening'}
+        ],
+        sentences: [
+            {marathi:'तुमचे स्वागत आहे.',hindi:'आपका स्वागत है।',english:'You are welcome.'},
+            {marathi:'कृपया बसा.',hindi:'कृपया बैठिए।',english:'Please sit down.'},
+            {marathi:'मला माफ करा.',hindi:'मुझे माफ़ कीजिए।',english:'Please forgive me.'},
+            {marathi:'तुमचा दिवस चांगला जावो.',hindi:'आपका दिन अच्छा हो।',english:'Have a nice day.'}
+        ]
+    },
+    introduction: {
+        words: [
+            {marathi:'माझे',hindi:'मेरा / मेरी',english:'My'},
+            {marathi:'तुमचे',hindi:'आपका / आपकी',english:'Your'},
+            {marathi:'नाव',hindi:'नाम',english:'Name'},
+            {marathi:'गाव',hindi:'गाँव',english:'Village / hometown'},
+            {marathi:'राहणे',hindi:'रहना',english:'To live'},
+            {marathi:'काम',hindi:'काम',english:'Work'},
+            {marathi:'शिकणे',hindi:'सीखना',english:'To learn'},
+            {marathi:'भेटून आनंद झाला',hindi:'मिलकर खुशी हुई',english:'Nice to meet you'}
+        ],
+        sentences: [
+            {marathi:'मी महाराष्ट्रात राहतो/राहते.',hindi:'मैं महाराष्ट्र में रहता/रहती हूँ।',english:'I live in Maharashtra.'},
+            {marathi:'मी मराठी शिकत आहे.',hindi:'मैं मराठी सीख रहा/रही हूँ।',english:'I am learning Marathi.'},
+            {marathi:'तुम्ही कुठे राहता?',hindi:'आप कहाँ रहते हैं?',english:'Where do you live?'},
+            {marathi:'मला नवीन भाषा शिकायला आवडते.',hindi:'मुझे नई भाषा सीखना पसंद है।',english:'I like learning a new language.'}
+        ]
+    },
+    family: {
+        words: [
+            {marathi:'आई',hindi:'माँ',english:'Mother'},
+            {marathi:'वडील',hindi:'पिता',english:'Father'},
+            {marathi:'मुलगा',hindi:'बेटा',english:'Son'},
+            {marathi:'मुलगी',hindi:'बेटी',english:'Daughter'},
+            {marathi:'आजोबा',hindi:'दादा / नाना',english:'Grandfather'},
+            {marathi:'आजी',hindi:'दादी / नानी',english:'Grandmother'},
+            {marathi:'काका',hindi:'चाचा',english:'Uncle (paternal)'},
+            {marathi:'मावशी',hindi:'मौसी',english:'Aunt (maternal)'}
+        ],
+        sentences: [
+            {marathi:'हे माझे कुटुंब आहे.',hindi:'यह मेरा परिवार है।',english:'This is my family.'},
+            {marathi:'माझ्या कुटुंबात पाच जण आहेत.',hindi:'मेरे परिवार में पाँच लोग हैं।',english:'There are five people in my family.'},
+            {marathi:'तुमच्या भावाचे नाव काय आहे?',hindi:'आपके भाई का नाम क्या है?',english:'What is your brother’s name?'},
+            {marathi:'माझी आजी गोष्ट सांगते.',hindi:'मेरी दादी कहानी सुनाती हैं।',english:'My grandmother tells a story.'}
+        ]
+    },
+    numbers: {
+        words: [
+            {marathi:'पाच',hindi:'पाँच',english:'Five'},
+            {marathi:'सहा',hindi:'छह',english:'Six'},
+            {marathi:'सात',hindi:'सात',english:'Seven'},
+            {marathi:'आठ',hindi:'आठ',english:'Eight'},
+            {marathi:'नऊ',hindi:'नौ',english:'Nine'},
+            {marathi:'दहा',hindi:'दस',english:'Ten'},
+            {marathi:'अकरा',hindi:'ग्यारह',english:'Eleven'},
+            {marathi:'बारा',hindi:'बारह',english:'Twelve'}
+        ],
+        sentences: [
+            {marathi:'माझ्याकडे दोन पेन आहेत.',hindi:'मेरे पास दो पेन हैं।',english:'I have two pens.'},
+            {marathi:'बस सात वाजता येते.',hindi:'बस सात बजे आती है।',english:'The bus comes at seven o’clock.'},
+            {marathi:'मला तीन सफरचंद हवी आहेत.',hindi:'मुझे तीन सेब चाहिए।',english:'I want three apples.'},
+            {marathi:'तुमच्याकडे किती पुस्तके आहेत?',hindi:'आपके पास कितनी किताबें हैं?',english:'How many books do you have?'}
+        ]
+    },
+    food: {
+        words: [
+            {marathi:'भाजी',hindi:'सब्ज़ी',english:'Vegetable / curry'},
+            {marathi:'फळ',hindi:'फल',english:'Fruit'},
+            {marathi:'सफरचंद',hindi:'सेब',english:'Apple'},
+            {marathi:'केळे',hindi:'केला',english:'Banana'},
+            {marathi:'चहा',hindi:'चाय',english:'Tea'},
+            {marathi:'नाश्ता',hindi:'नाश्ता',english:'Breakfast / snack'},
+            {marathi:'भूक',hindi:'भूख',english:'Hunger'},
+            {marathi:'तहान',hindi:'प्यास',english:'Thirst'}
+        ],
+        sentences: [
+            {marathi:'मला चहा हवा आहे.',hindi:'मुझे चाय चाहिए।',english:'I would like tea.'},
+            {marathi:'हे जेवण खूप चविष्ट आहे.',hindi:'यह खाना बहुत स्वादिष्ट है।',english:'This food is very tasty.'},
+            {marathi:'तुम्हाला काय खायचे आहे?',hindi:'आप क्या खाना चाहते हैं?',english:'What would you like to eat?'},
+            {marathi:'कृपया मला पाणी द्या.',hindi:'कृपया मुझे पानी दीजिए।',english:'Please give me water.'}
+        ]
+    },
+    daily: {
+        words: [
+            {marathi:'कुठे',hindi:'कहाँ',english:'Where'},
+            {marathi:'कधी',hindi:'कब',english:'When'},
+            {marathi:'किती',hindi:'कितना / कितनी',english:'How much / how many'},
+            {marathi:'आज',hindi:'आज',english:'Today'},
+            {marathi:'उद्या',hindi:'कल (आने वाला)',english:'Tomorrow'},
+            {marathi:'मदत',hindi:'मदद',english:'Help'},
+            {marathi:'समजले',hindi:'समझ गया/गई',english:'Understood'},
+            {marathi:'हळू',hindi:'धीरे',english:'Slowly'}
+        ],
+        sentences: [
+            {marathi:'तुम्ही मला मदत करू शकता का?',hindi:'क्या आप मेरी मदद कर सकते हैं?',english:'Can you help me?'},
+            {marathi:'कृपया पुन्हा सांगा.',hindi:'कृपया फिर से बताइए।',english:'Please say that again.'},
+            {marathi:'मला समजले नाही.',hindi:'मुझे समझ नहीं आया।',english:'I did not understand.'},
+            {marathi:'हे किती रुपयांचे आहे?',hindi:'यह कितने रुपये का है?',english:'How much does this cost?'},
+            {marathi:'स्वच्छतागृह कुठे आहे?',hindi:'शौचालय कहाँ है?',english:'Where is the toilet?'},
+            {marathi:'मला थोडे हळू बोलायला मदत करा.',hindi:'कृपया थोड़ा धीरे बोलिए।',english:'Please speak a little slowly.'}
+        ]
+    }
+};
+
+Object.entries(extraLessonContent).forEach(([lessonName, extra]) => {
+    if (!lessonData[lessonName]) return;
+    lessonData[lessonName].words.push(...extra.words);
+    lessonData[lessonName].sentences.push(...extra.sentences);
+});
+
 function loadVocabulary() {
     const grid = document.getElementById('vocabGrid');
     const filters = document.getElementById('vocabFilters');
