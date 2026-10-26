@@ -106,16 +106,53 @@ const lessonData = {
 };
 
 const speakingPracticeWords = [
+    // Level 1 — easy words
     { marathi: 'नमस्कार', pronunciation: 'Namaskar', meaning: 'Hello' },
     { marathi: 'धन्यवाद', pronunciation: 'Dhanyavaad', meaning: 'Thank you' },
     { marathi: 'कृपया', pronunciation: 'Krupaya', meaning: 'Please' },
-    { marathi: 'शुभ सकाळ', pronunciation: 'Shubh Sakaal', meaning: 'Good morning' },
-    { marathi: 'शुभ रात्री', pronunciation: 'Shubh Raatri', meaning: 'Good night' },
-    { marathi: 'तुम्ही कसे आहात', pronunciation: 'Tumhi kase aahat', meaning: 'How are you?' },
-    { marathi: 'मी ठीक आहे', pronunciation: 'Mi theek aahe', meaning: 'I am fine' },
-    { marathi: 'मला पाणी हवे आहे', pronunciation: 'Mala paani have aahe', meaning: 'I want water' },
-    { marathi: 'माझे नाव रिया आहे', pronunciation: 'Majhe naav Riya aahe', meaning: 'My name is Riya' },
-    { marathi: 'आपण नंतर भेटू', pronunciation: 'Aapan nantar bhetu', meaning: 'We will meet later' }
+    { marathi: 'हो', pronunciation: 'Ho', meaning: 'Yes' },
+    { marathi: 'नाही', pronunciation: 'Naahi', meaning: 'No' },
+    { marathi: 'पाणी', pronunciation: 'Paani', meaning: 'Water' },
+    { marathi: 'घर', pronunciation: 'Ghar', meaning: 'House' },
+    { marathi: 'आई', pronunciation: 'Aai', meaning: 'Mother' },
+    { marathi: 'मित्र', pronunciation: 'Mitra', meaning: 'Friend' },
+    { marathi: 'चहा', pronunciation: 'Chaha', meaning: 'Tea' },
+    { marathi: 'शुभ सकाळ', pronunciation: 'Shubh sakaal', meaning: 'Good morning' },
+    { marathi: 'शुभ रात्री', pronunciation: 'Shubh raatri', meaning: 'Good night' },
+    // Level 2 — short useful phrases
+    { marathi: 'तुम्ही कसे आहात?', pronunciation: 'Tumhi kase aahat', meaning: 'How are you?' },
+    { marathi: 'मी ठीक आहे.', pronunciation: 'Mi theek aahe', meaning: 'I am fine.' },
+    { marathi: 'तुमचे नाव काय आहे?', pronunciation: 'Tumche naav kaay aahe', meaning: 'What is your name?' },
+    { marathi: 'माझे नाव रिया आहे.', pronunciation: 'Majhe naav Riya aahe', meaning: 'My name is Riya.' },
+    { marathi: 'मला पाणी हवे आहे.', pronunciation: 'Mala paani have aahe', meaning: 'I want water.' },
+    { marathi: 'मला मदत करा.', pronunciation: 'Mala madat kara', meaning: 'Please help me.' },
+    { marathi: 'मला समजले.', pronunciation: 'Mala samajale', meaning: 'I understood.' },
+    { marathi: 'मला समजले नाही.', pronunciation: 'Mala samajale naahi', meaning: 'I did not understand.' },
+    { marathi: 'कृपया हळू बोला.', pronunciation: 'Krupaya halu bola', meaning: 'Please speak slowly.' },
+    { marathi: 'तुम्ही कुठे राहता?', pronunciation: 'Tumhi kuthe raahata', meaning: 'Where do you live?' },
+    { marathi: 'मला मराठी शिकायची आहे.', pronunciation: 'Mala Marathi shikaychi aahe', meaning: 'I want to learn Marathi.' },
+    // Level 3 — everyday sentences
+    { marathi: 'आज तुम्हाला कसे वाटत आहे?', pronunciation: 'Aaj tumhala kase vaat aahe', meaning: 'How are you feeling today?' },
+    { marathi: 'मला नवीन भाषा शिकायला आवडते.', pronunciation: 'Mala naveen bhaasha shikayla aavadte', meaning: 'I like learning a new language.' },
+    { marathi: 'कृपया मला जवळचा बस थांबा दाखवा.', pronunciation: 'Krupaya mala javalcha bus thamba dakhava', meaning: 'Please show me the nearest bus stop.' },
+    { marathi: 'हे किती रुपयांना आहे?', pronunciation: 'He kiti rupayanna aahe', meaning: 'How many rupees does this cost?' },
+    { marathi: 'मला एक कप चहा आणि थोडे पाणी हवे आहे.', pronunciation: 'Mala ek cup chaha aani thode paani have aahe', meaning: 'I would like a cup of tea and some water.' },
+    { marathi: 'मी रोज थोडा वेळ मराठीचा सराव करते.', pronunciation: 'Mi roj thoda vel Marathicha sarav karte', meaning: 'I practise Marathi for a little while every day.' },
+    { marathi: 'तुम्ही कृपया हे वाक्य पुन्हा सांगू शकता का?', pronunciation: 'Tumhi krupaya he vaakya punha sangu shakta ka', meaning: 'Could you please repeat this sentence?' },
+    { marathi: 'मला बाजारात जायचे आहे, पण मला रस्ता माहीत नाही.', pronunciation: 'Mala bazarat jayache aahe pan mala rasta mahit naahi', meaning: 'I want to go to the market, but I do not know the way.' },
+    { marathi: 'आज हवामान छान आहे, म्हणून आपण बाहेर फिरायला जाऊया.', pronunciation: 'Aaj havaamaan chhaan aahe mhanun aapan baaher phirayla jauya', meaning: 'The weather is nice today, so let us go for a walk.' },
+    { marathi: 'मी रोज नवीन शब्द शिकते आणि ते वाक्यांमध्ये वापरते.', pronunciation: 'Mi roj naveen shabd shikte aani te vaakyanmadhe vaaparate', meaning: 'I learn new words every day and use them in sentences.' },
+    // Level 4 — longer conversations
+    { marathi: 'नमस्कार, माझे नाव रिया आहे आणि मला मराठी बोलायला शिकायचे आहे.', pronunciation: 'Namaskar majhe naav Riya aahe aani mala Marathi bolayla shikayache aahe', meaning: 'Hello, my name is Riya, and I want to learn to speak Marathi.' },
+    { marathi: 'माफ करा, मला हे ठिकाण माहीत नाही. तुम्ही मला तिथे जाण्याचा रस्ता सांगू शकता का?', pronunciation: 'Maaf kara mala he thikaan mahit naahi tumhi mala tithe janyacha rasta sangu shakta ka', meaning: 'Excuse me, I do not know this place. Could you tell me how to get there?' },
+    { marathi: 'मी दुकानात गेले होते, पण मला हवी असलेली वस्तू तिथे मिळाली नाही.', pronunciation: 'Mi dukanaat gele hote pan mala havi asleli vastu tithe milali naahi', meaning: 'I went to the shop, but I could not find the item I wanted.' },
+    { marathi: 'मला तुमच्याशी बोलून आनंद झाला. आपण पुन्हा कधीतरी भेटूया.', pronunciation: 'Mala tumchyashi bolun aanand zhala aapan punha kadhitari bhetuya', meaning: 'It was nice talking to you. Let us meet again sometime.' },
+    { marathi: 'नवीन भाषा शिकताना चुका होतात, पण नियमित सराव केल्याने आपण हळूहळू सुधारतो.', pronunciation: 'Naveen bhaasha shiktana chuka hotaat pan niyamit sarav kelyane aapan haluhalu sudharato', meaning: 'Mistakes happen when learning a new language, but regular practice helps us improve gradually.' },
+    { marathi: 'मला या शब्दाचा अर्थ समजला नाही. तुम्ही तो सोप्या भाषेत समजावून सांगू शकता का?', pronunciation: 'Mala ya shabdacha arth samajala naahi tumhi to sopya bhaashet samjavun sangu shakta ka', meaning: 'I did not understand the meaning of this word. Could you explain it in simple language?' },
+    { marathi: 'उद्या सकाळी आपण लवकर निघूया, म्हणजे वेळेवर पोहोचू शकू.', pronunciation: 'Udya sakali aapan lavkar nighuya mhanje velevar pohachu shaku', meaning: 'Let us leave early tomorrow morning so that we can arrive on time.' },
+    { marathi: 'मला मराठी चांगली बोलता यावी म्हणून मी दररोज ऐकण्याचा आणि बोलण्याचा सराव करते.', pronunciation: 'Mala Marathi changali bolata yaavi mhanun mi darroj aikanyacha aani bolanyacha sarav karte', meaning: 'I practise listening and speaking every day so that I can speak Marathi well.' },
+    { marathi: 'तुम्ही मला मदत केल्याबद्दल धन्यवाद. आता मला हे वाक्य अधिक चांगल्या प्रकारे समजले.', pronunciation: 'Tumhi mala madat kelyabaddal dhanyavaad aata mala he vaakya adhik changalya prakare samajale', meaning: 'Thank you for helping me. I understand this sentence much better now.' },
+    { marathi: 'मी आधी सोपे शब्द शिकेन, नंतर छोटी वाक्ये आणि शेवटी मोठी संभाषणे बोलण्याचा प्रयत्न करेन.', pronunciation: 'Mi aadhi sope shabd shiken nantar chhoti vaakye aani shevti mothi sambhashane bolanyacha prayatna karen', meaning: 'I will learn easy words first, then short sentences, and finally try speaking longer conversations.' }
 ];
 
 const vocabularyData = [
