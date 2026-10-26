@@ -96,7 +96,31 @@
 
     <script src="js/script.js"></script>
     <script>
-        const lessonNames = ["greetings", "introduction", "family", "numbers", "food", "daily"];
+        const lessonNames = orderedLessonIds;
+
+        const lessonGrid = document.querySelector(".lesson-grid");
+        const lessonEmojis = {
+            colours:"🎨", home:"🏠", school:"📚", dailyRoutine:"⏰", directions:"🧭",
+            shopping:"🛍️", travel:"🚌", health:"🩺", conversations:"💬",
+            storytelling:"📖", opinions:"💡", realLife:"🌍"
+        };
+        const existingLessonIds = new Set(["greetings", "introduction", "family", "numbers", "food", "daily"]);
+        orderedLessonIds.forEach(function (lesson, index) {
+            if (existingLessonIds.has(lesson)) return;
+            const data = lessonData[lesson];
+            if (!data || !lessonGrid) return;
+            const article = document.createElement("article");
+            article.className = "lesson-card";
+            article.id = "lesson-" + lesson;
+            article.innerHTML = `
+                <span class="lesson-number">Lesson ${String(index + 1).padStart(2, "0")} • ${data.level}</span>
+                <h4>${lessonEmojis[lesson] || "📘"} ${data.title}</h4>
+                <p>${data.description}</p>
+                <a href="lesson.html?lesson=${lesson}" class="btn btn-primary">Start Lesson</a>
+                <div class="status" id="status-${lesson}"></div>
+            `;
+            lessonGrid.appendChild(article);
+        });
 
         lessonNames.forEach(function (lesson) {
             if (isLessonCompleted(lesson)) {
