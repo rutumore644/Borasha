@@ -37,6 +37,13 @@
         </div>
 
         <div class="card-panel quiz-box">
+            <label for="quizCategory">Choose quiz type:</label>
+            <select id="quizCategory" class="form-control">
+                <option value="all">Mixed: Lessons + Vocabulary</option>
+                <option value="lessons">Lessons only</option>
+                <option value="vocabulary">Vocabulary only</option>
+            </select>
+            <p id="quizCount" class="meta">Mixed practice</p>
             <div id="quizQuestion" class="quiz-question">Question will appear here</div>
             <div id="quizOptions" class="quiz-options"></div>
             <div id="quizResult" class="quiz-result"></div>
