@@ -410,6 +410,196 @@ Object.entries(extraLessonContent).forEach(([lessonName, extra]) => {
     lessonData[lessonName].sentences.push(...extra.sentences);
 });
 
+// New lessons are arranged from beginner to more challenging conversation practice.
+const additionalLessonData = {
+    colours: {
+        title:'Colours and Descriptions', level:'Beginner', description:'Learn colours and describe the things around you.',
+        words:[
+            {marathi:'लाल',hindi:'लाल',english:'Red'},{marathi:'निळा',hindi:'नीला',english:'Blue'},
+            {marathi:'हिरवा',hindi:'हरा',english:'Green'},{marathi:'पिवळा',hindi:'पीला',english:'Yellow'},
+            {marathi:'पांढरा',hindi:'सफेद',english:'White'},{marathi:'काळा',hindi:'काला',english:'Black'}
+        ],
+        sentences:[
+            {marathi:'माझी पिशवी लाल आहे.',hindi:'मेरा बैग लाल है।',english:'My bag is red.'},
+            {marathi:'मला निळे आकाश आणि हिरवी झाडे आवडतात.',hindi:'मुझे नीला आसमान और हरे पेड़ पसंद हैं।',english:'I like the blue sky and green trees.'},
+            {marathi:'तुमच्या घराचा रंग कोणता आहे?',hindi:'आपके घर का रंग कौन सा है?',english:'What colour is your house?'},
+            {marathi:'आज मी पांढरा शर्ट आणि काळी पँट घातली आहे.',hindi:'आज मैंने सफेद शर्ट और काली पैंट पहनी है।',english:'Today I am wearing a white shirt and black trousers.'}
+        ],
+        question:'What does “हिरवा” mean?',options:['Green','Red','White','Black'],answer:'Green'
+    },
+    home: {
+        title:'At Home', level:'Beginner', description:'Talk about rooms, objects and simple things you do at home.',
+        words:[
+            {marathi:'घर',hindi:'घर',english:'House / home'},{marathi:'खोली',hindi:'कमरा',english:'Room'},
+            {marathi:'दरवाजा',hindi:'दरवाज़ा',english:'Door'},{marathi:'खिडकी',hindi:'खिड़की',english:'Window'},
+            {marathi:'खुर्ची',hindi:'कुर्सी',english:'Chair'},{marathi:'स्वयंपाकघर',hindi:'रसोईघर',english:'Kitchen'}
+        ],
+        sentences:[
+            {marathi:'माझे घर बाजाराजवळ आहे.',hindi:'मेरा घर बाज़ार के पास है।',english:'My home is near the market.'},
+            {marathi:'कृपया खिडकी उघडा कारण खोलीत खूप गरम झाले आहे.',hindi:'कृपया खिड़की खोलिए क्योंकि कमरे में बहुत गर्मी है।',english:'Please open the window because the room has become very hot.'},
+            {marathi:'आई स्वयंपाकघरात जेवण बनवत आहे.',hindi:'माँ रसोई में खाना बना रही हैं।',english:'Mother is cooking food in the kitchen.'},
+            {marathi:'मी अभ्यास केल्यानंतर माझी पुस्तके टेबलावर ठेवतो/ठेवते.',hindi:'मैं पढ़ाई के बाद अपनी किताबें मेज़ पर रखता/रखती हूँ।',english:'I put my books on the table after studying.'}
+        ],
+        question:'What does “खिडकी” mean?',options:['Door','Window','Kitchen','Chair'],answer:'Window'
+    },
+    school: {
+        title:'School and College', level:'Beginner', description:'Use useful words and sentences for study and class.',
+        words:[
+            {marathi:'शाळा',hindi:'विद्यालय',english:'School'},{marathi:'महाविद्यालय',hindi:'कॉलेज',english:'College'},
+            {marathi:'शिक्षक',hindi:'शिक्षक',english:'Teacher'},{marathi:'वर्ग',hindi:'कक्षा',english:'Classroom / class'},
+            {marathi:'पुस्तक',hindi:'किताब',english:'Book'},{marathi:'प्रश्न',hindi:'प्रश्न',english:'Question'}
+        ],
+        sentences:[
+            {marathi:'माझे महाविद्यालय माझ्या घरापासून थोडे दूर आहे.',hindi:'मेरा कॉलेज मेरे घर से थोड़ा दूर है।',english:'My college is a little far from my home.'},
+            {marathi:'कृपया शिक्षकांनी सांगितलेला प्रश्न पुन्हा समजावून सांगा.',hindi:'कृपया शिक्षक द्वारा बताए गए प्रश्न को फिर से समझाइए।',english:'Please explain the question the teacher gave us again.'},
+            {marathi:'आज आमच्या वर्गात नवीन विद्यार्थिनी आली आहे.',hindi:'आज हमारी कक्षा में एक नई छात्रा आई है।',english:'A new student joined our class today.'},
+            {marathi:'परीक्षेच्या आधी मी सर्व महत्त्वाच्या नोट्स पुन्हा वाचणार आहे.',hindi:'परीक्षा से पहले मैं सभी ज़रूरी नोट्स दोबारा पढ़ूँगा/पढ़ूँगी।',english:'I am going to review all the important notes before the exam.'}
+        ],
+        question:'What does “पुस्तक” mean?',options:['Book','Teacher','Class','Question'],answer:'Book'
+    },
+    dailyRoutine: {
+        title:'Daily Routine', level:'Beginner', description:'Describe your day using longer sentences and time words.',
+        words:[
+            {marathi:'उठणे',hindi:'उठना',english:'To wake up'},{marathi:'आंघोळ',hindi:'नहाना',english:'Bath'},
+            {marathi:'नाश्ता',hindi:'नाश्ता',english:'Breakfast'},{marathi:'अभ्यास',hindi:'पढ़ाई',english:'Study'},
+            {marathi:'काम',hindi:'काम',english:'Work'},{marathi:'झोपणे',hindi:'सोना',english:'To sleep'}
+        ],
+        sentences:[
+            {marathi:'मी रोज सकाळी सात वाजता उठून तयार होतो/होते.',hindi:'मैं रोज़ सुबह सात बजे उठकर तैयार होता/होती हूँ।',english:'I wake up at seven every morning and get ready.'},
+            {marathi:'नाश्ता केल्यानंतर मी बसने महाविद्यालयात जातो/जाते.',hindi:'नाश्ता करने के बाद मैं बस से कॉलेज जाता/जाती हूँ।',english:'After breakfast, I travel to college by bus.'},
+            {marathi:'घरी परत आल्यावर मी थोडा आराम करून गृहपाठ पूर्ण करतो/करते.',hindi:'घर लौटने के बाद मैं थोड़ा आराम करके अपना गृहकार्य पूरा करता/करती हूँ।',english:'After returning home, I rest for a while and finish my homework.'},
+            {marathi:'रात्री झोपण्यापूर्वी मी उद्याच्या कामांची यादी तयार करतो/करते.',hindi:'रात को सोने से पहले मैं कल के कामों की सूची बनाता/बनाती हूँ।',english:'Before sleeping at night, I make a list of tasks for tomorrow.'}
+        ],
+        question:'What does “नाश्ता” mean?',options:['Dinner','Breakfast','Sleep','Work'],answer:'Breakfast'
+    },
+    directions: {
+        title:'Asking for Directions', level:'Elementary', description:'Ask for places and understand simple directions.',
+        words:[
+            {marathi:'डावीकडे',hindi:'बाईं ओर',english:'To the left'},{marathi:'उजवीकडे',hindi:'दाईं ओर',english:'To the right'},
+            {marathi:'सरळ',hindi:'सीधा',english:'Straight'},{marathi:'जवळ',hindi:'पास',english:'Near'},
+            {marathi:'लांब',hindi:'दूर',english:'Far'},{marathi:'रस्ता',hindi:'सड़क',english:'Road'}
+        ],
+        sentences:[
+            {marathi:'कृपया मला जवळच्या बस स्थानकाचा रस्ता सांगू शकता का?',hindi:'क्या आप मुझे पास के बस स्टॉप का रास्ता बता सकते हैं?',english:'Could you please tell me the way to the nearest bus stop?'},
+            {marathi:'या रस्त्यावर सरळ जा आणि मग उजवीकडे वळा.',hindi:'इस सड़क पर सीधे जाइए और फिर दाईं ओर मुड़िए।',english:'Go straight along this road and then turn right.'},
+            {marathi:'रेल्वे स्थानक इथून चालत जाण्याइतके जवळ आहे का?',hindi:'क्या रेलवे स्टेशन यहाँ से पैदल जाने जितना पास है?',english:'Is the railway station close enough to walk to from here?'},
+            {marathi:'मला पत्ता समजला नाही, म्हणून कृपया तो हळू आणि स्पष्ट सांगा.',hindi:'मुझे पता समझ नहीं आया, इसलिए कृपया धीरे और साफ़ बताइए।',english:'I did not understand the address, so please say it slowly and clearly.'}
+        ],
+        question:'What does “डावीकडे” mean?',options:['Right','Left','Straight','Far'],answer:'Left'
+    },
+    shopping: {
+        title:'Shopping and Prices', level:'Elementary', description:'Ask prices, quantities and make polite purchases.',
+        words:[
+            {marathi:'किंमत',hindi:'कीमत',english:'Price'},{marathi:'स्वस्त',hindi:'सस्ता',english:'Cheap'},
+            {marathi:'महाग',hindi:'महँगा',english:'Expensive'},{marathi:'पैसे',hindi:'पैसे',english:'Money'},
+            {marathi:'किलो',hindi:'किलो',english:'Kilogram'},{marathi:'पावती',hindi:'रसीद',english:'Receipt'}
+        ],
+        sentences:[
+            {marathi:'या सफरचंदांची किंमत एका किलोसाठी किती आहे?',hindi:'इन सेबों की एक किलो की कीमत कितनी है?',english:'How much do these apples cost per kilogram?'},
+            {marathi:'मला अर्धा किलो साखर आणि एक लिटर दूध द्या.',hindi:'मुझे आधा किलो चीनी और एक लीटर दूध दीजिए।',english:'Please give me half a kilogram of sugar and one litre of milk.'},
+            {marathi:'हे थोडे महाग आहे; यापेक्षा स्वस्त पर्याय आहे का?',hindi:'यह थोड़ा महँगा है; क्या इससे सस्ता विकल्प है?',english:'This is a little expensive; is there a cheaper option?'},
+            {marathi:'खरेदी झाल्यावर कृपया मला पावती द्या.',hindi:'खरीदारी के बाद कृपया मुझे रसीद दीजिए।',english:'Please give me a receipt after the purchase.'}
+        ],
+        question:'What does “किंमत” mean?',options:['Receipt','Price','Money','Market'],answer:'Price'
+    },
+    travel: {
+        title:'Travel and Transport', level:'Elementary', description:'Talk about tickets, journeys and transport.',
+        words:[
+            {marathi:'तिकीट',hindi:'टिकट',english:'Ticket'},{marathi:'प्रवास',hindi:'यात्रा',english:'Journey'},
+            {marathi:'बस स्थानक',hindi:'बस स्टैंड',english:'Bus stop'},{marathi:'रेल्वे स्थानक',hindi:'रेलवे स्टेशन',english:'Railway station'},
+            {marathi:'उशीर',hindi:'देर',english:'Late / delay'},{marathi:'आरक्षण',hindi:'आरक्षण',english:'Reservation'}
+        ],
+        sentences:[
+            {marathi:'पुण्याला जाणारी पुढची बस किती वाजता सुटते?',hindi:'पुणे जाने वाली अगली बस कितने बजे निकलती है?',english:'What time does the next bus to Pune leave?'},
+            {marathi:'मला मुंबईपर्यंत जाण्यासाठी एक तिकीट आरक्षित करायचे आहे.',hindi:'मुझे मुंबई तक जाने के लिए एक टिकट आरक्षित करना है।',english:'I would like to reserve one ticket to Mumbai.'},
+            {marathi:'वाहतुकीमुळे ट्रेनला उशीर झाला, त्यामुळे मी थोडा उशिरा पोहोचेन.',hindi:'यातायात के कारण ट्रेन देर से है, इसलिए मैं थोड़ी देर से पहुँचूँगा/पहुँचूँगी।',english:'The train is delayed, so I will arrive a little late.'},
+            {marathi:'माझे स्थानक आल्यावर कृपया मला सांगा.',hindi:'मेरा स्टेशन आने पर कृपया मुझे बता दीजिए।',english:'Please tell me when my station arrives.'}
+        ],
+        question:'What does “तिकीट” mean?',options:['Ticket','Journey','Station','Late'],answer:'Ticket'
+    },
+    health: {
+        title:'Health and Asking for Help', level:'Elementary', description:'Learn respectful phrases for common needs and emergencies.',
+        words:[
+            {marathi:'डॉक्टर',hindi:'डॉक्टर',english:'Doctor'},{marathi:'औषध',hindi:'दवा',english:'Medicine'},
+            {marathi:'वेदना',hindi:'दर्द',english:'Pain'},{marathi:'मदत',hindi:'मदद',english:'Help'},
+            {marathi:'रुग्णालय',hindi:'अस्पताल',english:'Hospital'},{marathi:'आपत्कालीन',hindi:'आपातकालीन',english:'Emergency'}
+        ],
+        sentences:[
+            {marathi:'माझे डोके दुखत आहे आणि मला डॉक्टरांना भेटायचे आहे.',hindi:'मेरे सिर में दर्द है और मुझे डॉक्टर से मिलना है।',english:'I have a headache and I need to see a doctor.'},
+            {marathi:'कृपया मला जवळच्या रुग्णालयात जाण्यास मदत करा.',hindi:'कृपया मुझे पास के अस्पताल पहुँचने में मदद करें।',english:'Please help me get to the nearest hospital.'},
+            {marathi:'हे औषध जेवणापूर्वी घ्यायचे आहे की जेवणानंतर?',hindi:'यह दवा खाने से पहले लेनी है या खाने के बाद?',english:'Should this medicine be taken before or after food?'},
+            {marathi:'मला या औषधाची अॅलर्जी आहे, त्यामुळे कृपया डॉक्टरांना सांगा.',hindi:'मुझे इस दवा से एलर्जी है, इसलिए कृपया डॉक्टर को बताइए।',english:'I am allergic to this medicine, so please tell the doctor.'}
+        ],
+        question:'What does “रुग्णालय” mean?',options:['School','Hospital','Market','Station'],answer:'Hospital'
+    },
+    conversations: {
+        title:'Longer Conversations', level:'Intermediate', description:'Combine phrases to explain needs, ask follow-up questions and respond politely.',
+        words:[
+            {marathi:'कारण',hindi:'क्योंकि',english:'Because'},{marathi:'म्हणून',hindi:'इसलिए',english:'Therefore / so'},
+            {marathi:'कदाचित',hindi:'शायद',english:'Perhaps'},{marathi:'खरं तर',hindi:'दरअसल',english:'Actually'},
+            {marathi:'मला वाटते',hindi:'मुझे लगता है',english:'I think'},{marathi:'तरीसुद्धा',hindi:'फिर भी',english:'Nevertheless'}
+        ],
+        sentences:[
+            {marathi:'मला मराठी शिकायची आहे कारण मला माझ्या शेजाऱ्यांशी सहज बोलता यावे.',hindi:'मैं मराठी सीखना चाहता/चाहती हूँ क्योंकि मैं अपने पड़ोसियों से आसानी से बात कर सकूँ।',english:'I want to learn Marathi because I want to speak comfortably with my neighbours.'},
+            {marathi:'तुम्ही हळू बोललात तर मला प्रत्येक शब्द समजून घेण्यास मदत होईल.',hindi:'अगर आप धीरे बोलेंगे तो मुझे हर शब्द समझने में मदद मिलेगी।',english:'If you speak slowly, it will help me understand every word.'},
+            {marathi:'मला हा शब्द माहीत नाही, पण तुम्ही उदाहरण दिलेत तर मी त्याचा अर्थ समजू शकतो/शकते.',hindi:'मुझे यह शब्द नहीं पता, लेकिन अगर आप उदाहरण देंगे तो मैं इसका अर्थ समझ सकता/सकती हूँ।',english:'I do not know this word, but if you give an example, I may understand its meaning.'},
+            {marathi:'आज वेळ कमी आहे, तरीसुद्धा मी नवीन वाक्यांचा सराव करण्यासाठी दहा मिनिटे काढणार आहे.',hindi:'आज समय कम है, फिर भी मैं नए वाक्यों का अभ्यास करने के लिए दस मिनट निकालूँगा/निकालूँगी।',english:'I have little time today; nevertheless, I will set aside ten minutes to practise new sentences.'}
+        ],
+        question:'What does “कारण” mean?',options:['Because','Tomorrow','Ticket','Window'],answer:'Because'
+    },
+    storytelling: {
+        title:'Tell a Short Story', level:'Intermediate', description:'Read a short connected passage and practise understanding a sequence of events.',
+        words:[
+            {marathi:'एके दिवशी',hindi:'एक दिन',english:'One day'},{marathi:'त्यानंतर',hindi:'उसके बाद',english:'After that'},
+            {marathi:'शेवटी',hindi:'आखिर में',english:'Finally'},{marathi:'आनंदाने',hindi:'खुशी से',english:'Happily'}
+        ],
+        sentences:[
+            {marathi:'एके दिवशी रिया बाजारात जात असताना तिला रस्त्याच्या कडेला एक लहान कुत्र्याचे पिल्लू दिसले.',hindi:'एक दिन जब रिया बाज़ार जा रही थी, तो उसे सड़क के किनारे एक छोटा पिल्ला दिखाई दिया।',english:'One day, while Riya was going to the market, she saw a small puppy beside the road.'},
+            {marathi:'तिने पिल्लाला पाणी दिले आणि जवळच्या दुकानदाराला त्याच्या मालकाबद्दल विचारले.',hindi:'उसने पिल्ले को पानी दिया और पास के दुकानदार से उसके मालिक के बारे में पूछा।',english:'She gave the puppy some water and asked a nearby shopkeeper about its owner.'},
+            {marathi:'थोड्या वेळाने पिल्लाचा मालक तिथे आला आणि त्याने रियाचे मनापासून आभार मानले.',hindi:'कुछ देर बाद पिल्ले का मालिक वहाँ आया और उसने रिया को दिल से धन्यवाद दिया।',english:'After a while, the puppy’s owner arrived and thanked Riya sincerely.'},
+            {marathi:'शेवटी रिया आनंदाने घरी परतली कारण तिने एका गरजू प्राण्याला मदत केली होती.',hindi:'आखिर में रिया खुशी से घर लौटी क्योंकि उसने एक ज़रूरतमंद जानवर की मदद की थी।',english:'Finally, Riya returned home happily because she had helped an animal in need.'}
+        ],
+        question:'Why did Riya feel happy?',options:['She helped a puppy','She bought a book','She missed the bus','She went to school'],answer:'She helped a puppy'
+    },
+    opinions: {
+        title:'Share Your Opinion', level:'Intermediate', description:'Explain preferences, give reasons and compare ideas.',
+        words:[
+            {marathi:'मते',hindi:'राय',english:'Opinions'},{marathi:'फायदा',hindi:'फ़ायदा',english:'Benefit'},
+            {marathi:'तोटा',hindi:'नुकसान',english:'Disadvantage'},{marathi:'उदाहरण',hindi:'उदाहरण',english:'Example'},
+            {marathi:'तुलना',hindi:'तुलना',english:'Comparison'},{marathi:'निवड',hindi:'चुनाव',english:'Choice'}
+        ],
+        sentences:[
+            {marathi:'माझ्या मते, रोज थोडा सराव केल्याने नवीन भाषा शिकणे सोपे होते.',hindi:'मेरी राय में, रोज़ थोड़ा अभ्यास करने से नई भाषा सीखना आसान हो जाता है।',english:'In my opinion, practising a little every day makes learning a new language easier.'},
+            {marathi:'व्हिडिओ पाहण्याचा फायदा असा आहे की आपण शब्द ऐकू शकतो आणि त्यांचे उच्चार पाहू शकतो.',hindi:'वीडियो देखने का लाभ यह है कि हम शब्द सुन सकते हैं और उनका उच्चारण देख सकते हैं।',english:'One benefit of watching videos is that we can hear words and observe their pronunciation.'},
+            {marathi:'पुस्तकांमधून शिकणे उपयोगी आहे, परंतु संभाषणाचा सराव केल्याने आत्मविश्वासही वाढतो.',hindi:'किताबों से सीखना उपयोगी है, लेकिन बातचीत का अभ्यास करने से आत्मविश्वास भी बढ़ता है।',english:'Learning from books is useful, but conversation practice also builds confidence.'},
+            {marathi:'प्रत्येक विद्यार्थ्याची शिकण्याची पद्धत वेगळी असते, म्हणून स्वतःला योग्य वाटणारी पद्धत निवडावी.',hindi:'हर विद्यार्थी का सीखने का तरीका अलग होता है, इसलिए अपने लिए सही तरीका चुनना चाहिए।',english:'Every learner has a different learning style, so each person should choose a method that suits them.'}
+        ],
+        question:'What does “उदाहरण” mean?',options:['Example','Disadvantage','Choice','Opinion'],answer:'Example'
+    },
+    realLife: {
+        title:'Real-Life Problem Solving', level:'Advanced', description:'Practise longer, polite sentences for explaining a problem and asking for a solution.',
+        words:[
+            {marathi:'समस्या',hindi:'समस्या',english:'Problem'},{marathi:'उपाय',hindi:'समाधान',english:'Solution'},
+            {marathi:'शक्य असल्यास',hindi:'यदि संभव हो',english:'If possible'},{marathi:'कृपया लक्ष द्या',hindi:'कृपया ध्यान दें',english:'Please pay attention'},
+            {marathi:'गैरसमज',hindi:'गलतफ़हमी',english:'Misunderstanding'},{marathi:'स्पष्ट करणे',hindi:'स्पष्ट करना',english:'To clarify'}
+        ],
+        sentences:[
+            {marathi:'माफ करा, मला दिलेला पत्ता समजण्यात अडचण येत आहे; कृपया जवळची ओळखण्यासारखी जागा सांगू शकाल का?',hindi:'माफ़ कीजिए, मुझे दिया गया पता समझने में कठिनाई हो रही है; क्या आप पास की कोई पहचानने योग्य जगह बता सकते हैं?',english:'Excuse me, I am having trouble understanding the address I was given; could you tell me a nearby landmark?'},
+            {marathi:'मी तुमचे म्हणणे समजून घेण्याचा प्रयत्न करत आहे, पण कृपया शेवटचा भाग आणखी एकदा स्पष्ट कराल का?',hindi:'मैं आपकी बात समझने की कोशिश कर रहा/रही हूँ, लेकिन क्या आप कृपया आखिरी भाग एक बार और स्पष्ट करेंगे?',english:'I am trying to understand what you mean, but could you please clarify the last part once more?'},
+            {marathi:'शक्य असल्यास, मला ही माहिती लिहून द्या जेणेकरून मी ती नंतर पुन्हा वाचू शकेन.',hindi:'यदि संभव हो, तो यह जानकारी लिख दीजिए ताकि मैं इसे बाद में फिर से पढ़ सकूँ।',english:'If possible, please write this information down so that I can read it again later.'},
+            {marathi:'आपल्यात गैरसमज झाला असेल तर आपण शांतपणे बोलून योग्य उपाय शोधू शकतो.',hindi:'अगर हमारे बीच कोई गलतफ़हमी हुई है, तो हम शांति से बात करके सही समाधान ढूँढ सकते हैं।',english:'If there has been a misunderstanding between us, we can talk calmly and find a suitable solution.'}
+        ],
+        question:'What does “उपाय” mean?',options:['Solution','Problem','Choice','Morning'],answer:'Solution'
+    }
+};
+Object.assign(lessonData, additionalLessonData);
+const orderedLessonIds = [
+    'greetings','introduction','family','numbers','food','daily',
+    'colours','home','school','dailyRoutine','directions','shopping',
+    'travel','health','conversations','storytelling','opinions','realLife'
+];
+
+
 function loadVocabulary() {
     const grid = document.getElementById('vocabGrid');
     const filters = document.getElementById('vocabFilters');
@@ -593,8 +783,7 @@ function loadLessonContent() {
     const answerButtons = document.getElementById('answer-buttons');
 
     if (!config) return;
-
-    if (title) title.textContent = config.title;
+    if (title) title.textContent = (config.level ? config.level + ' • ' : '') + config.title;
     if (description) description.textContent = config.description;
 
     if (wordList) {
@@ -603,9 +792,12 @@ function loadLessonContent() {
                 <div class="marathi">${word.marathi}</div>
                 <p class="meta">Hindi: ${word.hindi}</p>
                 <p class="meta">English: ${word.english}</p>
-                <button class="btn btn-secondary" onclick="speakText('${word.marathi}', 'mr-IN')">🔊 Listen</button>
+                <button class="btn btn-secondary lesson-listen" type="button">🔊 Listen</button>
             </div>
         `).join('');
+        wordList.querySelectorAll('.lesson-listen').forEach((button,index) => {
+            button.addEventListener('click', () => speakText(config.words[index].marathi, 'mr-IN'));
+        });
     }
 
     if (sentenceList) {
@@ -614,22 +806,23 @@ function loadLessonContent() {
                 <p><strong>${sentence.marathi}</strong></p>
                 <p>Hindi: ${sentence.hindi}</p>
                 <p>English: ${sentence.english}</p>
+                <button class="btn btn-secondary sentence-listen" type="button">🔊 Listen</button>
             </div>
         `).join('');
+        sentenceList.querySelectorAll('.sentence-listen').forEach((button,index) => {
+            button.addEventListener('click', () => speakText(config.sentences[index].marathi, 'mr-IN'));
+        });
     }
 
     if (questionText) questionText.textContent = config.question;
-
     if (answerButtons) {
         answerButtons.innerHTML = config.options.map(option => `
             <button class="answer-btn" data-answer="${option}">${option}</button>
         `).join('');
-
         answerButtons.querySelectorAll('.answer-btn').forEach(button => {
             button.addEventListener('click', function () {
                 const result = document.getElementById('practice-result');
                 const selected = this.dataset.answer;
-
                 if (selected === config.answer) {
                     result.textContent = 'Correct!';
                     result.className = 'practice-result success';
