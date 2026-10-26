@@ -810,7 +810,12 @@ function loadLessonContent() {
             </div>
         `).join('');
         sentenceList.querySelectorAll('.sentence-listen').forEach((button,index) => {
-            button.addEventListener('click', () => speakText(config.sentences[index].marathi, 'mr-IN'));
+            button.setAttribute('aria-label', 'Listen to Marathi sentence: ' + config.sentences[index].english);
+            button.addEventListener('click', () => {
+                const sentence = config.sentences[index];
+                // Speak the complete sentence, not just an individual word.
+                speakText(sentence.marathi, 'mr-IN');
+            });
         });
     }
 
