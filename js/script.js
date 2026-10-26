@@ -1263,15 +1263,26 @@ function removeSelectedImage() {
 }
 
 async function requestTranslation(text, source, target) {
-    const url = 'https://api.mymemory.translated.net/get?q=' +
-        encodeURIComponent(text) + '&langpair=' + encodeURIComponent(source + '|' + target);
-    const response = await fetch(url);
-    if (!response.ok) throw new Error('Translation service unavailable.');
-    const data = await response.json();
-    if (data.responseStatus !== 200 || !data.responseData || !data.responseData.translatedText) {
-        throw new Error('No translation returned.');
+    // Google Translate's public web endpoint generally handles full sentences
+    // better than the previous dictionary-style fallback service.
+    const url = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=' +
+        encodeURIComponent(source || 'auto') + '&tl=' + encodeURIComponent(target) +
+        '&dt=t&q=' + encodeURIComponent(text);
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 12000);
+
+    try {
+        const response = await fetch(url, { signal: controller.signal });
+        if (!response.ok) throw new Error('Translation service unavailable.');
+        const data = await response.json();
+        const translated = Array.isArray(data?.[0])
+            ? data[0].map(part => Array.isArray(part) ? part[0] : '').filter(Boolean).join('')
+            : '';
+        if (!translated.trim()) throw new Error('No translation returned.');
+        return translated.trim();
+    } finally {
+        clearTimeout(timeout);
     }
-    return data.responseData.translatedText;
 }
 
 async function translateText() {
@@ -1287,36 +1298,38 @@ async function translateText() {
         return;
     }
 
-    result.textContent = 'Translating... Please wait.';
+    result.textContent = 'Translating your text...';
     if (listenButton) listenButton.hidden = true;
 
-    // Devanagari text may be Marathi or Hindi. Translate it to English.
-    // English text is translated into both Marathi and Hindi.
     const hasDevanagari = /[\u0900-\u097F]/.test(text);
+    const looksMarathi = /\b(आहे|आहेत|मला|तुम्ही|काय|नाही|करा|म्हणून|झाले|होते|आणि|कुठे|कृपया|सांगू|शकता)\b/.test(text);
+    const looksHindi = /\b(है|हैं|मुझे|आप|क्या|नहीं|करें|क्योंकि|और|कहाँ|बताइए|सकते|रहे|किया)\b/.test(text);
+
     try {
-        let lines;
+        let lines = [];
         if (hasDevanagari) {
-            const english = await requestTranslation(text, 'hi', 'en');
-            const marathi = await requestTranslation(text, 'mr', 'en').catch(() => '');
-            lines = ['English: ' + english];
-            if (marathi && marathi.toLowerCase() !== english.toLowerCase()) {
-                lines.push('Possible Marathi meaning in English: ' + marathi);
-            }
+            // Auto-detect Hindi vs Marathi instead of always treating Devanagari as Hindi.
+            const source = looksMarathi && !looksHindi ? 'mr' : looksHindi && !looksMarathi ? 'hi' : 'auto';
+            const english = await requestTranslation(text, source, 'en');
+            lines.push('English: ' + english);
+            // For ambiguous Devanagari input, don't display two competing guesses.
         } else {
             const [marathi, hindi] = await Promise.all([
                 requestTranslation(text, 'en', 'mr'),
                 requestTranslation(text, 'en', 'hi')
             ]);
-            lines = ['Marathi: ' + marathi, 'Hindi: ' + hindi];
+            lines.push('Marathi: ' + marathi, 'Hindi: ' + hindi);
         }
+
         result.textContent = lines.join(' | ');
         if (listenButton) {
             listenButton.hidden = false;
             listenButton.onclick = speakTranslationResult;
         }
+        localStorage.setItem('borashaLastActivity', new Date().toISOString());
     } catch (error) {
         console.error('Translation error:', error);
-        result.textContent = 'Translation service is unavailable right now. Please check your internet connection and try again.';
+        result.textContent = 'Sorry, translation is temporarily unavailable. Please check your internet connection and try again. For best results, enter one complete sentence at a time.';
     }
 }
 
